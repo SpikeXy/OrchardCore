@@ -16,3 +16,5 @@ script:
   - if test "$TRAVIS_OS_NAME" == "osx"; then dotnet restore --disable-parallel; fi
   - dotnet build -c Release
   - dotnet test -c Release ./test/Orchard.Tests/Orchard.Tests.csproj
+after_failure:
+  - cat MSBuild_*.failure.txt
