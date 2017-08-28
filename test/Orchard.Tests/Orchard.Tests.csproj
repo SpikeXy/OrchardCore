@@ -35,8 +35,6 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="$(AspNetCoreVersion)" />
     <PackageReference Include="xunit" Version="$(XunitVersion)" />
     <PackageReference Include="xunit.runner.visualstudio" Version="$(XunitRunnerVisualStudioVersion)" />
-    <PackageReference Include="xunit.analyzers" Version="$(XunitAnalyzers)" />
-    <DotNetCliToolReference Include="dotnet-xunit" Version="$(XunitVersion)" />
   </ItemGroup>
 
   <ItemGroup>
