@@ -26,8 +26,8 @@ This template is called when displaying a content item with the `Detail` display
 
 | Template | Filename|
 | --------- | ------------ |
-| Content__BlogPost | Content-BlogPost.cshtml |
-| Content__Article | Content-Article.cshtml |
+| `Content__BlogPost` | Content-BlogPost.cshtml |
+| `Content__Article` | Content-Article.cshtml |
 
 #### Available properties
 
@@ -45,8 +45,8 @@ is displayed in a list, the `Summary` display type is commonly used.
 
 | Template | Filename|
 | --------- | ------------ |
-| Content_Summary__BlogPost | Content-BlogPost.Summary.cshtml |
-| Content_Summary__Article | Content-Article.Summary.cshtml |
+| `Content_Summary__BlogPost` | Content-BlogPost.Summary.cshtml |
+| `Content_Summary__Article` | Content-Article.Summary.cshtml |
 
 ## Widget templates
 
@@ -58,8 +58,8 @@ This template is called when a widget is rendered on a page.
 
 | Template | Filename|
 | --------- | ------------ |
-| Widget__Paragraph | Widget-Paragraph.cshtml |
-| Widget__Blockquote | Widget-Blockquote.cshtml |
+| `Widget__Paragraph` | Widget-Paragraph.cshtml |
+| `Widget__Blockquote` | Widget-Blockquote.cshtml |
 
 #### Available properties
 
