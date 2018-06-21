@@ -16,7 +16,7 @@ namespace OrchardCore.Templates.Cms.Web
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-#if (AddNLog)
+#if (UseNLog)
                 .UseNLogWeb()
 #endif
                 .UseStartup<Startup>()

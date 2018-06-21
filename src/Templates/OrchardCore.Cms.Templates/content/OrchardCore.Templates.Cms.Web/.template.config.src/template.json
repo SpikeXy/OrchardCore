@@ -8,11 +8,11 @@
   "sourceName": "OrchardCore.Templates.Cms",
   "preferNameDirectory": true,
   "symbols": {
-    "AddNLog": {
+    "UseNLog": {
       "type": "parameter",
       "dataType": "bool",
       "description": "Add NLog.config file",
-      "defaultValue": "false"
+      "defaultValue": "true"
     },
     "OrchardVersion": {
       "type": "parameter",
@@ -27,7 +27,7 @@
       "exclude": [ "Properties/**/*", "**/[Bb]in/**", "**/[Oo]bj/**", ".template.config/**/*", "**/*.filelist", "**/*.user", "**/*.lock.json" ],
       "modifiers": [
         {
-          "condition": "(!AddNLog)",
+          "condition": "(!UseNLog)",
           "exclude": [
             "NLog.config"
           ]
