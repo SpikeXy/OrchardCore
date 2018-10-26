@@ -3,6 +3,8 @@ using OrchardCore.Apis.GraphQL;
 using OrchardCore.ContentManagement.GraphQL.Queries;
 using OrchardCore.ContentManagement.GraphQL.Queries.Types;
 using OrchardCore.Security.Permissions;
+using OrchardCore.Apis;
+using OrchardCore.ContentManagement.GraphQL.Queries.Filters;
 
 namespace OrchardCore.ContentManagement.GraphQL
 {
@@ -20,6 +22,8 @@ namespace OrchardCore.ContentManagement.GraphQL
             services.AddTransient<DynamicPartGraphType>();
             services.AddScoped<IContentTypeBuilder, TypedContentTypeBuilder>();
             services.AddScoped<IContentTypeBuilder, DynamicContentTypeBuilder>();
+
+            services.AddGraphQLFilterType<ContentItem, OrderByFilter>();
 
             return services;
         }
