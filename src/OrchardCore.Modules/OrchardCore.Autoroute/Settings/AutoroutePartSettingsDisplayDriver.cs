@@ -24,6 +24,7 @@ namespace OrchardCore.Autoroute.Settings
                 var settings = contentTypePartDefinition.Settings.ToObject<AutoroutePartSettings>();
 
                 model.AllowCustomPath = settings.AllowCustomPath;
+                model.AutomaticAdjustmentOnEdit = settings.AutomaticAdjustmentOnEdit;
                 model.Pattern = settings.Pattern;
                 model.ShowHomepageOption = settings.ShowHomepageOption;
                 model.AutoroutePartSettings = settings;
@@ -41,11 +42,13 @@ namespace OrchardCore.Autoroute.Settings
 
             await context.Updater.TryUpdateModelAsync(model, Prefix, 
                 m => m.Pattern, 
-                m => m.AllowCustomPath, 
+                m => m.AllowCustomPath,
+                m => m.AutomaticAdjustmentOnEdit,
                 m => m.ShowHomepageOption);
 
             context.Builder.WithSetting(nameof(AutoroutePartSettings.Pattern), model.Pattern);
             context.Builder.WithSetting(nameof(AutoroutePartSettings.AllowCustomPath), model.AllowCustomPath.ToString());
+            context.Builder.WithSetting(nameof(AutoroutePartSettings.AutomaticAdjustmentOnEdit), model.AutomaticAdjustmentOnEdit.ToString());
             context.Builder.WithSetting(nameof(AutoroutePartSettings.ShowHomepageOption), model.ShowHomepageOption.ToString());
 
             return Edit(contentTypePartDefinition, context.Updater);

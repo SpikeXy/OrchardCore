@@ -7,24 +7,37 @@
 }
 
 <fieldset class="form-group" asp-validation-class-for="Path">
-    <label asp-for="Path">@T["Permalink"] <span asp-validation-for="Path"></span></label>
-    <div class="input-group">
-        @if (!String.IsNullOrWhiteSpace(site.BaseUrl))
+
+        <label asp-for="Path">@T["Permalink"] <span asp-validation-for="Path"></span></label>
+        <div class="input-group">
+            @if (!String.IsNullOrWhiteSpace(site.BaseUrl))
+            {
+                <div class="input-group-prepend">
+                    <div class="input-group-text">@site.BaseUrl</div>
+                </div>
+            }
+
+            @if (Model.Settings.AutomaticAdjustmentOnEdit)
+            {
+                <input asp-for="Path" class="form-control" type="hidden" value="" />
+                <input class="form-control" value="@Model.Path" disabled="disabled" />
+            }
+            else
+            {
+                <input asp-for="Path" class="form-control" disabled="@(!Model.Settings.AllowCustomPath)" />
+            }
+        </div>
+
+
+        @if (!String.IsNullOrWhiteSpace(Model.Settings.Pattern) && Model.Settings.AllowCustomPath)
         {
-            <div class="input-group-prepend">
-                <div class="input-group-text">@site.BaseUrl</div>
-            </div>
+            <span class="hint">@T["The url of the content item. Leave empty to auto-generate it."]</span>
         }
-        <input asp-for="Path" class="form-control" disabled="@(!Model.Settings.AllowCustomPath)" />
-    </div>
-    @if (!String.IsNullOrWhiteSpace(Model.Settings.Pattern) && Model.Settings.AllowCustomPath)
-    {
-        <span class="hint">@T["The url of the content item. Leave empty to auto-generate it."]</span>
-    }
-    else
-    {
-        <span class="hint">@T["The url of the content item. It will be automatically generated."]</span>
-    }
+        else
+        {
+            <span class="hint">@T["The url of the content item. It will be automatically generated."]</span>
+        }
+   
 </fieldset>
 @{
     var authorized = await AuthorizationService.AuthorizeAsync(User, Permissions.SetHomepage);

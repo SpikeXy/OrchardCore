@@ -1,0 +1,809 @@
+{
+  "name": "AffairesExtra",
+  "displayName": "Affaires Extra",
+  "description": "Ready to use company website.",
+  "author": "The Orchard Team",
+  "website": "http://orchardproject.net",
+  "version": "2.0",
+  "issetuprecipe": true,
+  "categories": [ "default" ],
+  "tags": [ "affaires extra" ],
+
+  // The variables are evaluated the first time they are accessed, and reused across steps
+  "variables": {
+    "landingContentItemId": "[js:uuid()]"
+    // "now": "[js: new Date().toISOString()]"
+  },
+
+  "steps": [
+    {
+      "name": "feature",
+      "disable": [],
+      "enable": [
+        // SaaS
+        "OrchardCore.HomeRoute",
+        "OrchardCore.Admin",
+        "OrchardCore.Diagnostics",
+        "OrchardCore.DynamicCache",
+        "OrchardCore.Features",
+        "OrchardCore.Navigation",
+        "OrchardCore.Recipes",
+        "OrchardCore.Resources",
+        "OrchardCore.Roles",
+        "OrchardCore.Settings",
+        "OrchardCore.Themes",
+        "OrchardCore.Users",
+
+        // Content Management
+        "OrchardCore.Alias",
+        "OrchardCore.Autoroute",
+        "OrchardCore.Html",
+        "OrchardCore.ContentFields",
+        "OrchardCore.ContentPreview",
+        "OrchardCore.Contents",
+        "OrchardCore.Contents.FileContentDefinition",
+        "OrchardCore.ContentTypes",
+        "OrchardCore.CustomSettings",
+        "OrchardCore.Deployment",
+        "OrchardCore.Deployment.Remote",
+        "OrchardCore.Feeds",
+        "OrchardCore.Flows",
+        "OrchardCore.Layers",
+        "OrchardCore.Lists",
+        "OrchardCore.Liquid",
+        "OrchardCore.Markdown",
+        "OrchardCore.Media",
+        "OrchardCore.Menu",
+        "OrchardCore.Queries",
+        "OrchardCore.Title",
+        "OrchardCore.Templates",
+        "OrchardCore.Widgets",
+
+        // Themes
+        "TheAgencyTheme",
+        "TheAdmin",
+        "SafeMode"
+      ]
+    },
+    {
+      "name": "themes",
+      "admin": "TheAdmin",
+      "site": "TheAgencyTheme"
+    },
+    {
+      "name": "settings",
+      "HomeRoute": {
+        "Action": "Display",
+        "Controller": "Item",
+        "Area": "OrchardCore.Contents",
+        "ContentItemId": "[js: variables('landingContentItemId')]"
+      },
+      "LayerSettings": {
+        "Zones": [ "Footer" ]
+      }
+    },
+    {
+      "name": "ContentDefinition",
+      "ContentTypes": [
+        {
+          "Name": "LiquidPage",
+          "DisplayName": "Liquid Page",
+          "Hidden": false,
+          "Settings": {
+            "Creatable": "True",
+            "Draftable": "True",
+            "Versionable": "True",
+            "Listable": "True",
+            "Securable": "False",
+            "Stereotype": null
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "LiquidPage",
+              "Name": "LiquidPage",
+              "Settings": {
+                "Position": "2"
+              }
+            },
+            {
+              "PartName": "AutoroutePart",
+              "Name": "AutoroutePart",
+              "Settings": {
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                },
+                "Pattern": "{{ ContentItem | display_text | slugify }}",
+                "AllowCustomPath": "True",
+                "ShowHomepageOption": "True",
+                "Position": "1"
+              }
+            },
+            {
+              "PartName": "LiquidPart",
+              "Name": "LiquidPart",
+              "Settings": {
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                },
+                "Position": "3"
+              }
+            },
+            {
+              "PartName": "TitlePart",
+              "Name": "TitlePart",
+              "Settings": {
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "HtmlWidget",
+          "DisplayName": "Html",
+          "Settings": {
+            "Creatable": "False",
+            "Draftable": "True",
+            "Versionable": "True",
+            "Listable": "False",
+            "Securable": "True",
+            "Stereotype": "Widget"
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "HtmlWidget",
+              "Name": "HtmlWidget",
+              "Settings": {
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Page",
+          "DisplayName": "Page",
+          "Settings": {
+            "Creatable": "True",
+            "Draftable": "True",
+            "Versionable": "True",
+            "Listable": "True",
+            "Securable": "True",
+            "Stereotype": null
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "Page",
+              "Name": "Page",
+              "Settings": {
+                "Position": "3"
+              }
+            },
+            {
+              "PartName": "AutoroutePart",
+              "Name": "AutoroutePart",
+              "Settings": {
+                "Position": "1",
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                },
+                "Pattern": "{{ ContentItem | display_text | slugify }}",
+                "AllowCustomPath": "True",
+                "ShowHomepageOption": "True"
+              }
+            },
+            {
+              "PartName": "FlowPart",
+              "Name": "FlowPart",
+              "Settings": {
+                "Position": "2"
+              }
+            },
+            {
+              "PartName": "TitlePart",
+              "Name": "TitlePart",
+              "Settings": {
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "LandingPage",
+          "DisplayName": "Landing Page",
+          "Settings": {
+            "Creatable": "True",
+            "Draftable": "True",
+            "Versionable": "True",
+            "Listable": "True",
+            "Securable": "True",
+            "Stereotype": null
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "LandingPage",
+              "Name": "LandingPage",
+              "Settings": {
+                "Position": "8"
+              }
+            },
+            {
+              "PartName": "AutoroutePart",
+              "Name": "AutoroutePart",
+              "Settings": {
+                "Pattern": "{{ ContentItem | display_text | slugify }}",
+                "AllowCustomPath": "True",
+                "ShowHomepageOption": "True",
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                },
+                "Position": "1"
+              }
+            },
+            {
+              "PartName": "TitlePart",
+              "Name": "TitlePart",
+              "Settings": {
+                "Position": "0"
+              }
+            },
+            {
+              "PartName": "BagPart",
+              "Name": "Services",
+              "Settings": {
+                "DisplayName": "Services",
+                "Description": "Provides a collection behavior for your content item.",
+                "Position": "3",
+                "ContainedContentTypes": [
+                  "Service"
+                ],
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                }
+              }
+            },
+            {
+              "PartName": "BagPart",
+              "Name": "Portfolio",
+              "Settings": {
+                "DisplayName": "Portfolio",
+                "Description": "Provides a collection behavior for your content item.",
+                "ContainedContentTypes": [
+                  "Project"
+                ],
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                },
+                "Position": "4"
+              }
+            },
+            {
+              "PartName": "BagPart",
+              "Name": "About",
+              "Settings": {
+                "DisplayName": "About",
+                "Description": "A collection of milestones",
+                "Position": "5",
+                "ContainedContentTypes": [
+                  "Milestone"
+                ],
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                }
+              }
+            },
+            {
+              "PartName": "BagPart",
+              "Name": "Team",
+              "Settings": {
+                "DisplayName": "Team",
+                "Description": "Team members",
+                "Position": "6",
+                "ContainedContentTypes": [
+                  "TeamMember"
+                ],
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                }
+              }
+            },
+            {
+              "PartName": "BagPart",
+              "Name": "Clients",
+              "Settings": {
+                "DisplayName": "Clients",
+                "Description": "Provides a collection behavior for your content item.",
+                "Position": "7",
+                "ContainedContentTypes": [
+                  "Client"
+                ],
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                }
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Container",
+          "DisplayName": "Container",
+          "Settings": {
+            "Creatable": "False",
+            "Draftable": "True",
+            "Versionable": "True",
+            "Listable": "False",
+            "Securable": "True",
+            "Stereotype": "Widget"
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "Container",
+              "Name": "Container",
+              "Settings": {
+                "Position": "0"
+              }
+            },
+            {
+              "PartName": "FlowPart",
+              "Name": "FlowPart",
+              "Settings": {
+                "Position": "1"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Blockquote",
+          "DisplayName": "Blockquote",
+          "Settings": {
+            "Creatable": "False",
+            "Draftable": "True",
+            "Versionable": "True",
+            "Listable": "False",
+            "Securable": "True",
+            "Stereotype": "Widget"
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "Blockquote",
+              "Name": "Blockquote",
+              "Settings": {
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "ImageWidget",
+          "DisplayName": "Image",
+          "Settings": {
+            "Creatable": "False",
+            "Draftable": "True",
+            "Versionable": "True",
+            "Listable": "False",
+            "Securable": "True",
+            "Stereotype": "Widget"
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "Image",
+              "Name": "Image",
+              "Settings": {
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "LiquidWidget",
+          "DisplayName": "Liquid",
+          "Settings": {
+            "Creatable": "False",
+            "Draftable": "True",
+            "Versionable": "True",
+            "Listable": "True",
+            "Securable": "True",
+            "Stereotype": "Widget"
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "LiquidPart",
+              "Name": "LiquidPart",
+              "Settings": {
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Image",
+          "DisplayName": "Image",
+          "Settings": {
+            "Creatable": "False",
+            "Draftable": "False",
+            "Versionable": "True",
+            "Listable": "False",
+            "Securable": "False",
+            "Stereotype": null
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "Image",
+              "Name": "Image",
+              "Settings": {
+                "Position": "0"
+              }
+            },
+            {
+              "PartName": "TitlePart",
+              "Name": "TitlePart",
+              "Settings": {
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Paragraph",
+          "DisplayName": "Paragraph",
+          "Settings": {
+            "Creatable": "False",
+            "Draftable": "True",
+            "Versionable": "True",
+            "Listable": "False",
+            "Securable": "True",
+            "Stereotype": "Widget"
+          },
+          "ContentTypePartDefinitionRecords": [
+            {
+              "PartName": "Paragraph",
+              "Name": "Paragraph",
+              "Settings": {
+                "Position": "0"
+              }
+            }
+          ]
+        }
+      ],
+      "ContentParts": [
+        {
+          "Name": "HtmlWidget",
+          "Settings": {},
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "HtmlField",
+              "Name": "Content",
+              "Settings": {
+                "DisplayName": "Content",
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false
+                },
+                "Hint": null,
+                "Editor": "Multiline",
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "MenuItem",
+          "Settings": {},
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "TextField",
+              "Name": "Link",
+              "Settings": {
+                "DisplayName": "Link",
+                "Hint": null,
+                "Editor": null,
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                },
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Blockquote",
+          "Settings": {},
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "TextField",
+              "Name": "Quote",
+              "Settings": {
+                "DisplayName": "Quote",
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false
+                },
+                "Hint": null,
+                "Editor": "TextArea",
+                "Position": "0"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Image",
+          "Settings": {
+            "Attachable": true
+          },
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "MediaField",
+              "Name": "Media",
+              "Settings": {
+                "DisplayName": "Image",
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false
+                },
+                "Hint": null,
+                "Editor": null,
+                "Position": "0",
+                "Multiple": false,
+                "Required": true
+              }
+            },
+            {
+              "FieldName": "TextField",
+              "Name": "Caption",
+              "Settings": {
+                "DisplayName": "Caption",
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false,
+                  "Template": null
+                },
+                "Hint": "A description of the image used as title or alternate text",
+                "Editor": null,
+                "Position": "1"
+              }
+            }
+          ]
+        },
+        {
+          "Name": "Paragraph",
+          "Settings": {},
+          "ContentPartFieldDefinitionRecords": [
+            {
+              "FieldName": "HtmlField",
+              "Name": "Content",
+              "Settings": {
+                "DisplayName": "Content",
+                "ContentIndexSettings": {
+                  "Included": false,
+                  "Stored": false,
+                  "Analyzed": false,
+                  "Sanitized": false,
+                  "Tokenized": false
+                },
+                "Hint": null,
+                "Editor": "Wysiwyg",
+                "Position": "0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "content",
+      "Data": [
+        {
+          "ContentItemId": "[js: uuid()]",
+          "ContentType": "HtmlWidget",
+          "DisplayText": "Footer",
+          "Latest": true,
+          "Published": true,
+          "Owner": "[js: parameters('AdminUsername')]",
+          "Author": "[js: parameters('AdminUsername')]",
+          "LayerMetadata": {
+            "Layer": "Always",
+            "Zone": "Footer",
+            "RenderTitle": false,
+            "Position": 10
+          },
+          "HtmlWidget": {
+            "Content": {
+              "Html": "[file:text('Snippets/footer.html')]"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "layers",
+      "Layers": [
+        {
+          "Name": "Always",
+          "Rule": "true",
+          "Description": "The widgets in this layer are displayed on any page of this site."
+        },
+        {
+          "Name": "Homepage",
+          "Rule": "isHomepage()",
+          "Description": "The widgets in this layer are only displayed on the homepage."
+        }
+      ]
+    },
+    {
+      "name": "Content",
+      "data": [
+        {
+          "ContentItemId": "[js:uuid()]",
+          "ContentItemVersionId": "[js:uuid()]",
+          "ContentType": "Menu",
+          "DisplayText": "Main Menu",
+          "Latest": true,
+          "Published": true,
+          "Owner": "[js: parameters('AdminUsername')]",
+          "Author": "[js: parameters('AdminUsername')]",
+          "MenuPart": {},
+          "TitlePart": {
+            "Title": "Main Menu"
+          },
+          "MenuItemsListPart": {
+            "MenuItems": [
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "Équipement neuf",
+                  "Url": "~/equipement-agricole-neuf"
+                }
+              },
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "Équipement usagé",
+                  "Url": "~/equipement-agricole-usage"
+                }
+              },
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "Immobilier",
+                  "Url": "~/immobilier"
+                }
+              },
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "Petites annonces classées",
+                  "Url": "~/petites-annonces-classees"
+                }
+              },
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "Services aux agriculteurs",
+                  "Url": "~/services"
+                }
+              },
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "Annonceurs",
+                  "Url": "~/annonceurs"
+                }
+              },
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "À propos",
+                  "Url": "~/a-propos"
+                }
+              },
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "Abonnement à la revue Affaires Extra",
+                  "Url": "~/abonnement-a-revue"
+                }
+              },
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "Devenir annonceur",
+                  "Url": "~/devenir-annonceur"
+                }
+              },
+              {
+                "ContentType": "LinkMenuItem",
+                "ContentItemId": "[js:uuid()]",
+                "LinkMenuItemPart": {
+                  "Name": "Nous contacter",
+                  "Url": "~/contacter"
+                }
+              }
+            ]
+          },
+          "AliasPart": {
+            "Alias": "main-menu"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Templates",
+      "Templates": {
+        "Content__LandingPage": {
+          "Description": "A template for the Landing Page content type",
+          "Content": "[file:text('Snippets/landingpage.liquid')]"
+        }
+      }
+    }
+
+  ]
+}

@@ -1,0 +1,153 @@
+<section>
+    <h1>{{ Model.ContentItem }}</h1>
+    <div class="container">
+        <div class="row border mb-4">
+            <div class="col-md-3 p-5">
+                <img src="{{ Model.ContentItem.Content.Advertiser.Logo.Paths[0] | asset_url }}" alt="logo" />
+            </div>
+            <div class="col-md-9">
+                google map
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                {% assign main_address = Model.ContentItem.Content.Address.ContentItems.first %}
+                {%if main_address != null %}
+                <div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <h2>{{ machinery_advertiser }}</h2>
+                            <p>
+                                <strong>{{ main_address.Address.Town.Text }}</strong><br/>
+                                {{ main_address.Address.Street.Text }}<br/>
+                                {{ main_address.Address.Town.Text }}
+                                {{ main_address.Address.ProvinceState.Text }}
+                                {{ main_address.Address.PostalCode.Text }}<br/>
+                                <a href="https://www.google.com/maps/dir/{{ main_address.Address.PostalCode.Text }}/{{ main_address.Address.Street.Text }} {{ main_address.Address.Town.Text }} ({{ main_address.Address.ProvinceState.Text }})/" target="_blank">{{ "Get directions" | t }}</a>
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <p>
+                    {%if main_address.Address.Phone1.Text != null %}
+                    {{ "Phone" | t }} : {{ main_address.Address.Phone1.Text }}<br/>
+                    {% endif %}
+                    {%if main_address.Address.Phone2.Text != null %}
+                    {{ "Phone 2" | t }} : {{ main_address.Address.Phone2.Text }}<br/>
+                    {% endif %}
+                    {%if main_address.Address.Fax.Text != null %}
+                    {{ "Fax" | t }} : {{ main_address.Address.Fax.Text }}<br/>
+                    {% endif %}
+                    {%if main_address.Address.Email.Text != null %}
+                    {{ "Email" | t }} : <a href="mailto: {{ main_address.Address.Email.Text }}">{{ main_address.Address.Email.Text }}</a><br/>
+                    {% endif %}
+                    {%if main_address.Address.Website.Text != null %}
+                    {{ "Website" | t }} : <a href="http://{{ main_address.Address.Website.Text }}" target="_blank">{{ main_address.Address.Website.Text }}</a><br/>
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-md-4">
+                Annonce publiée dans la revue<br/>
+                de novembre 2018<br/>
+                <a class="btn btn-primary" href="{{ machinery_advertiser | display_url }}">Voir l'annonce</a>
+            </div>
+        </div>
+        {% assign addresses = Model.ContentItem.Content.Address.ContentItems %}
+        {% assign count = addresses.size - 1 %}
+        {% if count >= 1 %}
+        <hr />
+        <div class="row">
+            <div class="col">
+                <h3>Autres points de service</h3>
+                <div class="row mb-3">
+                    {% for i in (1..count) %}
+                    <div class="col-md-6">
+                        <p>
+                            <strong>{{ addresses[i].Address.Town.Text }}</strong><br/>
+                            {{ addresses[i].Address.Street.Text }}<br/>
+                            {{ addresses[i].Address.Town.Text }}
+                            {{ addresses[i].Address.ProvinceState.Text }}
+                            {{ addresses[i].Address.PostalCode.Text }}<br/>
+                            <a href="https://www.google.com/maps/dir/{{ addresses[i].Address.PostalCode.Text }}/{{ addresses[i].Address.Street.Text }} {{ addresses[i].Address.Town.Text }} ({{ addresses[i].Address.ProvinceState.Text }})/" target="_blank">{{ "Get directions" | t }}</a>
+                        </p>
+                        <p>
+                            {%if addresses[i].Address.Phone1.Text != null %}
+                            {{ "Phone" | t }} : {{ addresses[i].Address.Phone1.Text }}<br/>
+                            {% endif %}
+                            {%if addresses[i].Address.Phone2.Text != null %}
+                            {{ "Phone 2" | t }} : {{ addresses[i].Address.Phone2.Text }}<br/>
+                            {% endif %}
+                            {%if addresses[i].Address.Fax.Text != null %}
+                            {{ "Fax" | t }} : {{ addresses[i].Address.Fax.Text }}<br/>
+                            {% endif %}
+                            {%if addresses[i].Address.Email.Text != null %}
+                            {{ "Email" | t }} : {{ addresses[i].Address.Email.Text }}<br/>
+                            {% endif %}
+                            {%if addresses[i].Address.Website.Text != null %}
+                            {{ "Website" | t }} : <a href="http://{{ addresses[i].Address.Website.Text }}" target="_blank">{{ addresses[i].Address.Website.Text }}</a><br/>
+                            {% endif %}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <hr class="mb-5" />
+        {% endif %}
+    </div>
+
+    <!-- ANNONCES -->
+    {% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: condition: "*", region: "*", category: "*", model: "*", advertiser: Model.ContentItem.ContentItemId, brand: "*" %}
+    {% assign count = searchFarmMachineries | size %}
+    {%if count > 0 %}
+
+        <div class="container">
+            <div class="row">
+                {% for item in searchFarmMachineries %}
+                <div class="col-md-4">
+
+                    {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
+                    {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
+                    {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
+
+                    <div class="card mb-3">
+                        <img class="card-img-top" src="{{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url }}" alt="{{ machinery_type | display_text }} {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.MachineryModel.Text }}" />
+                        <div class="card-body">
+                            <h5 class="card-title">{{ machinery_type | display_text }} </h5>
+                            <h4 class="card-title">{{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.MachineryModel.Text }}</h4>
+                            {% if item.Content.FarmMachinery.Price.Value > 0 %}
+                            <p class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</p>
+                            {% endif %}
+                            <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
+                            <p class="card-text">Région: {{ item.Content.FarmMachinery.Region.Text }}</p>
+
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="jumbotron">
+            <h1 class="display-4">{{ "No result found" | t }}</h1>
+            <p class="lead">{{ "There may be no results corresponding to the criterion (s) of your search." | t }}</p>
+            <div class="my-4">
+                <p>{{ "Try again please or go back to search page." | t }}</p>
+                <p class="lead">
+                    <a class="btn btn-primary btn-lg" href="javascript:history.back()" role="button">{{ "Go back" | t }}</a>
+                </p>
+            </div>
+        </div>
+
+    {% endif %}
+</section>

@@ -1,10 +1,26 @@
 @model OrchardCore.Autoroute.ViewModels.AutoroutePartSettingsViewModel
+<script asp-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/codemirror.min.js" depends-on="admin" at="Foot"></script>
+<script asp-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/mode/javascript/javascript.min.js" at="Foot"></script>
+
+<script asp-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/mode/simple.min.js" at="Foot"></script>
+<script asp-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/addon/mode/multiplex.min.js" at="Foot"></script>
+<script asp-src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.26.0/mode/xml/xml.min.js" at="Foot"></script>
+
+<script asp-src="/OrchardCore.Liquid/codemirror/liquid.js" at="Foot"></script>
 
 <fieldset class="form-group">
     <div class="row col-lg">
         <label asp-for="Pattern">@T["Pattern"]</label>
-        <input asp-for="Pattern" class="form-control" />
+        <textarea asp-for="Pattern" class="form-control"></textarea>
         <span class="hint">@T["The pattern used to render the custom url of this content type."]</span>
+    </div>
+</fieldset>
+
+<fieldset class="form-group">
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" asp-for="AutomaticAdjustmentOnEdit" checked="@Model.AutomaticAdjustmentOnEdit">
+        <label class="custom-control-label" asp-for="AutomaticAdjustmentOnEdit">@T["Automatically regenerate when editing content"]</label>
+        <span class="hint">@T["This option will cause the Url to automatically be regenerated when you edit existing content and publish it again, otherwise it will always keep the old route, or you have to perform bulk update in the Autoroute admin."]</span>
     </div>
 </fieldset>
 
@@ -23,3 +39,15 @@
         <span class="hint">@T["Check to allow the content items of this content type to be set as the homepage. It will only be visible to users with the appropriate permission."]</span>
     </div>
 </fieldset>
+
+<script at="Foot">
+    $(function () {
+        editor = CodeMirror.fromTextArea(document.getElementById('@Html.IdFor(x => x.Pattern)'), {
+            lineNumbers: true,
+            styleActiveLine: true,
+            matchBrackets: true,
+            mode: { name: "liquid" },
+        });
+    });
+</script>
+

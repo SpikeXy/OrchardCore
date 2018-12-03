@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="{{ Culture.Name }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% render_section "HeadMeta", required: false %}
+    <title>{% page_title Site.SiteName %}</title>
+    {% resources type: "Meta" %}
+
+    <!-- javascript -->
+
+    {% script name:"bootstrap-bundle", use_cdn:"true", version:"4", at:"Foot" %}
+    {% script source:"/AffairesExtra/vendor/jquery-easing/jquery.easing.min.js", debug_src:"/TheAgencyTheme/vendor/jquery-easing/jquery.easing.js", at:"Foot" %}
+    {% script source:"/AffairesExtra/js/agency.min.js", debug_src:"/AffairesExtra/js/agency.js", at:"Foot" %}
+    {% resources type: "HeadScript" %}
+
+    <!-- CSS -->
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    
+    {% style name:"bootstrap", use_cdn:"true", version:"4" %}
+    {% style name:"font-awesome", use_cdn:"true", version:"5" %}
+
+    {% resources type: "HeadLink" %}
+    {% resources type: "Stylesheet" %}
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/TheBlogTheme/css/bootstrap-grid-ext.min.css">
+    <link href="/AffairesExtra/css/affaires-extra.min.css" rel="stylesheet">
+</head>
+<body id="page-top" dir="{{ Culture.Dir }}">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand js-scroll-trigger" href="{{ '~/#page-top' | href }}"><img alt="Affaires Extra" src="/AffairesExtra/img/affaires-extra.png"></a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu <i class="fa fa-bars"></i>
+            </button>
+            {% shape "menu", alias: "alias:main-menu", cache_id: "main-menu", cache_tag: "alias:main-menu" %}
+        </div>
+    </nav>
+    {% render_section "Header", required: false %}
+    <div class="container" id="main">
+        {% render_section "Content" %}
+    </div>
+	<div class="after-content">
+		{% render_section "AfterContent", required: false %}
+	</div>
+	<!-- Footer -->
+	<footer>
+		<div class="container-fluid footer-header">
+			{% render_section "FooterHeader", required: false %}
+		</div>
+		<div class="container-fluid footer">
+    		{% render_section "Footer", required: false %}
+		</div>
+	</footer>
+    <!-- Bootstrap core JavaScript -->
+    <script src="/AffairesExtra/vendor/jquery/jquery.min.js"></script>
+    <script src="/AffairesExtra/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Plugin JavaScript -->
+    <script src="/AffairesExtra/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Contact form JavaScript -->
+    <script src="/AffairesExtra/js/jqBootstrapValidation.js"></script>
+    <script src="/AffairesExtra/js/contact_me.js"></script>
+    <!-- Custom scripts for this template -->
+    <script src="/AffairesExtra/js/agency.min.js"></script>
+    {% resources type: "FootScript" %}
+</body>
+</html>
