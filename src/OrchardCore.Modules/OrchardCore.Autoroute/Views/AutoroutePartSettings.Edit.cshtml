@@ -9,11 +9,9 @@
 <script asp-src="/OrchardCore.Liquid/codemirror/liquid.js" at="Foot"></script>
 
 <fieldset class="form-group">
-    <div class="row col-lg">
-        <label asp-for="Pattern">@T["Pattern"]</label>
-        <textarea asp-for="Pattern" class="form-control"></textarea>
-        <span class="hint">@T["The pattern used to render the custom url of this content type."]</span>
-    </div>
+    <label asp-for="Pattern">@T["Pattern"]</label>
+    <textarea asp-for="Pattern" class="form-control" style="display: none;"></textarea>
+    <span class="hint">@T["The pattern used to render the custom url of this content type."]</span>
 </fieldset>
 
 <fieldset class="form-group">
