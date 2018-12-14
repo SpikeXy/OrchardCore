@@ -152,12 +152,13 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+.DS_Store?
 
 # =========================
 # Orchard specifics
 # =========================
 
-App_Data/
+lucene/
 glob:*.user
 *.patch
 *.hg
@@ -184,11 +185,7 @@ nuget.exe
 !lib/*/*.*
 
 #exclude node modules
-node_modules/
+node_modules/*
 
 wwwroot
-!src/OrchardCore.Modules/**/wwwroot
-!src/OrchardCore.Themes/**/wwwroot
-!src/Templates/**/content/**
-.template.config/
-/OrchardCore.sln.GhostDoc.xml
+!OrchardCore.Themes/**/wwwroot

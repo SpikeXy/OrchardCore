@@ -1,0 +1,4700 @@
+{
+  "Id": 0,
+  "ContentTypeDefinitionRecords": [
+    {
+      "Name": "Menu",
+      "DisplayName": "Menu",
+      "Settings": {
+        "Draftable": "True",
+        "Versionable": "True",
+        "Creatable": "True",
+        "Listable": "True"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "AliasPart",
+          "Name": "AliasPart",
+          "Settings": {
+            "Position": "2",
+            "AliasPartSettings": {
+              "Pattern": "{{ ContentItem | display_text | slugify }}"
+            }
+          }
+        },
+        {
+          "PartName": "MenuPart",
+          "Name": "MenuPart",
+          "Settings": {
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "MenuItemsListPart",
+          "Name": "MenuItemsListPart",
+          "Settings": {
+            "Position": "4"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "LinkMenuItem",
+      "DisplayName": "Link Menu Item",
+      "Settings": {
+        "Stereotype": "MenuItem"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "LinkMenuItemPart",
+          "Name": "LinkMenuItemPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "LiquidPage",
+      "DisplayName": "Liquid Page",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "False",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "LiquidPage",
+          "Name": "LiquidPage",
+          "Settings": {
+            "Position": "2"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Pattern": "{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "True",
+            "ShowHomepageOption": "True",
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "LiquidPart",
+          "Name": "LiquidPart",
+          "Settings": {
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "HtmlWidget",
+      "DisplayName": "Html",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "False",
+        "Securable": "True",
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "HtmlWidget",
+          "Name": "HtmlWidget",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Page",
+      "DisplayName": "Page",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Page",
+          "Name": "Page",
+          "Settings": {
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "1",
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Pattern": "{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "True",
+            "ShowHomepageOption": "True"
+          }
+        },
+        {
+          "PartName": "FlowPart",
+          "Name": "FlowPart",
+          "Settings": {
+            "Position": "2"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "0",
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "LandingPage",
+      "DisplayName": "Landing Page",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "LandingPage",
+          "Name": "LandingPage",
+          "Settings": {
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Pattern": "{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "True",
+            "ShowHomepageOption": "True",
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "LiquidPart",
+          "Name": "LiquidPart",
+          "Settings": {
+            "Position": "2"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Service",
+      "DisplayName": "Service",
+      "Settings": {
+        "Creatable": "True",
+        "Listable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Service",
+          "Name": "Service",
+          "Settings": {
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "HtmlBodyPart",
+          "Name": "HtmlBodyPart",
+          "Settings": {
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "2"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {
+            "Position": "1"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Container",
+      "DisplayName": "Container",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "False",
+        "Securable": "True",
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Container",
+          "Name": "Container",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "FlowPart",
+          "Name": "FlowPart",
+          "Settings": {
+            "Position": "1"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Blockquote",
+      "DisplayName": "Blockquote",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "False",
+        "Securable": "True",
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Blockquote",
+          "Name": "Blockquote",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ImageWidget",
+      "DisplayName": "Image",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "False",
+        "Securable": "True",
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Image",
+          "Name": "Image",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "LiquidWidget",
+      "DisplayName": "Liquid",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "LiquidPart",
+          "Name": "LiquidPart",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Image",
+      "DisplayName": "Image",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "False",
+        "Versionable": "True",
+        "Listable": "False",
+        "Securable": "False",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Image",
+          "Name": "Image",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Paragraph",
+      "DisplayName": "Paragraph",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "False",
+        "Securable": "True",
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Paragraph",
+          "Name": "Paragraph",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "FarmMachinery",
+      "DisplayName": "Farm Machinery",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "FarmMachinery",
+          "Name": "FarmMachinery",
+          "Settings": {
+            "Position": "2"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {
+            "Position": "1"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Advertiser",
+      "DisplayName": "Advertiser",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Advertiser",
+          "Name": "Advertiser",
+          "Settings": {
+            "Position": "2"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "0",
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "Pattern": "advertiser/{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "False",
+            "ShowHomepageOption": "False"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "BagPart",
+          "Name": "Address",
+          "Settings": {
+            "DisplayName": "Address",
+            "Description": "Adresses des succursales",
+            "Editor": null,
+            "ContainedContentTypes": [
+              "Address"
+            ],
+            "DisplayType": null,
+            "Position": "3"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "MachineryBrand",
+      "DisplayName": "Machinery Brand",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "MachineryBrand",
+          "Name": "MachineryBrand",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "1",
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "Pattern": "machinerie-agricole/{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "False",
+            "ShowHomepageOption": "False",
+            "ContentIndexSettings": {}
+          }
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {
+            "Position": "2"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "3",
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "ContentIndexSettings": {
+              "Included": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "MachineryType",
+      "DisplayName": "Machinery Type",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "MachineryType",
+          "Name": "MachineryType",
+          "Settings": {}
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "Pattern": "machinery-type/{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "False",
+            "ShowHomepageOption": "False"
+          }
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "ContentIndexSettings": {
+              "Included": true
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "FarmMachineryAccessory",
+      "DisplayName": "Farm Machinery Accessory",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "FarmMachineryAccessory",
+          "Name": "FarmMachineryAccessory",
+          "Settings": {
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "2"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "OtherEquipment",
+      "DisplayName": "Other Equipment",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "OtherEquipment",
+          "Name": "OtherEquipment",
+          "Settings": {
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "2"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "RealEstate",
+      "DisplayName": "Real Estate",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "RealEstate",
+          "Name": "RealEstate",
+          "Settings": {
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "2"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ClassifiedAds",
+      "DisplayName": "Classified Ads",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "ClassifiedAds",
+          "Name": "ClassifiedAds",
+          "Settings": {
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "2"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Address",
+      "DisplayName": "Address",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "False",
+        "Versionable": "False",
+        "Listable": "False",
+        "Securable": "False",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Address",
+          "Name": "Address",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "FarmMachineryAccessoryType",
+      "DisplayName": "Machinery Accessory Type",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "FarmMachineryAccessoryType",
+          "Name": "FarmMachineryAccessoryType",
+          "Settings": {
+            "Position": "3"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "2"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {
+            "Position": "1"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "OtherEquipmentType",
+      "DisplayName": "Other Equipment Type",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "OtherEquipmentType",
+          "Name": "OtherEquipmentType",
+          "Settings": {}
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {}
+        },
+        {
+          "PartName": "CommonPart",
+          "Name": "CommonPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "Form",
+      "DisplayName": "Form",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {}
+        },
+        {
+          "PartName": "FormPart",
+          "Name": "FormPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "FlowPart",
+          "Name": "FlowPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "Label",
+      "DisplayName": "Label",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {}
+        },
+        {
+          "PartName": "FormElementPart",
+          "Name": "FormElementPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "LabelPart",
+          "Name": "LabelPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "Input",
+      "DisplayName": "Input",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "FormInputElementPart",
+          "Name": "FormInputElementPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "FormElementPart",
+          "Name": "FormElementPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "InputPart",
+          "Name": "InputPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "TextArea",
+      "DisplayName": "Text Area",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "FormInputElementPart",
+          "Name": "FormInputElementPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "FormElementPart",
+          "Name": "FormElementPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "TextAreaPart",
+          "Name": "TextAreaPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "Select",
+      "DisplayName": "Select",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "FormInputElementPart",
+          "Name": "FormInputElementPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "FormElementPart",
+          "Name": "FormElementPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "SelectPart",
+          "Name": "SelectPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "Button",
+      "DisplayName": "Button",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "FormInputElementPart",
+          "Name": "FormInputElementPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "FormElementPart",
+          "Name": "FormElementPart",
+          "Settings": {}
+        },
+        {
+          "PartName": "ButtonPart",
+          "Name": "ButtonPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "NoCaptcha",
+      "DisplayName": "No Captcha",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "NoCaptchaPart",
+          "Name": "NoCaptchaPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "ValidationSummary",
+      "DisplayName": "Validation Summary",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "ValidationSummaryPart",
+          "Name": "ValidationSummaryPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "Validation",
+      "DisplayName": "Validation",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "ValidationPart",
+          "Name": "ValidationPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "FarmMachineryCategory",
+      "DisplayName": "Farm Machinery Category",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "FarmMachineryCategory",
+          "Name": "FarmMachineryCategory",
+          "Settings": {
+            "Position": "2"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "0",
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "Pattern": "machinerie-agricole/{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "False",
+            "ShowHomepageOption": "False",
+            "ContentIndexSettings": {}
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "1"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ContactRequest",
+      "DisplayName": "Contact Request",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "False",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "ContactRequest",
+          "Name": "ContactRequest",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ReCaptcha",
+      "DisplayName": "Re Captcha",
+      "Settings": {
+        "Stereotype": "Widget"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "ReCaptchaPart",
+          "Name": "ReCaptchaPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "Taxonomy",
+      "DisplayName": "Taxonomy",
+      "Settings": {
+        "Draftable": "True",
+        "Versionable": "True",
+        "Creatable": "True",
+        "Listable": "True"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "1"
+          }
+        },
+        {
+          "PartName": "AliasPart",
+          "Name": "AliasPart",
+          "Settings": {
+            "Position": "2",
+            "AliasPartSettings": {
+              "Pattern": "{{ ContentItem | display_text | slugify }}"
+            }
+          }
+        },
+        {
+          "PartName": "TaxonomyPart",
+          "Name": "TaxonomyPart",
+          "Settings": {
+            "Position": "3"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "MagazineSubscription",
+      "DisplayName": "Magazine Subscription",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "False",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "MagazineSubscription",
+          "Name": "MagazineSubscription",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    }
+  ],
+  "ContentPartDefinitionRecords": [
+    {
+      "Name": "AliasPart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Provides a way to define custom aliases for content items."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "AutoroutePart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Provides a custom url for your content item."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "FlowPart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Provides a customizable body for your content item."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "BagPart",
+      "Settings": {
+        "Attachable": "True",
+        "Reusable": "True",
+        "Description": "Provides a collection behavior for your content item."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "WidgetsListPart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Provides a way to add widgets per content items."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "HtmlBodyPart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Provides an HTML Body for your content item."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "ListPart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Add a list behavior."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "MarkdownBodyPart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Provides a Markdown formatted body for your content item."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "TitlePart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Provides a Title for your content item."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "CommonPart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Provides an editor for the common properties of a content item."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "LiquidPart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Provides a Liquid formatted body for your content item."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "HtmlWidget",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "HtmlField",
+          "Name": "Content",
+          "Settings": {
+            "DisplayName": "Content",
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false
+            },
+            "Hint": null,
+            "Editor": "Multiline",
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "MenuItem",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "TextField",
+          "Name": "Link",
+          "Settings": {
+            "DisplayName": "Link",
+            "Hint": null,
+            "Editor": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Service",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "TextField",
+          "Name": "IconClass",
+          "Settings": {
+            "DisplayName": "Icon Class",
+            "Hint": "The icon css class from font-awesome. e.g., fa-laptop, fa-shopping-cart, fa-lock",
+            "Editor": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "0"
+          }
+        },
+        {
+          "FieldName": "MediaField",
+          "Name": "MainPicture",
+          "Settings": {
+            "DisplayName": "Main Picture",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "Position": "0"
+          }
+        },
+        {
+          "FieldName": "MediaField",
+          "Name": "WebsitePictures",
+          "Settings": {
+            "DisplayName": "Website Pictures",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": true,
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "YoutubeField",
+          "Name": "YoutubeVideo",
+          "Settings": {
+            "DisplayName": "Youtube Video",
+            "Editor": null,
+            "Hint": null,
+            "Label": null,
+            "Width": 560,
+            "Height": 315,
+            "Position": "2"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Advertiser",
+          "Settings": {
+            "DisplayName": "Advertiser",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Advertiser"
+            ],
+            "Position": "3"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Price",
+          "Settings": {
+            "DisplayName": "Price",
+            "Editor": null,
+            "Hint": "$ CAN",
+            "Required": false,
+            "Scale": 2,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "4"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Region",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Abitibi-Témiscamingue",
+                  "value": "1"
+                },
+                {
+                  "name": "Alberta",
+                  "value": "2"
+                },
+                {
+                  "name": "Bas-Saint-Laurent",
+                  "value": "3"
+                },
+                {
+                  "name": "Capitale-Nationale",
+                  "value": "4"
+                },
+                {
+                  "name": "Centre-du-Québec",
+                  "value": "5"
+                },
+                {
+                  "name": "Chaudière-Appalaches",
+                  "value": "6"
+                },
+                {
+                  "name": "Colombie-Britannique",
+                  "value": "7"
+                },
+                {
+                  "name": "Côte-Nord",
+                  "value": "8"
+                },
+                {
+                  "name": "Estrie",
+                  "value": "9"
+                },
+                {
+                  "name": "États-Unis",
+                  "value": "10"
+                },
+                {
+                  "name": "Europe",
+                  "value": "11"
+                },
+                {
+                  "name": "Gaspésie-Îles-de-la-Madeleine",
+                  "value": "12"
+                },
+                {
+                  "name": "Île-du-Prince-Édouard",
+                  "value": "13"
+                },
+                {
+                  "name": "Lanaudière",
+                  "value": "14"
+                },
+                {
+                  "name": "Laurentides",
+                  "value": "15"
+                },
+                {
+                  "name": "Laval",
+                  "value": "16"
+                },
+                {
+                  "name": "Manitoba",
+                  "value": "17"
+                },
+                {
+                  "name": "Maritimes",
+                  "value": "18"
+                },
+                {
+                  "name": "Mauricie",
+                  "value": "19"
+                },
+                {
+                  "name": "Montérégie",
+                  "value": "20"
+                },
+                {
+                  "name": "Montréal",
+                  "value": "21"
+                },
+                {
+                  "name": "Nord-du-Québec",
+                  "value": "22"
+                },
+                {
+                  "name": "Nouveau-Brunswick",
+                  "value": "23"
+                },
+                {
+                  "name": "Nouvelle-Écosse",
+                  "value": "24"
+                },
+                {
+                  "name": "Nunavut",
+                  "value": "25"
+                },
+                {
+                  "name": "Ontario",
+                  "value": "26"
+                },
+                {
+                  "name": "Outaouais",
+                  "value": "27"
+                },
+                {
+                  "name": "Saguenay–Lac-Saint-Jean",
+                  "value": "28"
+                },
+                {
+                  "name": "Saskatchewan",
+                  "value": "29"
+                },
+                {
+                  "name": "Terre-Neuve-et-Labrador",
+                  "value": "30"
+                },
+                {
+                  "name": "Territoires du Nord-Ouest",
+                  "value": "31"
+                },
+                {
+                  "name": "Yukon",
+                  "value": "32"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "5",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Taxonomy",
+          "Settings": {
+            "DisplayName": "Taxonomy",
+            "Editor": null,
+            "Hint": "TODO : Un champ qui permet de sélectionner une catégorie ainsi que ses sous-catégories.",
+            "Required": false,
+            "Position": "6"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Blockquote",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "TextField",
+          "Name": "Quote",
+          "Settings": {
+            "DisplayName": "Quote",
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false
+            },
+            "Hint": null,
+            "Editor": "TextArea",
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Image",
+      "Settings": {
+        "Attachable": true
+      },
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "MediaField",
+          "Name": "Media",
+          "Settings": {
+            "DisplayName": "Image",
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false
+            },
+            "Hint": null,
+            "Editor": null,
+            "Position": "0",
+            "Multiple": false,
+            "Required": true
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Caption",
+          "Settings": {
+            "DisplayName": "Caption",
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Hint": "A description of the image used as title or alternate text",
+            "Editor": null,
+            "Position": "1"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Paragraph",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "HtmlField",
+          "Name": "Content",
+          "Settings": {
+            "DisplayName": "Content",
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false
+            },
+            "Hint": null,
+            "Editor": "Wysiwyg",
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "FarmMachinery",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "TextField",
+          "Name": "TypeOfFuel",
+          "Settings": {
+            "DisplayName": "Type Of Fuel",
+            "Editor": "PredefinedList",
+            "Hint": "Choose a type of fuel",
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "None",
+                  "value": ""
+                },
+                {
+                  "name": "diesel",
+                  "value": "diesel"
+                },
+                {
+                  "name": "essence",
+                  "value": "essence"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "11"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "MachineryModel",
+          "Settings": {
+            "DisplayName": "Model",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "8",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "WheelDrive",
+          "Settings": {
+            "DisplayName": "Wheel Drive",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "Position": "12",
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "2",
+                  "value": "2"
+                },
+                {
+                  "name": "4",
+                  "value": "4"
+                },
+                {
+                  "name": "6",
+                  "value": "6"
+                },
+                {
+                  "name": "10",
+                  "value": "10"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            }
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Year",
+          "Settings": {
+            "DisplayName": "Year",
+            "Editor": "Select",
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": 1900.0,
+            "Maximum": 2019.0,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "15"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Hours",
+          "Settings": {
+            "DisplayName": "Hours",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "13"
+          }
+        },
+        {
+          "FieldName": "BooleanField",
+          "Name": "Condition",
+          "Settings": {
+            "DisplayName": "Condition",
+            "Editor": "Switch",
+            "Hint": "Check if machinery is new",
+            "Label": null,
+            "Position": "6",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Advertiser",
+          "Settings": {
+            "DisplayName": "Advertiser",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Advertiser"
+            ],
+            "Position": "3",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Brand",
+          "Settings": {
+            "DisplayName": "Brand",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "MachineryBrand"
+            ],
+            "Position": "7",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "MotorHP",
+          "Settings": {
+            "DisplayName": "Motor HP",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "9"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "PTOForce",
+          "Settings": {
+            "DisplayName": "PTO Force",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "10"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "DistanceTraveled",
+          "Settings": {
+            "DisplayName": "Distance Traveled",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "14"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Type",
+          "Settings": {
+            "DisplayName": "Type",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "MachineryType"
+            ],
+            "Position": "5",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "MediaField",
+          "Name": "MainPicture",
+          "Settings": {
+            "DisplayName": "Main Picture",
+            "Editor": null,
+            "Hint": "Sélectionnez une photo principale (Si vous annoncez dans la revue, ce sera la photo sélectionnée.)",
+            "Required": true,
+            "Multiple": false,
+            "Position": "0"
+          }
+        },
+        {
+          "FieldName": "MediaField",
+          "Name": "WebsitePictures",
+          "Settings": {
+            "DisplayName": "Website Pictures",
+            "Editor": null,
+            "Hint": "Sélectionnez des photos additionnelles (pour le site Internet)",
+            "Required": false,
+            "Multiple": true,
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "YoutubeField",
+          "Name": "YoutubeVideo",
+          "Settings": {
+            "DisplayName": "Youtube Video",
+            "Editor": null,
+            "Hint": null,
+            "Label": null,
+            "Width": 560,
+            "Height": 315,
+            "Position": "2"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "AdditionalDescription",
+          "Settings": {
+            "DisplayName": "Additional Description",
+            "Editor": "TextArea",
+            "Hint": "Indiquer des informations supplémentaires",
+            "Required": false,
+            "TextFieldTextAreaEditorSettings": {
+              "Color": null
+            },
+            "Position": "19",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": true,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "AdministratorNote",
+          "Settings": {
+            "DisplayName": "Administrator Note",
+            "Editor": "TextArea",
+            "Hint": "Vous avez une interrogation, vous ne trouvez pas le modèle voulu? Laissez une note à l'administrateur",
+            "Required": false,
+            "TextFieldTextAreaEditorSettings": {
+              "Color": null
+            },
+            "Position": "20"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Price",
+          "Settings": {
+            "DisplayName": "Price",
+            "Editor": null,
+            "Hint": "$ CAN",
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "16"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Region",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Abitibi-Témiscamingue",
+                  "value": "1"
+                },
+                {
+                  "name": "Alberta",
+                  "value": "2"
+                },
+                {
+                  "name": "Bas-Saint-Laurent",
+                  "value": "3"
+                },
+                {
+                  "name": "Capitale-Nationale",
+                  "value": "4"
+                },
+                {
+                  "name": "Centre-du-Québec",
+                  "value": "5"
+                },
+                {
+                  "name": "Chaudière-Appalaches",
+                  "value": "6"
+                },
+                {
+                  "name": "Colombie-Britannique",
+                  "value": "7"
+                },
+                {
+                  "name": "Côte-Nord",
+                  "value": "8"
+                },
+                {
+                  "name": "Estrie",
+                  "value": "9"
+                },
+                {
+                  "name": "États-Unis",
+                  "value": "10"
+                },
+                {
+                  "name": "Europe",
+                  "value": "11"
+                },
+                {
+                  "name": "Gaspésie-Îles-de-la-Madeleine",
+                  "value": "12"
+                },
+                {
+                  "name": "Île-du-Prince-Édouard",
+                  "value": "13"
+                },
+                {
+                  "name": "Lanaudière",
+                  "value": "14"
+                },
+                {
+                  "name": "Laurentides",
+                  "value": "15"
+                },
+                {
+                  "name": "Laval",
+                  "value": "16"
+                },
+                {
+                  "name": "Manitoba",
+                  "value": "17"
+                },
+                {
+                  "name": "Maritimes",
+                  "value": "18"
+                },
+                {
+                  "name": "Mauricie",
+                  "value": "19"
+                },
+                {
+                  "name": "Montérégie",
+                  "value": "20"
+                },
+                {
+                  "name": "Montréal",
+                  "value": "21"
+                },
+                {
+                  "name": "Nord-du-Québec",
+                  "value": "22"
+                },
+                {
+                  "name": "Nouveau-Brunswick",
+                  "value": "23"
+                },
+                {
+                  "name": "Nouvelle-Écosse",
+                  "value": "24"
+                },
+                {
+                  "name": "Nunavut",
+                  "value": "25"
+                },
+                {
+                  "name": "Ontario",
+                  "value": "26"
+                },
+                {
+                  "name": "Outaouais",
+                  "value": "27"
+                },
+                {
+                  "name": "Saguenay–Lac-Saint-Jean",
+                  "value": "28"
+                },
+                {
+                  "name": "Saskatchewan",
+                  "value": "29"
+                },
+                {
+                  "name": "Terre-Neuve-et-Labrador",
+                  "value": "30"
+                },
+                {
+                  "name": "Territoires du Nord-Ouest",
+                  "value": "31"
+                },
+                {
+                  "name": "Yukon",
+                  "value": "32"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "17",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "PromoTag",
+          "Settings": {
+            "DisplayName": "Promo Tag",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "1 seul propriétaire",
+                  "value": "1 seul propriétaire"
+                },
+                {
+                  "name": "À venir",
+                  "value": "À venir"
+                },
+                {
+                  "name": "Comme neuf",
+                  "value": "Comme neuf"
+                },
+                {
+                  "name": "Démo",
+                  "value": "Démo"
+                },
+                {
+                  "name": "Doit partir",
+                  "value": "Doit partir"
+                },
+                {
+                  "name": "Impeccable",
+                  "value": "Impeccable"
+                },
+                {
+                  "name": "Nouveau",
+                  "value": "Nouveau"
+                },
+                {
+                  "name": "Comme neuf",
+                  "value": "Comme neuf"
+                },
+                {
+                  "name": "Nouveau produit",
+                  "value": "Nouveau produit"
+                },
+                {
+                  "name": "Nouvel ajout",
+                  "value": "Nouvel ajout"
+                },
+                {
+                  "name": "Photo à titre d'exemple",
+                  "value": "Photo à titre d'exemple"
+                },
+                {
+                  "name": "Pièce de collection",
+                  "value": "Pièce de collection"
+                },
+                {
+                  "name": "Rare",
+                  "value": "Rare"
+                },
+                {
+                  "name": "Réduit",
+                  "value": "Réduit"
+                },
+                {
+                  "name": "Spécial",
+                  "value": "Spécial"
+                },
+                {
+                  "name": "Un seulement",
+                  "value": "Un seulement"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "18"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Category",
+          "Settings": {
+            "DisplayName": "Category",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "FarmMachineryCategory"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "4"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Advertiser",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "MediaField",
+          "Name": "Logo",
+          "Settings": {
+            "DisplayName": "Logo",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Address",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "TextField",
+          "Name": "ProvinceState",
+          "Settings": {
+            "DisplayName": "Province / State",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Alberta",
+                  "value": "Alberta"
+                },
+                {
+                  "name": "Colombie-Britannique",
+                  "value": "Colombie-Britannique"
+                },
+                {
+                  "name": "Île-du-Prince-Édouard",
+                  "value": "Île-du-Prince-Édouard"
+                },
+                {
+                  "name": "Manitoba",
+                  "value": "Manitoba"
+                },
+                {
+                  "name": "Nouveau-Brunswick",
+                  "value": "Nouveau-Brunswick"
+                },
+                {
+                  "name": "Nouvelle-Écosse",
+                  "value": "Nouvelle-Écosse"
+                },
+                {
+                  "name": "Ontario",
+                  "value": "Ontario"
+                },
+                {
+                  "name": "Québec",
+                  "value": "Québec"
+                },
+                {
+                  "name": "Saskatchewan",
+                  "value": "Saskatchewan"
+                },
+                {
+                  "name": "Terre-Neuve-et-Labrador",
+                  "value": "Terre-Neuve-et-Labrador"
+                },
+                {
+                  "name": "Nunavut",
+                  "value": "Nunavut"
+                },
+                {
+                  "name": "Territoires du Nord-Ouest",
+                  "value": "Territoires du Nord-Ouest"
+                },
+                {
+                  "name": "Yukon",
+                  "value": "Yukon"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": "Québec"
+            },
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Phone1",
+          "Settings": {
+            "DisplayName": "Phone 1",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "4"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Phone2",
+          "Settings": {
+            "DisplayName": "Phone 2",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "5"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "PostalCode",
+          "Settings": {
+            "DisplayName": "Postal Code",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "3"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Town",
+          "Settings": {
+            "DisplayName": "Town",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "2"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Fax",
+          "Settings": {
+            "DisplayName": "Fax",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "6"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Email",
+          "Settings": {
+            "DisplayName": "Email",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "7"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Website",
+          "Settings": {
+            "DisplayName": "Website",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "8"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Street",
+          "Settings": {
+            "DisplayName": "Street",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ClassifiedAds",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "MediaField",
+          "Name": "MainPicture",
+          "Settings": {
+            "DisplayName": "Main Picture",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "Position": "0"
+          }
+        },
+        {
+          "FieldName": "MediaField",
+          "Name": "WebsitePictures",
+          "Settings": {
+            "DisplayName": "Website Pictures",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": true,
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Price",
+          "Settings": {
+            "DisplayName": "Price",
+            "Editor": null,
+            "Hint": "$ CAN",
+            "Required": false,
+            "Scale": 2,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "2"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Region",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Abitibi-Témiscamingue",
+                  "value": "1"
+                },
+                {
+                  "name": "Alberta",
+                  "value": "2"
+                },
+                {
+                  "name": "Bas-Saint-Laurent",
+                  "value": "3"
+                },
+                {
+                  "name": "Capitale-Nationale",
+                  "value": "4"
+                },
+                {
+                  "name": "Centre-du-Québec",
+                  "value": "5"
+                },
+                {
+                  "name": "Chaudière-Appalaches",
+                  "value": "6"
+                },
+                {
+                  "name": "Colombie-Britannique",
+                  "value": "7"
+                },
+                {
+                  "name": "Côte-Nord",
+                  "value": "8"
+                },
+                {
+                  "name": "Estrie",
+                  "value": "9"
+                },
+                {
+                  "name": "États-Unis",
+                  "value": "10"
+                },
+                {
+                  "name": "Europe",
+                  "value": "11"
+                },
+                {
+                  "name": "Gaspésie-Îles-de-la-Madeleine",
+                  "value": "12"
+                },
+                {
+                  "name": "Île-du-Prince-Édouard",
+                  "value": "13"
+                },
+                {
+                  "name": "Lanaudière",
+                  "value": "14"
+                },
+                {
+                  "name": "Laurentides",
+                  "value": "15"
+                },
+                {
+                  "name": "Laval",
+                  "value": "16"
+                },
+                {
+                  "name": "Manitoba",
+                  "value": "17"
+                },
+                {
+                  "name": "Maritimes",
+                  "value": "18"
+                },
+                {
+                  "name": "Mauricie",
+                  "value": "19"
+                },
+                {
+                  "name": "Montérégie",
+                  "value": "20"
+                },
+                {
+                  "name": "Montréal",
+                  "value": "21"
+                },
+                {
+                  "name": "Nord-du-Québec",
+                  "value": "22"
+                },
+                {
+                  "name": "Nouveau-Brunswick",
+                  "value": "23"
+                },
+                {
+                  "name": "Nouvelle-Écosse",
+                  "value": "24"
+                },
+                {
+                  "name": "Nunavut",
+                  "value": "25"
+                },
+                {
+                  "name": "Ontario",
+                  "value": "26"
+                },
+                {
+                  "name": "Outaouais",
+                  "value": "27"
+                },
+                {
+                  "name": "Saguenay–Lac-Saint-Jean",
+                  "value": "28"
+                },
+                {
+                  "name": "Saskatchewan",
+                  "value": "29"
+                },
+                {
+                  "name": "Terre-Neuve-et-Labrador",
+                  "value": "30"
+                },
+                {
+                  "name": "Territoires du Nord-Ouest",
+                  "value": "31"
+                },
+                {
+                  "name": "Yukon",
+                  "value": "32"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "3",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Town",
+          "Settings": {
+            "DisplayName": "Town",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "4"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "PostalCode",
+          "Settings": {
+            "DisplayName": "Postal Code",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "5"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Description",
+          "Settings": {
+            "DisplayName": "Description",
+            "Editor": null,
+            "Hint": "Test de l'annonce",
+            "Required": false,
+            "Position": "6"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Company",
+          "Settings": {
+            "DisplayName": "Company",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "7"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "ContactPerson",
+          "Settings": {
+            "DisplayName": "Contact Person",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "8"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Email",
+          "Settings": {
+            "DisplayName": "Email",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "9"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "FarmMachineryAccessory",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "MediaField",
+          "Name": "MainPicture",
+          "Settings": {
+            "DisplayName": "Main Picture",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "Position": "0"
+          }
+        },
+        {
+          "FieldName": "MediaField",
+          "Name": "WebsitePictures",
+          "Settings": {
+            "DisplayName": "Website Pictures",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": true,
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "YoutubeField",
+          "Name": "YoutubeVideo",
+          "Settings": {
+            "DisplayName": "Youtube Video",
+            "Editor": null,
+            "Hint": null,
+            "Label": null,
+            "Width": 560,
+            "Height": 315,
+            "Position": "2"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Advertiser",
+          "Settings": {
+            "DisplayName": "Advertiser",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Advertiser"
+            ],
+            "Position": "3",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Type",
+          "Settings": {
+            "DisplayName": "Type",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "FarmMachineryAccessoryType"
+            ],
+            "Position": "4",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "BooleanField",
+          "Name": "Condition",
+          "Settings": {
+            "DisplayName": "Condition",
+            "Editor": "Switch",
+            "Hint": null,
+            "Label": "check if new",
+            "Position": "5",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Price",
+          "Settings": {
+            "DisplayName": "Price",
+            "Editor": null,
+            "Hint": "$ CAN",
+            "Required": false,
+            "Scale": 2,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "6"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Region",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Abitibi-Témiscamingue",
+                  "value": "1"
+                },
+                {
+                  "name": "Alberta",
+                  "value": "2"
+                },
+                {
+                  "name": "Bas-Saint-Laurent",
+                  "value": "3"
+                },
+                {
+                  "name": "Capitale-Nationale",
+                  "value": "4"
+                },
+                {
+                  "name": "Centre-du-Québec",
+                  "value": "5"
+                },
+                {
+                  "name": "Chaudière-Appalaches",
+                  "value": "6"
+                },
+                {
+                  "name": "Colombie-Britannique",
+                  "value": "7"
+                },
+                {
+                  "name": "Côte-Nord",
+                  "value": "8"
+                },
+                {
+                  "name": "Estrie",
+                  "value": "9"
+                },
+                {
+                  "name": "États-Unis",
+                  "value": "10"
+                },
+                {
+                  "name": "Europe",
+                  "value": "11"
+                },
+                {
+                  "name": "Gaspésie-Îles-de-la-Madeleine",
+                  "value": "12"
+                },
+                {
+                  "name": "Île-du-Prince-Édouard",
+                  "value": "13"
+                },
+                {
+                  "name": "Lanaudière",
+                  "value": "14"
+                },
+                {
+                  "name": "Laurentides",
+                  "value": "15"
+                },
+                {
+                  "name": "Laval",
+                  "value": "16"
+                },
+                {
+                  "name": "Manitoba",
+                  "value": "17"
+                },
+                {
+                  "name": "Maritimes",
+                  "value": "18"
+                },
+                {
+                  "name": "Mauricie",
+                  "value": "19"
+                },
+                {
+                  "name": "Montérégie",
+                  "value": "20"
+                },
+                {
+                  "name": "Montréal",
+                  "value": "21"
+                },
+                {
+                  "name": "Nord-du-Québec",
+                  "value": "22"
+                },
+                {
+                  "name": "Nouveau-Brunswick",
+                  "value": "23"
+                },
+                {
+                  "name": "Nouvelle-Écosse",
+                  "value": "24"
+                },
+                {
+                  "name": "Nunavut",
+                  "value": "25"
+                },
+                {
+                  "name": "Ontario",
+                  "value": "26"
+                },
+                {
+                  "name": "Outaouais",
+                  "value": "27"
+                },
+                {
+                  "name": "Saguenay–Lac-Saint-Jean",
+                  "value": "28"
+                },
+                {
+                  "name": "Saskatchewan",
+                  "value": "29"
+                },
+                {
+                  "name": "Terre-Neuve-et-Labrador",
+                  "value": "30"
+                },
+                {
+                  "name": "Territoires du Nord-Ouest",
+                  "value": "31"
+                },
+                {
+                  "name": "Yukon",
+                  "value": "32"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "7",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Brand",
+          "Settings": {
+            "DisplayName": "Brand",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "MachineryBrand"
+            ],
+            "Position": "8",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Model",
+          "Settings": {
+            "DisplayName": "Model",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Position": "9"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "WheelDrive",
+          "Settings": {
+            "DisplayName": "Wheel Drive",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "2",
+                  "value": "2"
+                },
+                {
+                  "name": "4",
+                  "value": "4"
+                },
+                {
+                  "name": "6",
+                  "value": "6"
+                },
+                {
+                  "name": "10",
+                  "value": "10"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "10"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "PTOForce",
+          "Settings": {
+            "DisplayName": "PTO Force",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "11"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Capacity",
+          "Settings": {
+            "DisplayName": "Capacity",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "12"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Dimension",
+          "Settings": {
+            "DisplayName": "Dimension",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "13"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Diameter",
+          "Settings": {
+            "DisplayName": "Diameter",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "14"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Year",
+          "Settings": {
+            "DisplayName": "Year",
+            "Editor": "Select",
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": 1900.0,
+            "Maximum": 2019.0,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "15"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "PromoTag",
+          "Settings": {
+            "DisplayName": "Promo Tag",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "1 seul propriétaire",
+                  "value": "1 seul propriétaire"
+                },
+                {
+                  "name": "À venir",
+                  "value": "À venir"
+                },
+                {
+                  "name": "Comme neuf",
+                  "value": "Comme neuf"
+                },
+                {
+                  "name": "Démo",
+                  "value": "Démo"
+                },
+                {
+                  "name": "Doit partir",
+                  "value": "Doit partir"
+                },
+                {
+                  "name": "Impeccable",
+                  "value": "Impeccable"
+                },
+                {
+                  "name": "Nouveau",
+                  "value": "Nouveau"
+                },
+                {
+                  "name": "Comme neuf",
+                  "value": "Comme neuf"
+                },
+                {
+                  "name": "Nouveau produit",
+                  "value": "Nouveau produit"
+                },
+                {
+                  "name": "Nouvel ajout",
+                  "value": "Nouvel ajout"
+                },
+                {
+                  "name": "Photo à titre d'exemple",
+                  "value": "Photo à titre d'exemple"
+                },
+                {
+                  "name": "Pièce de collection",
+                  "value": "Pièce de collection"
+                },
+                {
+                  "name": "Rare",
+                  "value": "Rare"
+                },
+                {
+                  "name": "Réduit",
+                  "value": "Réduit"
+                },
+                {
+                  "name": "Spécial",
+                  "value": "Spécial"
+                },
+                {
+                  "name": "Un seulement",
+                  "value": "Un seulement"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "16"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "AdditionalDescription",
+          "Settings": {
+            "DisplayName": "Additional Description",
+            "Editor": "TextArea",
+            "Hint": "Indiquer des informations supplémentaires",
+            "Required": false,
+            "TextFieldTextAreaEditorSettings": {
+              "Color": null
+            },
+            "Position": "17"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "AdministratorNote",
+          "Settings": {
+            "DisplayName": "Administrator Note",
+            "Editor": "TextArea",
+            "Hint": "Vous avez une interrogation, vous ne trouvez pas le modèle voulu? Laissez une note à l'administrateur.",
+            "Required": false,
+            "TextFieldTextAreaEditorSettings": {
+              "Color": null
+            },
+            "Position": "18"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "OtherEquipment",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "MediaField",
+          "Name": "MainPicture",
+          "Settings": {
+            "DisplayName": "Main Picture",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "Position": "0"
+          }
+        },
+        {
+          "FieldName": "MediaField",
+          "Name": "WebsitePictures",
+          "Settings": {
+            "DisplayName": "Website Pictures",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": true,
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "YoutubeField",
+          "Name": "YoutubeVideo",
+          "Settings": {
+            "DisplayName": "Youtube Video",
+            "Editor": null,
+            "Hint": null,
+            "Label": null,
+            "Width": 560,
+            "Height": 315,
+            "Position": "2"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Advertiser",
+          "Settings": {
+            "DisplayName": "Advertiser",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Advertiser"
+            ],
+            "Position": "3"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Type",
+          "Settings": {
+            "DisplayName": "Type",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "OtherEquipmentType"
+            ],
+            "Position": "4"
+          }
+        },
+        {
+          "FieldName": "BooleanField",
+          "Name": "Condition",
+          "Settings": {
+            "DisplayName": "Condition",
+            "Editor": "Switch",
+            "Hint": "Check if is new",
+            "Label": null,
+            "Position": "5"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Price",
+          "Settings": {
+            "DisplayName": "Price",
+            "Editor": null,
+            "Hint": "$ CAN",
+            "Required": false,
+            "Scale": 2,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "6"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Region",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Abitibi-Témiscamingue",
+                  "value": "1"
+                },
+                {
+                  "name": "Alberta",
+                  "value": "2"
+                },
+                {
+                  "name": "Bas-Saint-Laurent",
+                  "value": "3"
+                },
+                {
+                  "name": "Capitale-Nationale",
+                  "value": "4"
+                },
+                {
+                  "name": "Centre-du-Québec",
+                  "value": "5"
+                },
+                {
+                  "name": "Chaudière-Appalaches",
+                  "value": "6"
+                },
+                {
+                  "name": "Colombie-Britannique",
+                  "value": "7"
+                },
+                {
+                  "name": "Côte-Nord",
+                  "value": "8"
+                },
+                {
+                  "name": "Estrie",
+                  "value": "9"
+                },
+                {
+                  "name": "États-Unis",
+                  "value": "10"
+                },
+                {
+                  "name": "Europe",
+                  "value": "11"
+                },
+                {
+                  "name": "Gaspésie-Îles-de-la-Madeleine",
+                  "value": "12"
+                },
+                {
+                  "name": "Île-du-Prince-Édouard",
+                  "value": "13"
+                },
+                {
+                  "name": "Lanaudière",
+                  "value": "14"
+                },
+                {
+                  "name": "Laurentides",
+                  "value": "15"
+                },
+                {
+                  "name": "Laval",
+                  "value": "16"
+                },
+                {
+                  "name": "Manitoba",
+                  "value": "17"
+                },
+                {
+                  "name": "Maritimes",
+                  "value": "18"
+                },
+                {
+                  "name": "Mauricie",
+                  "value": "19"
+                },
+                {
+                  "name": "Montérégie",
+                  "value": "20"
+                },
+                {
+                  "name": "Montréal",
+                  "value": "21"
+                },
+                {
+                  "name": "Nord-du-Québec",
+                  "value": "22"
+                },
+                {
+                  "name": "Nouveau-Brunswick",
+                  "value": "23"
+                },
+                {
+                  "name": "Nouvelle-Écosse",
+                  "value": "24"
+                },
+                {
+                  "name": "Nunavut",
+                  "value": "25"
+                },
+                {
+                  "name": "Ontario",
+                  "value": "26"
+                },
+                {
+                  "name": "Outaouais",
+                  "value": "27"
+                },
+                {
+                  "name": "Saguenay–Lac-Saint-Jean",
+                  "value": "28"
+                },
+                {
+                  "name": "Saskatchewan",
+                  "value": "29"
+                },
+                {
+                  "name": "Terre-Neuve-et-Labrador",
+                  "value": "30"
+                },
+                {
+                  "name": "Territoires du Nord-Ouest",
+                  "value": "31"
+                },
+                {
+                  "name": "Yukon",
+                  "value": "32"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "7",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "PromoTag",
+          "Settings": {
+            "DisplayName": "Promo Tag",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "1 seul propriétaire",
+                  "value": "1 seul propriétaire"
+                },
+                {
+                  "name": "À venir",
+                  "value": "À venir"
+                },
+                {
+                  "name": "Comme neuf",
+                  "value": "Comme neuf"
+                },
+                {
+                  "name": "Démo",
+                  "value": "Démo"
+                },
+                {
+                  "name": "Doit partir",
+                  "value": "Doit partir"
+                },
+                {
+                  "name": "Impeccable",
+                  "value": "Impeccable"
+                },
+                {
+                  "name": "Nouveau",
+                  "value": "Nouveau"
+                },
+                {
+                  "name": "Comme neuf",
+                  "value": "Comme neuf"
+                },
+                {
+                  "name": "Nouveau produit",
+                  "value": "Nouveau produit"
+                },
+                {
+                  "name": "Nouvel ajout",
+                  "value": "Nouvel ajout"
+                },
+                {
+                  "name": "Photo à titre d'exemple",
+                  "value": "Photo à titre d'exemple"
+                },
+                {
+                  "name": "Pièce de collection",
+                  "value": "Pièce de collection"
+                },
+                {
+                  "name": "Rare",
+                  "value": "Rare"
+                },
+                {
+                  "name": "Réduit",
+                  "value": "Réduit"
+                },
+                {
+                  "name": "Spécial",
+                  "value": "Spécial"
+                },
+                {
+                  "name": "Un seulement",
+                  "value": "Un seulement"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "Position": "8"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "AdditionalDescription",
+          "Settings": {
+            "DisplayName": "Additional Description",
+            "Editor": "TextArea",
+            "Hint": "Indiquer des informations supplémentaires",
+            "Required": false,
+            "TextFieldTextAreaEditorSettings": {
+              "Color": null
+            },
+            "Position": "9"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "AdministratorNote",
+          "Settings": {
+            "DisplayName": "Administrator Note",
+            "Editor": "TextArea",
+            "Hint": "Vous avez une interrogation, vous ne trouvez pas le modèle voulu? Laissez une note à l'administrateur.",
+            "Required": false,
+            "TextFieldTextAreaEditorSettings": {
+              "Color": null
+            },
+            "Position": "10"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "RealEstate",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "MediaField",
+          "Name": "MainPicture",
+          "Settings": {
+            "DisplayName": "Main Picture",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false
+          }
+        },
+        {
+          "FieldName": "MediaField",
+          "Name": "WebsitePictures",
+          "Settings": {
+            "DisplayName": "Website Pictures",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": true
+          }
+        },
+        {
+          "FieldName": "YoutubeField",
+          "Name": "YoutubeVideo",
+          "Settings": {
+            "DisplayName": "Youtube Video",
+            "Editor": null,
+            "Hint": null,
+            "Label": null,
+            "Width": 560,
+            "Height": 315
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Advertiser",
+          "Settings": {
+            "DisplayName": "Advertiser",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Advertiser"
+            ]
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Type",
+          "Settings": {
+            "DisplayName": "Type",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Chalet/Maison",
+                  "value": "Chalet/Maison"
+                },
+                {
+                  "name": "Domaine",
+                  "value": "Domaine"
+                },
+                {
+                  "name": "Espace commercial",
+                  "value": "Espace commercial"
+                },
+                {
+                  "name": "Espace industriel",
+                  "value": "Espace industriel"
+                },
+                {
+                  "name": "Étable/Grange",
+                  "value": "Étable/Grange"
+                },
+                {
+                  "name": "Ferme/Fermette",
+                  "value": "Ferme/Fermette"
+                },
+                {
+                  "name": "Garage",
+                  "value": "Garage"
+                },
+                {
+                  "name": "Pourvoirie",
+                  "value": "Pourvoirie"
+                },
+                {
+                  "name": "Terre à bois",
+                  "value": "Terre à bois"
+                },
+                {
+                  "name": "Terre agricole",
+                  "value": "Terre agricole"
+                },
+                {
+                  "name": "Terre constructible",
+                  "value": "Terre constructible"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "ActivityType",
+          "Settings": {
+            "DisplayName": "Activity Type",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Autre",
+                  "value": "Autre"
+                },
+                {
+                  "name": "Avicole",
+                  "value": "Avicole"
+                },
+                {
+                  "name": "Bovine",
+                  "value": "Bovine"
+                },
+                {
+                  "name": "Céréalière",
+                  "value": "Céréalière"
+                },
+                {
+                  "name": "Élevage petits animaux",
+                  "value": "Élevage petits animaux"
+                },
+                {
+                  "name": "Équestre",
+                  "value": "Équestre"
+                },
+                {
+                  "name": "Érablière",
+                  "value": "Érablière"
+                },
+                {
+                  "name": "Forestière",
+                  "value": "Forestière"
+                },
+                {
+                  "name": "Horticulture",
+                  "value": "Horticulture"
+                },
+                {
+                  "name": "Laitière",
+                  "value": "Laitière"
+                },
+                {
+                  "name": "Maraichère",
+                  "value": "Maraichère"
+                },
+                {
+                  "name": "Multiple",
+                  "value": "Multiple"
+                },
+                {
+                  "name": "Porcine",
+                  "value": "Porcine"
+                },
+                {
+                  "name": "Verger",
+                  "value": "Verger"
+                },
+                {
+                  "name": "Vignoble",
+                  "value": "Vignoble"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            }
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Price",
+          "Settings": {
+            "DisplayName": "Price",
+            "Editor": null,
+            "Hint": "$ CAN",
+            "Required": false,
+            "Scale": 2,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Region",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Abitibi-Témiscamingue",
+                  "value": "1"
+                },
+                {
+                  "name": "Alberta",
+                  "value": "2"
+                },
+                {
+                  "name": "Bas-Saint-Laurent",
+                  "value": "3"
+                },
+                {
+                  "name": "Capitale-Nationale",
+                  "value": "4"
+                },
+                {
+                  "name": "Centre-du-Québec",
+                  "value": "5"
+                },
+                {
+                  "name": "Chaudière-Appalaches",
+                  "value": "6"
+                },
+                {
+                  "name": "Colombie-Britannique",
+                  "value": "7"
+                },
+                {
+                  "name": "Côte-Nord",
+                  "value": "8"
+                },
+                {
+                  "name": "Estrie",
+                  "value": "9"
+                },
+                {
+                  "name": "États-Unis",
+                  "value": "10"
+                },
+                {
+                  "name": "Europe",
+                  "value": "11"
+                },
+                {
+                  "name": "Gaspésie-Îles-de-la-Madeleine",
+                  "value": "12"
+                },
+                {
+                  "name": "Île-du-Prince-Édouard",
+                  "value": "13"
+                },
+                {
+                  "name": "Lanaudière",
+                  "value": "14"
+                },
+                {
+                  "name": "Laurentides",
+                  "value": "15"
+                },
+                {
+                  "name": "Laval",
+                  "value": "16"
+                },
+                {
+                  "name": "Manitoba",
+                  "value": "17"
+                },
+                {
+                  "name": "Maritimes",
+                  "value": "18"
+                },
+                {
+                  "name": "Mauricie",
+                  "value": "19"
+                },
+                {
+                  "name": "Montérégie",
+                  "value": "20"
+                },
+                {
+                  "name": "Montréal",
+                  "value": "21"
+                },
+                {
+                  "name": "Nord-du-Québec",
+                  "value": "22"
+                },
+                {
+                  "name": "Nouveau-Brunswick",
+                  "value": "23"
+                },
+                {
+                  "name": "Nouvelle-Écosse",
+                  "value": "24"
+                },
+                {
+                  "name": "Nunavut",
+                  "value": "25"
+                },
+                {
+                  "name": "Ontario",
+                  "value": "26"
+                },
+                {
+                  "name": "Outaouais",
+                  "value": "27"
+                },
+                {
+                  "name": "Saguenay–Lac-Saint-Jean",
+                  "value": "28"
+                },
+                {
+                  "name": "Saskatchewan",
+                  "value": "29"
+                },
+                {
+                  "name": "Terre-Neuve-et-Labrador",
+                  "value": "30"
+                },
+                {
+                  "name": "Territoires du Nord-Ouest",
+                  "value": "31"
+                },
+                {
+                  "name": "Yukon",
+                  "value": "32"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Status",
+          "Settings": {
+            "DisplayName": "Status",
+            "Editor": "PredefinedList",
+            "Hint": null,
+            "Required": false,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "À louer",
+                  "value": "À louer"
+                },
+                {
+                  "name": "À vendre",
+                  "value": "À vendre"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            }
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "NumberOfRooms",
+          "Settings": {
+            "DisplayName": "Number Of Rooms",
+            "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Area",
+          "Settings": {
+            "DisplayName": "Area",
+            "Editor": null,
+            "Hint": "pc",
+            "Required": false,
+            "Scale": 0,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null
+          }
+        }
+      ]
+    },
+    {
+      "Name": "FormPart",
+      "Settings": {
+        "Attachable": "True",
+        "Description": "Turns your content item into a form."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "FormElementPart",
+      "Settings": {
+        "Description": "Provides attributes common to all form elements."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "FormInputElementPart",
+      "Settings": {
+        "Description": "Provides attributes common to all input form elements."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "LabelPart",
+      "Settings": {
+        "Description": "Provides label properties."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "InputPart",
+      "Settings": {
+        "Description": "Provides input field properties."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "TextAreaPart",
+      "Settings": {
+        "Description": "Provides text area properties."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "SelectPart",
+      "Settings": {
+        "Description": "Provides select field properties."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "ButtonPart",
+      "Settings": {
+        "Description": "Provides button properties."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "NoCaptchaPart",
+      "Settings": {
+        "Description": "Provides captcha properties."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "ValidationSummaryPart",
+      "Settings": {
+        "Description": "Displays a validation summary."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "ValidationPart",
+      "Settings": {
+        "Description": "Displays a field validation error."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "FarmMachineryCategory",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "MediaField",
+          "Name": "Picture",
+          "Settings": {
+            "DisplayName": "Picture",
+            "Editor": null,
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ContactRequest",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "TextField",
+          "Name": "FirstName",
+          "Settings": {
+            "DisplayName": "First Name",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "0"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "LastName",
+          "Settings": {
+            "DisplayName": "Last Name",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Town",
+          "Settings": {
+            "DisplayName": "Town",
+            "Position": "2"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Region",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "3"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "ProvinceState",
+          "Settings": {
+            "DisplayName": "Province / State",
+            "Editor": "PredefinedList",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "4",
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Alberta",
+                  "value": "Alberta"
+                },
+                {
+                  "name": "Colombie-Britannique",
+                  "value": "Colombie-Britannique"
+                },
+                {
+                  "name": "Île-du-Prince-Édouard",
+                  "value": "Île-du-Prince-Édouard"
+                },
+                {
+                  "name": "Manitoba",
+                  "value": "Manitoba"
+                },
+                {
+                  "name": "Nouveau-Brunswick",
+                  "value": "Nouveau-Brunswick"
+                },
+                {
+                  "name": "Nouvelle-Écosse",
+                  "value": "Nouvelle-Écosse"
+                },
+                {
+                  "name": "Ontario",
+                  "value": "Ontario"
+                },
+                {
+                  "name": "Québec",
+                  "value": "Québec"
+                },
+                {
+                  "name": "Saskatchewan",
+                  "value": "Saskatchewan"
+                },
+                {
+                  "name": "Terre-Neuve-et-Labrador",
+                  "value": "Terre-Neuve-et-Labrador"
+                },
+                {
+                  "name": "Nunavut",
+                  "value": "Nunavut"
+                },
+                {
+                  "name": "Territoires du Nord-Ouest",
+                  "value": "Territoires du Nord-Ouest"
+                },
+                {
+                  "name": "Yukon",
+                  "value": "Yukon"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Email",
+          "Settings": {
+            "DisplayName": "Email",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "5"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Phone",
+          "Settings": {
+            "DisplayName": "Phone",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "6"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Subject",
+          "Settings": {
+            "DisplayName": "Subject",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "7"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Message",
+          "Settings": {
+            "DisplayName": "Message",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "8"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ReCaptchaPart",
+      "Settings": {
+        "Description": "Provides captcha properties."
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "MagazineSubscription",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "TextField",
+          "Name": "FirstName",
+          "Settings": {
+            "DisplayName": "First Name",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "0"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "LastName",
+          "Settings": {
+            "DisplayName": "Last Name",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "SubscriberType",
+          "Settings": {
+            "DisplayName": "Subscriber Type",
+            "Editor": "PredefinedList",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Ferme",
+                  "value": "Ferme"
+                },
+                {
+                  "name": "Entreprise",
+                  "value": "Entreprise"
+                }
+              ],
+              "Editor": 1,
+              "DefaultValue": null
+            },
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "2"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Address",
+          "Settings": {
+            "DisplayName": "Address",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "3"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Town",
+          "Settings": {
+            "DisplayName": "Town",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "4"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "ProvinceState",
+          "Settings": {
+            "DisplayName": "Province / State",
+            "Editor": "PredefinedList",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "5",
+            "TextFieldPredefinedListEditorSettings": {
+              "Options": [
+                {
+                  "name": "Alberta",
+                  "value": "Alberta"
+                },
+                {
+                  "name": "Colombie-Britannique",
+                  "value": "Colombie-Britannique"
+                },
+                {
+                  "name": "Île-du-Prince-Édouard",
+                  "value": "Île-du-Prince-Édouard"
+                },
+                {
+                  "name": "Manitoba",
+                  "value": "Manitoba"
+                },
+                {
+                  "name": "Nouveau-Brunswick",
+                  "value": "Nouveau-Brunswick"
+                },
+                {
+                  "name": "Nouvelle-Écosse",
+                  "value": "Nouvelle-Écosse"
+                },
+                {
+                  "name": "Ontario",
+                  "value": "Ontario"
+                },
+                {
+                  "name": "Québec",
+                  "value": "Québec"
+                },
+                {
+                  "name": "Saskatchewan",
+                  "value": "Saskatchewan"
+                },
+                {
+                  "name": "Terre-Neuve-et-Labrador",
+                  "value": "Terre-Neuve-et-Labrador"
+                },
+                {
+                  "name": "Nunavut",
+                  "value": "Nunavut"
+                },
+                {
+                  "name": "Territoires du Nord-Ouest",
+                  "value": "Territoires du Nord-Ouest"
+                },
+                {
+                  "name": "Yukon",
+                  "value": "Yukon"
+                }
+              ],
+              "Editor": 0,
+              "DefaultValue": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "ZipCode",
+          "Settings": {
+            "DisplayName": "ZipCode",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "6"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Phone",
+          "Settings": {
+            "DisplayName": "Phone",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "7"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Email",
+          "Settings": {
+            "DisplayName": "Email",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "8"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "ActivityArea",
+          "Settings": {
+            "DisplayName": "Activity Area",
+            "Editor": "TextArea",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "9"
+          }
+        }
+      ]
+    }
+  ],
+  "Serial": 582
+}

@@ -1,0 +1,113 @@
+msgid "Brand"
+msgstr "Marque"
+
+msgid "Model"
+msgstr "Modèle"
+
+msgid "Wheel drive"
+msgstr "Roues motrices"
+
+msgid "Motor HP"
+msgstr "Force du moteur"
+
+msgid "PTO force"
+msgstr "Force PTO"
+
+msgid "Year"
+msgstr "Année"
+
+msgid "Hours"
+msgstr "Nombre d'heures"
+
+msgid "Inventory #"
+msgstr "Numéro d'inventaire"
+
+msgid "Company"
+msgstr "Compagnie"
+
+msgid "Additional informations"
+msgstr "Informations supplémentaires"
+
+msgid "Information request"
+msgstr "Demande de renseignements"
+
+msgid "Get directions"
+msgstr "Obtenir l'itinéraire"
+
+msgid "Phone"
+msgstr "Tél."
+
+msgid "Phone 2"
+msgstr "Tél. 2"
+
+msgid "Fax"
+msgstr "Téléc."
+
+msgid "Email"
+msgstr "Courriel"
+
+msgid "Website"
+msgstr "Site Internet"
+
+msgid "Search"
+msgstr "Rechercher"
+
+msgid "Farm Machinery"
+msgstr "Machinerie agricole"
+
+msgid "Real Estate"
+msgstr "Immobilier"
+
+msgid "Classified Ads"
+msgstr "Annonces classées"
+
+msgid "Category"
+msgstr "Catégorie"
+
+msgid "Brand"
+msgstr "Marque"
+
+msgid "Region"
+msgstr "Région"
+
+msgid "Choose..."
+msgstr "Choisissez..."
+
+msgid "Advertiser"
+msgstr "Annonceur"
+
+msgid "Price"
+msgstr "Prix"
+
+msgid "No result found"
+msgstr "Aucun résultat trouvé"
+
+msgid "There may be no results corresponding to the criterion (s) of your search."
+msgstr "Il se peut qu'il n'y ai aucun résultat correspondant au(x) critère(s) de votre recherche."
+
+msgid "Try again please or go back to search page."
+msgstr "Ressayez plus tard ou retournez à la page de recherche."
+
+msgid "Go back"
+msgstr "Page précédente"
+
+msgid "Send"
+msgstr "Soumettre"
+
+msgid "Town"
+msgstr "Ville"
+
+msgid "We'll never share your email with anyone else."
+msgstr "Nous ne partagerons pas votre courriel avec quiconque."
+
+msgid "Price upon request"
+msgstr "Prix sur demande"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Used"
+msgstr "Usagés"
+
+msgid "New"
+msgstr "Neufs"
