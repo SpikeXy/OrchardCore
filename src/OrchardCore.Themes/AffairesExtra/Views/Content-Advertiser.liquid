@@ -3,7 +3,11 @@
     <div class="container">
         <div class="row border mb-4">
             <div class="col-md-3 p-5">
-                <img src="{{ Model.ContentItem.Content.Advertiser.Logo.Paths[0] | asset_url }}" alt="logo" />
+                {% if Model.ContentItem.Content.Advertiser.Logo.Paths[0] != null %}
+                <img src="{{ Model.ContentItem.Content.Advertiser.Logo.Paths[0] | asset_url }}" alt="logo" class="img-fluid" />
+                {% else %}
+                <img src="/AffairesExtra/img/noimage.png" alt="logo" class="img-fluid" />
+                {% endif %}
             </div>
             <div class="col-md-9">
                 google map
@@ -106,10 +110,10 @@
     {% assign count = searchFarmMachineries | size %}
     {%if count > 0 %}
 
-    <div class="container">
+
             <div class="row">
                 {% for item in searchFarmMachineries %}
-                <div class="col-md-4">
+                <div class="col-md-4 d-flex align-items-stretch">
 
                     {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
                     {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
@@ -134,7 +138,7 @@
                 </div>
                 {% endfor %}
             </div>
-        </div>
+
 
     {% else %}
 

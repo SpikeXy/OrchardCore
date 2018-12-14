@@ -51,22 +51,39 @@
         $(".navbar").removeClass("d-none");
     })
 
-
-    $('.owl-carousel').owlCarousel({
-        loop: true,
-        margin: 10,
-        nav: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            768: {
-                items: 3
-            },
-            1000: {
-                items: 4
+    if ($('.owl-carousel').length) {
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                768: {
+                    items: 3
+                },
+                1000: {
+                    items: 4
+                }
             }
-        }
-    })
+        })
+    };
+
+    if ($('.js-range-slider').length) {
+        $(".js-range-slider").ionRangeSlider({
+            type: "double",
+            grid: true,
+            min: 0,
+            max: 500000,
+            from: 0,
+            to: 200000,
+            prefix: "$",
+            onChange: function (data) {
+                $('#pricefrom').val($(".js-range-slider").data("from"));
+                $('#priceto').val($(".js-range-slider").data("to"));
+            }
+        });
+    };
 
 })(jQuery); // End of use strict

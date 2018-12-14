@@ -1,0 +1,19 @@
+<div class="row mt-4">
+    <div class="container">
+        <h2 class="text-center mb-4">Annonceurs en vedette</h2>
+        <div class="row">
+            {% for item in Model.ContentItems %}
+            <div class="col-md-3 text-center p-4 d-flex align-items-stretch">
+                <a href="{{ item | display_url }}">
+                    <div class="pb-3">{{ item | display_text }}</div>
+                    {% if item.Content.Advertiser.Logo.Paths[0] != null %}
+                    <img src="{{ item.Content.Advertiser.Logo.Paths[0] | asset_url }}" alt="logo" class="img-fluid"  />
+                    {% else %}
+                    <img src="/AffairesExtra/img/noimage.png" alt="logo" class="img-fluid" />
+                    {% endif %}
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

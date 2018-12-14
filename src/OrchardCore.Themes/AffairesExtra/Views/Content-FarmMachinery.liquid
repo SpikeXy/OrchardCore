@@ -1,8 +1,19 @@
+{% script source:"https://www.google.com/recaptcha/api.js", at:"Foot" %}
 {% assign machinery_type = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Type.ContentItemIds[0]] %}
 {% assign machinery_brand = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
 {% assign machinery_advertiser = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
 
 <section>
+    {% if Request.Query.sent != null %}
+    <div class="alert alert-success" role="alert">
+    Votre message a été envoyé ; nous vous répondrons d'ici peu. <strong>Merci !</strong>
+    </div>
+    {% endif %}
+    {% if Request.Query.error != null %}
+    <div class="alert alert-warning" role="alert">
+    Veuillez cliquer sur le Recaptcha. <strong>Merci !</strong>
+    </div>
+    {% endif %}
   <div class="container">
 	<div class="row">
 		<div class="col-md-6">
@@ -115,23 +126,27 @@
             <div class="row">
 		        <div class="col">
 			        <h2 class="mb-4 mt-4">{{ "Information request" | t }}</h2>
-			        <form>
-			          <div class="form-group">
-				        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nom du contact">
+			        <form method="post" action="/workflows/Invoke?token=CfDJ8LetxqJ1HAVDuMzNanVXaTTGrqXq9r_2gVgW6p5ubcoMmQCBrC7vnXLaWBxzjpO7PvHK-RJqCH5QbDoGDedTeqSmJC9rVCyd6gbMHcUEoXe7unGBC5emvWQR5FC5FkIDOOCQLITpsF60xgePZ-YiYNZOIlAFfWBiLT8UX6w5ne-Hd_bgzhLOcAtoP-ZEyxrvR4FWbq5lSL-yUmXGboWslVxW-T2p4yNxYzzZ4jHkscTm">
+			          {% antiforgerytoken %}
+                      <input type="hidden" name="ProductId" value="{{ Model.ContentItem.ContentItemId }}" />
+                      <input type="hidden" name="ReturnUrl" value="{{ Request.Path }}" />
+                      <div class="form-group">
+				        <input name="FullName" type="text" class="form-control" id="FullName" placeholder="Nom du contact">
 			          </div>
 			          <div class="form-group">
-				        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez votre courriel">
+				        <input name="Email" type="email" class="form-control" id="Email" aria-describedby="emailHelp" placeholder="Entrez votre courriel">
 				        <small id="emailHelp" class="form-text text-muted">{{ "We'll never share your email with anyone else." | t }}</small>
 			          </div>
 			          <div class="form-group">
-				        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="{{ "Phone" | t }}">
+				        <input name="Phone" type="text" class="form-control" id="Phone" placeholder="{{ "Phone" | t }}">
 			          </div>
 			          <div class="form-group">
-				        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="{{ "Town" | t }}">
+				        <input name="Town" type="text" class="form-control" id="Town" placeholder="{{ "Town" | t }}">
 			          </div>
 			          <div class="form-group">
-				        <textarea class="form-control" id="exampleInputPassword1" placeholder="Message"></textarea>
+				        <textarea name="Message" class="form-control" id="Message" placeholder="Message"></textarea>
 			          </div>
+                      <div class="g-recaptcha mb-3" data-sitekey="6LcEqWkUAAAAAL9FPZNjtLZJDcqU1l9OWVReEnBy"></div>
 			          <button type="submit" class="btn btn-primary">{{ "Send" | t }}</button>
 			        </form>
 		        </div>
@@ -202,4 +217,40 @@
 	</div>
 	{% endif %}
   </div>
+
+  {% assign relatedFarmMachinery = Queries.RelatedFarmMachinery |  query: from: 0, size: 3, condition: "*", type: machinery_type.ContentItemId, brand: machinery_brand.ContentItemId, current: Model.ContentItem.ContentItemId %}
+  {% assign count = relatedFarmMachinery | size %}
+  {% if count > 0 %}
+  <hr class="mt-4" />
+  
+  
+  <h2 class="text-center mt-4 mb-4">Annonces similaires</h2>
+  <div class="row">  
+  
+  {% for item in relatedFarmMachinery %}
+          <div class="col-md-4 d-flex align-items-stretch">
+
+            {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
+            {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
+            {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
+
+            <div class="card mb-3">
+              <a href="{{ item | display_url }}"><img class="card-img-top" src="{{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url }}" alt="{{ machinery_type | display_text }} {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.MachineryModel.Text }}"></a>
+              <div class="card-body">
+                {% if item.Content.FarmMachinery.Price.Value > 0 %}
+                  <h5 class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</h5>
+                {% else %}
+                  <h5 class="card-text">{{ "Price upon request" | t }}</h5>
+                {% endif %}    
+                <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.MachineryModel.Text }}</a></h5> 
+                <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
+                <p class="card-text">Région: {{ item.Content.FarmMachinery.Region.Text }}</p>
+
+              </div>
+              <div class="card-footer text-center"><a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a></div>
+            </div>
+          </div>
+  {% endfor %}
+  </div>
+  {% endif %}
 </section>

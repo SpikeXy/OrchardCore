@@ -12,7 +12,8 @@
     {% script name:"bootstrap-bundle", use_cdn:"true", version:"4", at:"Foot" %}
     {% script source:"/AffairesExtra/vendor/jquery-easing/jquery.easing.min.js", debug_src:"/TheAgencyTheme/vendor/jquery-easing/jquery.easing.js", at:"Foot" %}
     {% script source:"/AffairesExtra/vendor/OwlCarousel2-2.3.4/dist/owl.carousel.min.js", debug_src:"/AffairesExtra/vendor/OwlCarousel2-2.3.4/dist/owl.carousel.js", at:"Foot" %}
-    {% script source:"/AffairesExtra/js/agency.min.js", debug_src:"/AffairesExtra/js/agency.js", at:"Foot" %}
+    {% script source:"https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js", at:"Foot" %}
+    {% script source:"/AffairesExtra/js/agency.min.js", debug_src:"/AffairesExtra/js/agency.js", at:"Foot" %}  
     {% resources type: "HeadScript" %}
 
     <!-- CSS -->
@@ -22,7 +23,11 @@
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!--Plugin CSS file with desired skin-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
     
+
+
     {% style name:"bootstrap", use_cdn:"true", version:"4" %}
     {% style name:"font-awesome", use_cdn:"true", version:"5" %}
 
@@ -66,8 +71,7 @@
     <script src="/AffairesExtra/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Plugin JavaScript -->
     <script src="/AffairesExtra/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <!-- Custom scripts for this template -->
-    <script src="/AffairesExtra/js/agency.min.js"></script>
     {% resources type: "FootScript" %}
+
 </body>
 </html>

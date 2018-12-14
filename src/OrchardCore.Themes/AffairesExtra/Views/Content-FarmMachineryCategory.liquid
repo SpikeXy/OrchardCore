@@ -22,6 +22,14 @@
   {% assign query_category = Request.Query.category %}
 {% endif %}
 
+{% assign query_type = "*" %}
+{% if Request.Form.type != null %}
+  {% assign query_type = Request.Form.type %}
+{% endif %}
+{% if Request.Query.type != null %}
+  {% assign query_type = Request.Query.type %}
+{% endif %}
+
 {% assign query_model = "*" %}
 {% if Request.Form.model != null %}
   {% assign query_model = Request.Form.model %}
@@ -66,7 +74,7 @@
 
 
 <!-- ANNONCES -->
-{% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: query_size, from: query_from, condition: query_condition, region: query_region, category: query_category, model: query_model, advertiser: query_advertiser, brand: query_brand %}
+{% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: query_size, from: query_from, condition: query_condition, region: query_region, category: query_category, type: query_type, model: query_model, advertiser: query_advertiser, brand: query_brand %}
 {% assign count = searchFarmMachineries | size %}
 {%if count > 0 %}
   <section>
@@ -213,7 +221,7 @@
       
       
       <div class="container">
-          <div class="row mb-4">
+          <div class="row mb-4 mt-4">
               <div class="col-md-6 form-inline">
                   <label for="sort">{{ "Classer par" | t }}</label>
                   <select id="sort" class="form-control form-control-sm ml-2" name="sort" onchange="this.form.submit()">
