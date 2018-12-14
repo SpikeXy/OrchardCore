@@ -14,7 +14,7 @@
   {% assign query_region = Request.Query.region %}
 {% endif %}
 
-{% assign query_category = "*" %}
+{% assign query_category = Model.ContentItem.ContentItemId %}
 {% if Request.Form.category != null %}
   {% assign query_category = Request.Form.category %}
 {% endif %}
@@ -54,6 +54,30 @@
   {% assign query_brand = Request.Query.brand %}
 {% endif %}
 
+{% assign query_year = null %}
+{% if Request.Form.year != null %}
+  {% assign query_year = Request.Form.year %}
+{% endif %}
+{% if Request.Query.year != null %}
+  {% assign query_year = Request.Query.year %}
+{% endif %}
+
+{% assign query_price_from = 0 %}
+{% if Request.Form.pricefrom != null %}
+  {% assign query_price_from = Request.Form.pricefrom %}
+{% endif %}
+{% if Request.Query.pricefrom != null %}
+  {% assign query_price_from = Request.Query.pricefrom %}
+{% endif %}
+
+{% assign query_price_to = 500000 %}
+{% if Request.Form.priceto != null %}
+  {% assign query_price_to = Request.Form.priceto %}
+{% endif %}
+{% if Request.Query.priceto != null %}
+  {% assign query_price_to = Request.Query.priceto %}
+{% endif %}
+
 {% assign query_size = "8" %}
 {% if Request.Form.size != null %}
   {% assign query_size = Request.Form.size %}
@@ -74,7 +98,7 @@
 
 
 <!-- ANNONCES -->
-{% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: query_size, from: query_from, condition: query_condition, region: query_region, category: query_category, type: query_type, model: query_model, advertiser: query_advertiser, brand: query_brand %}
+{% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: query_size, from: query_from, condition: query_condition, region: query_region, category: query_category, type: query_type, model: query_model, advertiser: query_advertiser, brand: query_brand, pricefrom: query_price_from, priceto: query_price_to, year: query_year %}
 {% assign count = searchFarmMachineries | size %}
 {%if count > 0 %}
   <section>
@@ -218,7 +242,6 @@
         </div>
       </div>
   </div>
-      
       
       <div class="container">
           <div class="row mb-4 mt-4">
