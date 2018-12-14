@@ -55,11 +55,13 @@
                     {% endif %}
                 </p>
             </div>
+            <!--
             <div class="col-md-4">
                 Annonce publiée dans la revue<br/>
                 de novembre 2018<br/>
                 <a class="btn btn-primary" href="{{ machinery_advertiser | display_url }}">Voir l'annonce</a>
             </div>
+            -->
         </div>
         {% assign addresses = Model.ContentItem.Content.Address.ContentItems %}
         {% assign count = addresses.size - 1 %}
@@ -106,12 +108,13 @@
     </div>
 
     <!-- ANNONCES -->
-    {% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: condition: "*", region: "*", category: "*", model: "*", advertiser: Model.ContentItem.ContentItemId, brand: "*", from: 0, size : 10 %}
+    {% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: 10, from: 0, condition: "*", region: "*", category: "*", type: "*", model: "*", advertiser: Model.ContentItem.ContentItemId, brand: "*", pricefrom: 0, priceto: 500000, year: null %}
+
     {% assign count = searchFarmMachineries | size %}
     {%if count > 0 %}
 
 
-            <div class="row">
+    <div class="row">
                 {% for item in searchFarmMachineries %}
                 <div class="col-md-4 d-flex align-items-stretch">
 
