@@ -5,7 +5,6 @@ namespace OrchardCore.Autoroute.ViewModels
     public class AutoroutePartSettingsViewModel
     {
         public bool AllowCustomPath { get; set; }
-        public bool AutomaticAdjustmentOnEdit { get; set; }
         public string Pattern { get; set; }
         public bool ShowHomepageOption {get; set; }
         public bool AllowUpdatePath { get; set; }

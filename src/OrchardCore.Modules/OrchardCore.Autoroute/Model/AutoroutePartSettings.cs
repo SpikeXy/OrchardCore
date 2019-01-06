@@ -8,11 +8,6 @@ namespace OrchardCore.Autoroute.Models
         public bool AllowCustomPath { get; set; }
 
         /// <summary>
-        /// Gets or sets whether a path can automatically be regenerated on edit.
-        /// </summary>
-        public bool AutomaticAdjustmentOnEdit { get; set; }
-
-        /// <summary>
         /// The pattern used to build the Path.
         /// </summary>
         public string Pattern { get; set; }
