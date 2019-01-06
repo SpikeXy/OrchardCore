@@ -8,6 +8,7 @@ namespace OrchardCore.Autoroute.ViewModels
         public bool AutomaticAdjustmentOnEdit { get; set; }
         public string Pattern { get; set; }
         public bool ShowHomepageOption {get; set; }
+        public bool AllowUpdatePath { get; set; }
         public AutoroutePartSettings AutoroutePartSettings { get; set; }
     }
 }
