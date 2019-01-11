@@ -141,10 +141,10 @@ msgid "Advertisers List Page"
 msgstr "Page liste des annonceurs"
 
 msgid "Other Equipment Type"
-msgstr "Autres équipements (type)"
+msgstr "Autre équipement (type)"
 
 msgid "Other Equipment"
-msgstr "Autres équipements"
+msgstr "Autre équipement"
 
 msgid "Machinery Brand"
 msgstr "Machinerie agricole (marque)"

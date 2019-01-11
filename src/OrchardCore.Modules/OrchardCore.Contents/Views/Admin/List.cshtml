@@ -69,7 +69,7 @@ new SelectListItem() { Text = T["title"].Value, Value = ContentsOrder.Title.ToSt
                     @foreach (var option in Model.Options.FilterOptions)
                     {
                         string isSelected = option.Key == Model.Options.SelectedFilter ? "selected='selected'" : string.Empty;
-                        <!option @isSelected value="@option.Key">@option.Value</!option>
+                        <!option @isSelected value="@option.Key">@T[option.Value]</!option>
                     }
                 </select>
             </div>

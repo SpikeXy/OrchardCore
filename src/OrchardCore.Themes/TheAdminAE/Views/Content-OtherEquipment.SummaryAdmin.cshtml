@@ -1,0 +1,65 @@
+@using OrchardCore.ContentManagement
+
+@{
+    ContentItem contentItem = Model.ContentItem;
+
+    string typeId = null;
+    ContentItem type = null;
+    if (contentItem.Content.OtherEquipment.Type.ContentItemIds.Count > 0)
+    {
+        typeId = contentItem.Content.OtherEquipment.Type.ContentItemIds[0];
+        type = await Orchard.GetContentItemByIdAsync(typeId);
+    }
+
+    string advertiserId = null;
+    ContentItem advertiser = null;
+    if (contentItem.Content.OtherEquipment.Advertiser.ContentItemIds.Count > 0)
+    {
+        advertiserId = contentItem.Content.OtherEquipment.Advertiser.ContentItemIds[0];
+        advertiser = await Orchard.GetContentItemByIdAsync(advertiserId);
+    }
+}
+
+<div class="properties">
+    @if (Model.Actions != null)
+    {
+    <div class="related float-right">
+        @await DisplayAsync(Model.Actions)
+    </div>
+    }
+
+    @*<div class="custom-control custom-checkbox float-left">
+            <input type="checkbox" class="custom-control-input" value="@contentItem.Id" name="itemIds" id="itemIds-@contentItem.Id">
+            <label class="custom-control-label" for="itemIds-@contentItem.Id">&nbsp;</label>
+
+
+        </div>*@
+
+    <a admin-for="@contentItem" asp-route-returnUrl="@FullRequestPath">@type</a> - <small class="text-muted">@T[contentItem.ContentType]</small>
+
+    @if (Model.Header != null)
+    {
+    <div class="header">@await DisplayAsync(Model.Header)</div>
+    }
+
+    @if(contentItem.Content.OtherEquipment.WebsitePictures.Paths.Count > 0){
+    <img class="img-thumbnail w-25 float-left mr-2" asset-src="@contentItem.Content.OtherEquipment.WebsitePictures.Paths[0]" />
+    }
+    else{
+    <img class="img-thumbnail w-25 float-left mr-2" src="~/TheAdminAE/img/noimage.png" />
+    }
+    <div>@advertiser</div>
+
+    @if (Model.Meta != null)
+    {
+    <div class="metadata">
+        @await DisplayAsync(Model.Meta)
+    </div>
+    }
+
+</div>
+
+@if (Model.Content != null)
+{
+<div class="primary">@await DisplayAsync(Model.Content)</div>
+}

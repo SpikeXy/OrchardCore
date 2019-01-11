@@ -591,6 +591,16 @@ body.trumbowyg-body-fullscreen {
 .trumbowyg-dark .trumbowyg-overlay {
   background-color: rgba(15, 15, 15, 0.6); }
 
+.trumbowyg-highlight-form-group {
+  margin: 15px 10px; }
+  .trumbowyg-highlight-form-group .trumbowyg-highlight-form-control {
+    width: 100%;
+    border: 1px solid #DEDEDE;
+    font-size: 14px;
+    padding: 7px; }
+    .trumbowyg-highlight-form-group .trumbowyg-highlight-form-control.code {
+      height: 200px; }
+
 .trumbowyg-dropdown-foreColor,
 .trumbowyg-dropdown-backColor {
   width: 276px;
@@ -660,16 +670,6 @@ body.trumbowyg-body-fullscreen {
   width: 22px;
   height: 22px;
   display: inline-block; }
-
-.trumbowyg-highlight-form-group {
-  margin: 15px 10px; }
-  .trumbowyg-highlight-form-group .trumbowyg-highlight-form-control {
-    width: 100%;
-    border: 1px solid #DEDEDE;
-    font-size: 14px;
-    padding: 7px; }
-    .trumbowyg-highlight-form-group .trumbowyg-highlight-form-control.code {
-      height: 200px; }
 
 .mathMlContainer {
   position: relative; }

@@ -26,6 +26,14 @@
         typeId = contentItem.Content.FarmMachinery.Type.ContentItemIds[0];
         type = await Orchard.GetContentItemByIdAsync(typeId);
     }
+
+    string advertiserId = null;
+    ContentItem advertiser = null;
+    if (contentItem.Content.FarmMachinery.Advertiser.ContentItemIds.Count > 0)
+    {
+        advertiserId = contentItem.Content.FarmMachinery.Advertiser.ContentItemIds[0];
+        advertiser = await Orchard.GetContentItemByIdAsync(advertiserId);
+    }
 }
 
 <div class="properties">
@@ -36,21 +44,30 @@
         </div>
     }
 
-    <div class="custom-control custom-checkbox float-left">
-        <input type="checkbox" class="custom-control-input" value="@contentItem.Id" name="itemIds" id="itemIds-@contentItem.Id">
-        <label class="custom-control-label" for="itemIds-@contentItem.Id">&nbsp;</label>
+    @*<div class="custom-control custom-checkbox float-left">
+            <input type="checkbox" class="custom-control-input" value="@contentItem.Id" name="itemIds" id="itemIds-@contentItem.Id">
+            <label class="custom-control-label" for="itemIds-@contentItem.Id">&nbsp;</label>
 
 
-    </div>
+        </div>*@
 
-    <a admin-for="@contentItem" asp-route-returnUrl="@FullRequestPath">@type @brand @contentItem.Content.FarmMachinery.MachineryModel.Text </a> - <small class="text-muted">@contentItem.ContentType</small>
-
-
+    <a admin-for="@contentItem" asp-route-returnUrl="@FullRequestPath">@type @brand @contentItem.Content.FarmMachinery.MachineryModel.Text </a> - <small class="text-muted">@T[contentItem.ContentType]</small>
 
     @if (Model.Header != null)
     {
         <div class="header">@await DisplayAsync(Model.Header)</div>
     }
+
+    @if (contentItem.Content.FarmMachinery.WebsitePictures.Paths.Count > 0)
+    {
+        <img class="img-thumbnail w-25 float-left mr-2" asset-src="@contentItem.Content.FarmMachinery.WebsitePictures.Paths[0]" />
+    }
+    else
+    {
+        <img class="img-thumbnail w-25 float-left mr-2" src="~/TheAdminAE/img/noimage.png" />
+    }
+    
+    <div>@advertiser</div>
 
     @if (Model.Meta != null)
     {
@@ -58,8 +75,9 @@
             @await DisplayAsync(Model.Meta)
         </div>
     }
+
 </div>
-<img class="img-thumbnail w-25" asset-src="@contentItem.Content.FarmMachinery.WebsitePictures.Paths[0]" />
+
 @if (Model.Content != null)
 {
     <div class="primary">@await DisplayAsync(Model.Content)</div>
