@@ -22,7 +22,7 @@
             </ul>
             <div class="search-box tab-content" id="SearchTabContent">
                 <div class="tab-pane fade show active" id="farm-machinery-new" role="tabpanel" aria-labelledby="farm-machinery-new-tab">
-                    <form accept-charset="UTF-8" action="/equipements" method="post" >
+                    <form accept-charset="UTF-8" action="/equipements" method="get" >
                         <input type="hidden" id="condition" name="condition" value="true" />
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
@@ -134,7 +134,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="farm-machinery-used" role="tabpanel" aria-labelledby="farm-machinery-used-tab">
-                    <form accept-charset="UTF-8" action="/equipements" method="post" >
+                    <form accept-charset="UTF-8" action="/equipements" method="get" >
                         <input type="hidden" id="condition" name="condition" value="false" />
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
@@ -228,7 +228,9 @@
                             </div>
                             <div class="col-sm-3">
                                 <label for="price">{{ "Price" | t }}</label>
-                                <input type="text" id="price" class="form-control" name="price" />
+                                <input type="text" class="js-range-slider" name="my_range" value="" />
+                                <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
+                                <input type="hidden" name="priceto" id="priceto" value="200000" />
                             </div>
                             <div class="col-sm-3">
                                 <label for="description">{{ "Description" | t }}</label>
@@ -244,7 +246,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="real-estate" role="tabpanel" aria-labelledby="real-estate-tab">
-                    <form action="/immobilier" method="post" >
+                    <form action="/immobilier" method="get" >
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
                                 {% assign machineryCategories = Queries.AllMachineryCategories | query %}
@@ -288,7 +290,9 @@
                             </div>
                             <div class="col-sm-3">
                                 <label for="price">{{ "Price" | t }}</label>
-                                <input type="text" id="price" class="form-control" name="price" />
+                                <input type="text" class="js-range-slider" name="my_range" value="" />
+                                <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
+                                <input type="hidden" name="priceto" id="priceto" value="200000" />
                             </div>
                             <div class="col-sm-3">
                                 <label for="price">{{ "Area" | t }}</label>
@@ -321,7 +325,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
-                    <form action="/services" method="post" >
+                    <form action="/services" method="get" >
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
                                 {% assign machineryCategories = Queries.AllMachineryCategories | query %}
@@ -394,7 +398,9 @@
                             </div>
                             <div class="col-sm-3">
                                 <label for="price">{{ "Price" | t }}</label>
-                                <input type="text" id="price" class="form-control" name="price" />
+                                <input type="text" class="js-range-slider" name="my_range" value="" />
+                                <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
+                                <input type="hidden" name="priceto" id="priceto" value="200000" />
                             </div>
                             <div class="col-sm-3">
                                 <label for="description">{{ "Description" | t }}</label>
@@ -409,7 +415,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="classified-ads" role="tabpanel" aria-labelledby="classified-ads-tab">
-                    <form action="/petites-annonces-classees" method="post" >
+                    <form action="/petites-annonces-classees" method="get" >
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
                                 <label for="region">{{ "Region" | t }}</label>
@@ -452,7 +458,9 @@
                             </div>
                             <div class="col-sm-3">
                                 <label for="price">{{ "Price" | t }}</label>
-                                <input type="text" id="price" class="form-control" name="price" />
+                                <input type="text" class="js-range-slider" name="my_range" value="" />
+                                <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
+                                <input type="hidden" name="priceto" id="priceto" value="200000" />
                             </div>
                             <div class="col-sm-3">
                                 <label for="description">{{ "Description" | t }}</label>
@@ -486,10 +494,10 @@
             {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
             {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
             {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
-
+            {% assign img_alt =  machinery_brand | append: ' ' | append: item.Content.FarmMachinery.MachineryModel.Text %}
             <div class="card mb-3">
                 <a href="{{ item | display_url }}">
-                    <img class="card-img-top" src="{{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url }}" alt="{{ machinery_type | display_text }} {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.MachineryModel.Text }}" />
+                    {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | img_tag: alt: img_alt, class:'card-img-top' }}
                 </a>
                 <div class="card-body">
                     {% if item.Content.FarmMachinery.Price.Value > 0 %}

@@ -1,0 +1,2 @@
+msgid "Lorem Ipsum"
+msgstr "some text lorem ipsum"

@@ -149,6 +149,12 @@ namespace OrchardCore.Contents.Controllers
             //    query = query.Where<CommonPartRecord>(cr => cr.OwnerId == Services.WorkContext.CurrentUser.Id);
             //}
 
+            //if we only have the permission to edit own content we only display owned content items
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.EditContent) && await _authorizationService.AuthorizeAsync(User, Permissions.EditOwnContent))
+            {
+                query = query.With<ContentItemIndex>(x => x.Owner == User.Identity.Name);
+            }
+
             model.Options.SelectedFilter = model.TypeName;
             model.Options.FilterOptions = (await GetListableTypesAsync())
                 .Select(ctd => new KeyValuePair<string, string>(ctd.Name, ctd.DisplayName))
@@ -188,7 +194,7 @@ namespace OrchardCore.Contents.Controllers
             {
                 if (ctd.Settings.ToObject<ContentTypeSettings>().Creatable)
                 {
-                    var authorized = await _authorizationService.AuthorizeAsync(User, Permissions.EditContent, await _contentManager.NewAsync(ctd.Name));
+                    var authorized = await _authorizationService.AuthorizeAsync(User, Permissions.EditOwnContent, await _contentManager.NewAsync(ctd.Name));
                     if (authorized)
                     {
                         creatable.Add(ctd);
@@ -205,7 +211,7 @@ namespace OrchardCore.Contents.Controllers
             {
                 if (ctd.Settings.ToObject<ContentTypeSettings>().Listable)
                 {
-                    var authorized = await _authorizationService.AuthorizeAsync(User, Permissions.EditContent, await _contentManager.NewAsync(ctd.Name));
+                    var authorized = await _authorizationService.AuthorizeAsync(User, Permissions.EditOwnContent, await _contentManager.NewAsync(ctd.Name));
                     if (authorized)
                     {
                         listable.Add(ctd);
@@ -311,7 +317,7 @@ namespace OrchardCore.Contents.Controllers
 
             var contentItem = await _contentManager.NewAsync(id);
 
-            if (!await _authorizationService.AuthorizeAsync(User, Permissions.EditContent, contentItem))
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.EditOwnContent, contentItem))
             {
                 return Unauthorized();
             }
@@ -347,7 +353,7 @@ namespace OrchardCore.Contents.Controllers
             var dummyContent = await _contentManager.NewAsync(id);
 
 
-            if (!await _authorizationService.AuthorizeAsync(User, Permissions.PublishContent, dummyContent))
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.PublishOwnContent, dummyContent))
             {
                 return Unauthorized();
             }
@@ -368,7 +374,7 @@ namespace OrchardCore.Contents.Controllers
         {
             var contentItem = await _contentManager.NewAsync(id);
 
-            if (!await _authorizationService.AuthorizeAsync(User, Permissions.EditContent, contentItem))
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.EditOwnContent, contentItem))
             {
                 return Unauthorized();
             }
@@ -426,7 +432,7 @@ namespace OrchardCore.Contents.Controllers
             if (contentItem == null)
                 return NotFound();
 
-            if (!await _authorizationService.AuthorizeAsync(User, Permissions.EditContent, contentItem))
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.EditOwnContent, contentItem))
             {
                 return Unauthorized();
             }
@@ -466,7 +472,7 @@ namespace OrchardCore.Contents.Controllers
                 return NotFound();
             }
 
-            if (!await _authorizationService.AuthorizeAsync(User, Permissions.PublishContent, content))
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.PublishOwnContent, content))
             {
                 return Unauthorized();
             }
@@ -491,7 +497,7 @@ namespace OrchardCore.Contents.Controllers
                 return NotFound();
             }
 
-            if (!await _authorizationService.AuthorizeAsync(User, Permissions.EditContent, contentItem))
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.EditOwnContent, contentItem))
             {
                 return Unauthorized();
             }
@@ -623,7 +629,7 @@ namespace OrchardCore.Contents.Controllers
                 return NotFound();
             }
 
-            if (!await _authorizationService.AuthorizeAsync(User, Permissions.PublishContent, contentItem))
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.PublishOwnContent, contentItem))
             {
                 return Unauthorized();
             }
@@ -653,7 +659,7 @@ namespace OrchardCore.Contents.Controllers
                 return NotFound();
             }
 
-            if (!await _authorizationService.AuthorizeAsync(User, Permissions.PublishContent, contentItem))
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.PublishOwnContent, contentItem))
             {
                 return Unauthorized();
             }

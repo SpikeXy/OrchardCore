@@ -111,3 +111,67 @@ msgstr "Usagés"
 
 msgid "New"
 msgstr "Neufs"
+
+msgid "Property type"
+msgstr "Type de propriété"
+
+msgid "Activity type"
+msgstr "Type d'activité"
+
+msgid "Property status"
+msgstr "Statut de la propriété"
+
+msgid "Area"
+msgstr "Superficie"
+
+msgid "# of rooms"
+msgstr "Nombre de chambres"
+
+msgid "Subcategory"
+msgstr "Sous-catégorie"
+
+msgctxt "TheAdmin.Views.MenuItem"
+msgid "New"
+msgstr "Nouveau"
+
+msgid "Taxonomy"
+msgstr "Taxonomie"
+
+msgid "Advertisers List Page"
+msgstr "Page liste des annonceurs"
+
+msgid "Other Equipment Type"
+msgstr "Autres équipements (type)"
+
+msgid "Other Equipment"
+msgstr "Autres équipements"
+
+msgid "Machinery Brand"
+msgstr "Machinerie agricole (marque)"
+
+msgid "Machinery Accessory Type"
+msgstr "Accessoire de machinerie (Type)"
+
+msgid "Farm Machinery Type"
+msgstr "Machinerie agricole (Type)"
+
+msgid "Farm Machinery Category"
+msgstr "Machinerie agricole (catégorie)"
+
+msgid "Farm Machinery Accessory"
+msgstr "Accessoire de machinerie"
+
+msgid "Content"
+msgstr "Contenu"
+
+msgid "Content Items"
+msgstr "Éléments de contenu"
+
+msgid "Assets"
+msgstr "Médias"
+
+msgid "Log off"
+msgstr "Déconnexion"
+
+msgid "Manage Content"
+msgstr "Gestion du contenu"

@@ -1,0 +1,66 @@
+@using OrchardCore.ContentManagement
+
+@{
+    ContentItem contentItem = Model.ContentItem;
+
+    string categoryId = null;
+    ContentItem category = null;
+    if (contentItem.Content.FarmMachinery.Category.ContentItemIds.Count > 0)
+    {
+        categoryId = contentItem.Content.FarmMachinery.Category.ContentItemIds[0];
+        category = await Orchard.GetContentItemByIdAsync(categoryId);
+    }
+
+    string brandId = null;
+    ContentItem brand = null;
+    if (contentItem.Content.FarmMachinery.Brand.ContentItemIds.Count > 0)
+    {
+        brandId = contentItem.Content.FarmMachinery.Brand.ContentItemIds[0];
+        brand = await Orchard.GetContentItemByIdAsync(brandId);
+    }
+
+    string typeId = null;
+    ContentItem type = null;
+    if (contentItem.Content.FarmMachinery.Type.ContentItemIds.Count > 0)
+    {
+        typeId = contentItem.Content.FarmMachinery.Type.ContentItemIds[0];
+        type = await Orchard.GetContentItemByIdAsync(typeId);
+    }
+}
+
+<div class="properties">
+    @if (Model.Actions != null)
+    {
+        <div class="related float-right">
+            @await DisplayAsync(Model.Actions)
+        </div>
+    }
+
+    <div class="custom-control custom-checkbox float-left">
+        <input type="checkbox" class="custom-control-input" value="@contentItem.Id" name="itemIds" id="itemIds-@contentItem.Id">
+        <label class="custom-control-label" for="itemIds-@contentItem.Id">&nbsp;</label>
+
+
+    </div>
+
+    <a admin-for="@contentItem" asp-route-returnUrl="@FullRequestPath">@type @brand @contentItem.Content.FarmMachinery.MachineryModel.Text </a> - <small class="text-muted">@contentItem.ContentType</small>
+
+
+
+    @if (Model.Header != null)
+    {
+        <div class="header">@await DisplayAsync(Model.Header)</div>
+    }
+
+    @if (Model.Meta != null)
+    {
+        <div class="metadata">
+            @await DisplayAsync(Model.Meta)
+        </div>
+    }
+</div>
+<img class="img-thumbnail w-25" asset-src="@contentItem.Content.FarmMachinery.WebsitePictures.Paths[0]" />
+@if (Model.Content != null)
+{
+    <div class="primary">@await DisplayAsync(Model.Content)</div>
+}
