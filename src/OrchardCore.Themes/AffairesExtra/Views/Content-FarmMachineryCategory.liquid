@@ -78,7 +78,7 @@
   {% assign query_price_to = Request.Query.priceto %}
 {% endif %}
 
-{% assign query_size = "8" %}
+{% assign query_size = "9" %}
 {% if Request.Form.size != null %}
   {% assign query_size = Request.Form.size %}
 {% endif %}
@@ -273,28 +273,42 @@
           </div>
         <div class="row">
           {% for item in searchFarmMachineries %}
-          <div class="col-md-4">
+          <div class="col-md-4 d-flex align-items-stretch">
 
             {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
             {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
             {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
-
+            {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachinery.Region.ContentItemIds[0]] %}
+            {% assign img_alt =  machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
             <div class="card mb-3">
-              <a href="{{ item | display_url }}"><img class="card-img-top" src="{{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url }}" alt="{{ machinery_type | display_text }} {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.MachineryModel.Text }}"></a>
-              <div class="card-body">
-                {% if item.Content.FarmMachinery.Price.Value > 0 %}
-                  <h5 class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</h5>
-                {% else %}
-                  <h5 class="card-text">{{ "Price upon request" | t }}</h5>
-                {% endif %}    
-                <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.MachineryModel.Text }}</a></h5> 
-                <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
-                <p class="card-text">Région: {{ item.Content.FarmMachinery.Region.Text }}</p>
+                <a href="{{ item | display_url }}">
+                    {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
+                        {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | img_tag: alt: img_alt, class:'card-img-top' }}
+                    {% else %}
+                        <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png" />
+                    {% endif %}
+                </a>
+                <div class="card-body">
+                    {% if item.Content.FarmMachinery.Price.Value > 0 %}
+                        <h5 class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</h5>
+                    {% else %}
+                        <h5 class="card-text">{{ "Price upon request" | t }}</h5>
+                    {% endif %}    
+                    <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}</a></h5> 
+                    {% if item.Content.FarmMachinery.Year.Value != null and item.Content.FarmMachinery.Year.Value > 0 %}
+                    <p class="card-text">Année: {{ item.Content.FarmMachinery.Year.Value }}</p>
+                    {% endif %}
+                    {% if machinery_advertiser %}
+                    <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
+                    {% endif %}
+                    {% if machinery_region %}
+                    <p class="card-text">Région: {{ machinery_region }}</p>
+                    {% endif %}
 
-              </div>
-              <div class="card-footer text-center"><a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a></div>
+                </div>
+                <div class="card-footer text-center"><a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a></div>
             </div>
-          </div>
+            </div>
           {% endfor %}
         </div>
       </div>

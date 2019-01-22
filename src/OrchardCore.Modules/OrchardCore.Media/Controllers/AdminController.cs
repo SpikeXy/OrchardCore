@@ -88,7 +88,7 @@ namespace OrchardCore.Media.Controllers
             var files = (await _mediaFileStore.GetDirectoryContentAsync(path)).Where(x => !x.IsDirectory);
 
 
-            return files.Select(CreateFileResult).ToArray();
+            return files.Select(CreateFileResult).Skip(0).Take(10).ToArray();
         }
 
         public async Task<ActionResult<object>> GetMediaItem(string path)

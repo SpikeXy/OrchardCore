@@ -1,0 +1,70 @@
+// Styling for the footer
+footer {
+    text-align: center;
+    color: white;
+    font-size: 0.75rem;
+
+    span.copyright {
+        font-size: 90%;
+        line-height: 50px;
+        text-transform: none;
+        @include heading-font;
+    }
+
+    ul.quicklinks {
+        font-size: 90%;
+        line-height: 50px;
+        margin-bottom: 0;
+        text-transform: none;
+        @include heading-font;
+
+        a {
+            color: white;
+            text-decoration: none;
+
+            &:hover {
+                color: $primary !important;
+            }
+        }
+    }
+
+    .widget-container {
+        padding: 10px 0;
+    }
+}
+
+ul.social-buttons {
+    margin-bottom: 0;
+
+    li {
+        a {
+            font-size: 20px;
+            line-height: 50px;
+            display: block;
+            width: 50px;
+            height: 50px;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+            color: white;
+            border-radius: 100%;
+            outline: none;
+            background-color: $gray-900;
+
+            &:active,
+            &:focus,
+            &:hover {
+                background-color: $primary;
+            }
+        }
+    }
+}
+
+.footer {
+    background-color: #191919;
+}
+
+.footer-header {
+    background-color: #2F2F2F;
+    padding: 40px 0;
+}

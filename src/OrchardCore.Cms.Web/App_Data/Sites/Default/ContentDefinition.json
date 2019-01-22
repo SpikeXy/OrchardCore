@@ -7,8 +7,8 @@
       "Settings": {
         "Draftable": "True",
         "Versionable": "True",
-        "Creatable": "True",
-        "Listable": "True"
+        "Listable": "True",
+        "Creatable": "True"
       },
       "ContentTypePartDefinitionRecords": [
         {
@@ -54,7 +54,16 @@
         {
           "PartName": "LinkMenuItemPart",
           "Name": "LinkMenuItemPart",
-          "Settings": {}
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "LinkMenuItem",
+          "Name": "LinkMenuItem",
+          "Settings": {
+            "Position": "1"
+          }
         }
       ]
     },
@@ -273,13 +282,6 @@
           }
         },
         {
-          "PartName": "HtmlBodyPart",
-          "Name": "HtmlBodyPart",
-          "Settings": {
-            "Position": "1"
-          }
-        },
-        {
           "PartName": "TitlePart",
           "Name": "TitlePart",
           "Settings": {
@@ -465,7 +467,16 @@
           "PartName": "AutoroutePart",
           "Name": "AutoroutePart",
           "Settings": {
-            "Position": "0"
+            "Position": "0",
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "Pattern": "{% assign machinery_advertiser = Content.ContentItemId[ContentItem.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}\r\nequipement-agricole-{%if ContentItem.Content.FarmMachinery.Condition.Value == true %}neuf{%else%}usagee{%endif%}/{%if machinery_advertiser != null %}{{ machinery_advertiser | display_text | slugify }}/{%endif%}{{ ContentItem.ContentItemId }}",
+            "AllowCustomPath": "False",
+            "ShowHomepageOption": "False",
+            "ContentIndexSettings": {},
+            "AutomaticAdjustmentOnEdit": "True",
+            "AllowUpdatePath": "True"
           }
         },
         {
@@ -493,7 +504,7 @@
           "PartName": "Advertiser",
           "Name": "Advertiser",
           "Settings": {
-            "Position": "2"
+            "Position": "3"
           }
         },
         {
@@ -504,9 +515,10 @@
             "DisplayName": null,
             "Description": null,
             "Editor": null,
-            "Pattern": "advertiser/{{ ContentItem | display_text | slugify }}",
-            "AllowCustomPath": "False",
-            "ShowHomepageOption": "False"
+            "Pattern": "annonceur/{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "True",
+            "ShowHomepageOption": "False",
+            "ContentIndexSettings": {}
           }
         },
         {
@@ -527,14 +539,14 @@
               "Address"
             ],
             "DisplayType": null,
-            "Position": "3"
+            "Position": "2"
           }
         }
       ]
     },
     {
-      "Name": "MachineryBrand",
-      "DisplayName": "Machinery Brand",
+      "Name": "FarmMachineryBrand",
+      "DisplayName": "Farm Machinery Brand",
       "Settings": {
         "Creatable": "True",
         "Draftable": "True",
@@ -545,8 +557,8 @@
       },
       "ContentTypePartDefinitionRecords": [
         {
-          "PartName": "MachineryBrand",
-          "Name": "MachineryBrand",
+          "PartName": "FarmMachineryBrand",
+          "Name": "FarmMachineryBrand",
           "Settings": {
             "Position": "0"
           }
@@ -588,20 +600,23 @@
       ]
     },
     {
-      "Name": "MachineryType",
-      "DisplayName": "Machinery Type",
+      "Name": "FarmMachineryType",
+      "DisplayName": "Farm Machinery Type",
       "Settings": {
-        "Creatable": "True",
+        "Creatable": "False",
         "Draftable": "True",
         "Versionable": "True",
-        "Listable": "True",
-        "Securable": "True"
+        "Listable": "False",
+        "Securable": "True",
+        "Stereotype": null
       },
       "ContentTypePartDefinitionRecords": [
         {
-          "PartName": "MachineryType",
-          "Name": "MachineryType",
-          "Settings": {}
+          "PartName": "FarmMachineryType",
+          "Name": "FarmMachineryType",
+          "Settings": {
+            "Position": "0"
+          }
         },
         {
           "PartName": "AutoroutePart",
@@ -612,13 +627,16 @@
             "Editor": null,
             "Pattern": "machinery-type/{{ ContentItem | display_text | slugify }}",
             "AllowCustomPath": "False",
-            "ShowHomepageOption": "False"
+            "ShowHomepageOption": "False",
+            "Position": "1"
           }
         },
         {
           "PartName": "CommonPart",
           "Name": "CommonPart",
-          "Settings": {}
+          "Settings": {
+            "Position": "2"
+          }
         },
         {
           "PartName": "TitlePart",
@@ -629,7 +647,8 @@
             "Editor": null,
             "ContentIndexSettings": {
               "Included": true
-            }
+            },
+            "Position": "3"
           }
         }
       ]
@@ -666,13 +685,6 @@
           "Settings": {
             "Position": "1"
           }
-        },
-        {
-          "PartName": "TitlePart",
-          "Name": "TitlePart",
-          "Settings": {
-            "Position": "2"
-          }
         }
       ]
     },
@@ -692,7 +704,7 @@
           "PartName": "OtherEquipment",
           "Name": "OtherEquipment",
           "Settings": {
-            "Position": "3"
+            "Position": "2"
           }
         },
         {
@@ -707,13 +719,6 @@
           "Name": "CommonPart",
           "Settings": {
             "Position": "1"
-          }
-        },
-        {
-          "PartName": "TitlePart",
-          "Name": "TitlePart",
-          "Settings": {
-            "Position": "2"
           }
         }
       ]
@@ -734,7 +739,7 @@
           "PartName": "RealEstate",
           "Name": "RealEstate",
           "Settings": {
-            "Position": "3"
+            "Position": "2"
           }
         },
         {
@@ -750,19 +755,12 @@
           "Settings": {
             "Position": "1"
           }
-        },
-        {
-          "PartName": "TitlePart",
-          "Name": "TitlePart",
-          "Settings": {
-            "Position": "2"
-          }
         }
       ]
     },
     {
-      "Name": "ClassifiedAds",
-      "DisplayName": "Classified Ads",
+      "Name": "ClassifiedAd",
+      "DisplayName": "Classified Ad",
       "Settings": {
         "Creatable": "True",
         "Draftable": "True",
@@ -773,8 +771,8 @@
       },
       "ContentTypePartDefinitionRecords": [
         {
-          "PartName": "ClassifiedAds",
-          "Name": "ClassifiedAds",
+          "PartName": "ClassifiedAd",
+          "Name": "ClassifiedAd",
           "Settings": {
             "Position": "3"
           }
@@ -825,12 +823,12 @@
     },
     {
       "Name": "FarmMachineryAccessoryType",
-      "DisplayName": "Machinery Accessory Type",
+      "DisplayName": "Farm Machinery Accessory Type",
       "Settings": {
-        "Creatable": "True",
+        "Creatable": "False",
         "Draftable": "True",
         "Versionable": "True",
-        "Listable": "True",
+        "Listable": "False",
         "Securable": "True",
         "Stereotype": null
       },
@@ -853,7 +851,15 @@
           "PartName": "AutoroutePart",
           "Name": "AutoroutePart",
           "Settings": {
-            "Position": "0"
+            "Position": "0",
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "Pattern": "equipement-agricole/accessoire/{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "False",
+            "AllowUpdatePath": "True",
+            "ShowHomepageOption": "False",
+            "ContentIndexSettings": {}
           }
         },
         {
@@ -869,32 +875,49 @@
       "Name": "OtherEquipmentType",
       "DisplayName": "Other Equipment Type",
       "Settings": {
-        "Creatable": "True",
+        "Creatable": "False",
         "Draftable": "True",
         "Versionable": "True",
-        "Listable": "True",
-        "Securable": "True"
+        "Listable": "False",
+        "Securable": "True",
+        "Stereotype": null
       },
       "ContentTypePartDefinitionRecords": [
         {
           "PartName": "OtherEquipmentType",
           "Name": "OtherEquipmentType",
-          "Settings": {}
+          "Settings": {
+            "Position": "0"
+          }
         },
         {
           "PartName": "AutoroutePart",
           "Name": "AutoroutePart",
-          "Settings": {}
+          "Settings": {
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "Pattern": "equipement-agricole/autre/{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "False",
+            "AllowUpdatePath": "False",
+            "ShowHomepageOption": "False",
+            "ContentIndexSettings": {},
+            "Position": "1"
+          }
         },
         {
           "PartName": "CommonPart",
           "Name": "CommonPart",
-          "Settings": {}
+          "Settings": {
+            "Position": "2"
+          }
         },
         {
           "PartName": "TitlePart",
           "Name": "TitlePart",
-          "Settings": {}
+          "Settings": {
+            "Position": "3"
+          }
         }
       ]
     },
@@ -1121,7 +1144,13 @@
           "PartName": "TitlePart",
           "Name": "TitlePart",
           "Settings": {
-            "Position": "1"
+            "Position": "1",
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "ContentIndexSettings": {
+              "Included": true
+            }
           }
         }
       ]
@@ -1130,7 +1159,7 @@
       "Name": "ContactRequest",
       "DisplayName": "Contact Request",
       "Settings": {
-        "Creatable": "True",
+        "Creatable": "False",
         "Draftable": "True",
         "Versionable": "True",
         "Listable": "False",
@@ -1201,7 +1230,7 @@
       "Name": "MagazineSubscription",
       "DisplayName": "Magazine Subscription",
       "Settings": {
-        "Creatable": "True",
+        "Creatable": "False",
         "Draftable": "True",
         "Versionable": "True",
         "Listable": "False",
@@ -1212,6 +1241,105 @@
         {
           "PartName": "MagazineSubscription",
           "Name": "MagazineSubscription",
+          "Settings": {
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "Region",
+      "DisplayName": "Region",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "False",
+        "Versionable": "False",
+        "Listable": "False",
+        "Securable": "False",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Region",
+          "Name": "Region",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "1"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "AdvertisersListPage",
+      "DisplayName": "Advertisers List Page",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "AdvertisersListPage",
+          "Name": "AdvertisersListPage",
+          "Settings": {
+            "Position": "0"
+          }
+        },
+        {
+          "PartName": "AutoroutePart",
+          "Name": "AutoroutePart",
+          "Settings": {
+            "Position": "1",
+            "DisplayName": null,
+            "Description": null,
+            "Editor": null,
+            "Pattern": "{{ ContentItem | display_text | slugify }}",
+            "AllowCustomPath": "False",
+            "AutomaticAdjustmentOnEdit": "True",
+            "ShowHomepageOption": "False",
+            "ContentIndexSettings": {}
+          }
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "Position": "2"
+          }
+        },
+        {
+          "PartName": "FlowPart",
+          "Name": "FlowPart",
+          "Settings": {
+            "Position": "3"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ProductInformationRequest",
+      "DisplayName": "Product Information Request",
+      "Settings": {
+        "Creatable": "False",
+        "Draftable": "False",
+        "Versionable": "False",
+        "Listable": "False",
+        "Securable": "False",
+        "Stereotype": null
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "ProductInformationRequest",
+          "Name": "ProductInformationRequest",
           "Settings": {
             "Position": "0"
           }
@@ -1289,7 +1417,8 @@
       "Name": "TitlePart",
       "Settings": {
         "Attachable": "True",
-        "Description": "Provides a Title for your content item."
+        "Description": "Provides a Title for your content item.",
+        "DefaultPosition": "0"
       },
       "ContentPartFieldDefinitionRecords": []
     },
@@ -1361,12 +1490,16 @@
       "Settings": {},
       "ContentPartFieldDefinitionRecords": [
         {
-          "FieldName": "TextField",
-          "Name": "IconClass",
+          "FieldName": "MediaField",
+          "Name": "MainPicture",
           "Settings": {
-            "DisplayName": "Icon Class",
-            "Hint": "The icon css class from font-awesome. e.g., fa-laptop, fa-shopping-cart, fa-lock",
+            "DisplayName": "Image Principale",
             "Editor": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "Position": "0",
+            "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": false,
               "Stored": false,
@@ -1374,32 +1507,28 @@
               "Sanitized": false,
               "Tokenized": false,
               "Template": null
-            },
-            "Position": "0"
-          }
-        },
-        {
-          "FieldName": "MediaField",
-          "Name": "MainPicture",
-          "Settings": {
-            "DisplayName": "Main Picture",
-            "Editor": null,
-            "Hint": null,
-            "Required": false,
-            "Multiple": false,
-            "Position": "0"
+            }
           }
         },
         {
           "FieldName": "MediaField",
           "Name": "WebsitePictures",
           "Settings": {
-            "DisplayName": "Website Pictures",
+            "DisplayName": "Image Site Web",
             "Editor": null,
             "Hint": null,
             "Required": false,
             "Multiple": true,
-            "Position": "1"
+            "Position": "1",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -1419,7 +1548,7 @@
           "FieldName": "ContentPickerField",
           "Name": "Advertiser",
           "Settings": {
-            "DisplayName": "Advertiser",
+            "DisplayName": "Annonceur",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -1427,168 +1556,7 @@
             "DisplayedContentTypes": [
               "Advertiser"
             ],
-            "Position": "3"
-          }
-        },
-        {
-          "FieldName": "NumericField",
-          "Name": "Price",
-          "Settings": {
-            "DisplayName": "Price",
-            "Editor": null,
-            "Hint": "$ CAN",
-            "Required": false,
-            "Scale": 2,
-            "Minimum": null,
-            "Maximum": null,
-            "Placeholder": null,
-            "DefaultValue": null,
-            "Position": "4"
-          }
-        },
-        {
-          "FieldName": "TextField",
-          "Name": "Region",
-          "Settings": {
-            "DisplayName": "Region",
-            "Editor": "PredefinedList",
-            "Hint": null,
-            "Required": false,
-            "TextFieldPredefinedListEditorSettings": {
-              "Options": [
-                {
-                  "name": "Abitibi-Témiscamingue",
-                  "value": "1"
-                },
-                {
-                  "name": "Alberta",
-                  "value": "2"
-                },
-                {
-                  "name": "Bas-Saint-Laurent",
-                  "value": "3"
-                },
-                {
-                  "name": "Capitale-Nationale",
-                  "value": "4"
-                },
-                {
-                  "name": "Centre-du-Québec",
-                  "value": "5"
-                },
-                {
-                  "name": "Chaudière-Appalaches",
-                  "value": "6"
-                },
-                {
-                  "name": "Colombie-Britannique",
-                  "value": "7"
-                },
-                {
-                  "name": "Côte-Nord",
-                  "value": "8"
-                },
-                {
-                  "name": "Estrie",
-                  "value": "9"
-                },
-                {
-                  "name": "États-Unis",
-                  "value": "10"
-                },
-                {
-                  "name": "Europe",
-                  "value": "11"
-                },
-                {
-                  "name": "Gaspésie-Îles-de-la-Madeleine",
-                  "value": "12"
-                },
-                {
-                  "name": "Île-du-Prince-Édouard",
-                  "value": "13"
-                },
-                {
-                  "name": "Lanaudière",
-                  "value": "14"
-                },
-                {
-                  "name": "Laurentides",
-                  "value": "15"
-                },
-                {
-                  "name": "Laval",
-                  "value": "16"
-                },
-                {
-                  "name": "Manitoba",
-                  "value": "17"
-                },
-                {
-                  "name": "Maritimes",
-                  "value": "18"
-                },
-                {
-                  "name": "Mauricie",
-                  "value": "19"
-                },
-                {
-                  "name": "Montérégie",
-                  "value": "20"
-                },
-                {
-                  "name": "Montréal",
-                  "value": "21"
-                },
-                {
-                  "name": "Nord-du-Québec",
-                  "value": "22"
-                },
-                {
-                  "name": "Nouveau-Brunswick",
-                  "value": "23"
-                },
-                {
-                  "name": "Nouvelle-Écosse",
-                  "value": "24"
-                },
-                {
-                  "name": "Nunavut",
-                  "value": "25"
-                },
-                {
-                  "name": "Ontario",
-                  "value": "26"
-                },
-                {
-                  "name": "Outaouais",
-                  "value": "27"
-                },
-                {
-                  "name": "Saguenay–Lac-Saint-Jean",
-                  "value": "28"
-                },
-                {
-                  "name": "Saskatchewan",
-                  "value": "29"
-                },
-                {
-                  "name": "Terre-Neuve-et-Labrador",
-                  "value": "30"
-                },
-                {
-                  "name": "Territoires du Nord-Ouest",
-                  "value": "31"
-                },
-                {
-                  "name": "Yukon",
-                  "value": "32"
-                }
-              ],
-              "Editor": 1,
-              "DefaultValue": null
-            },
-            "Position": "5",
+            "Position": "3",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": false,
@@ -1601,14 +1569,132 @@
           }
         },
         {
-          "FieldName": "TextField",
-          "Name": "Taxonomy",
+          "FieldName": "NumericField",
+          "Name": "Price",
           "Settings": {
-            "DisplayName": "Taxonomy",
+            "DisplayName": "Prix",
             "Editor": null,
-            "Hint": "TODO : Un champ qui permet de sélectionner une catégorie ainsi que ses sous-catégories.",
+            "Hint": "$ CAN",
             "Required": false,
+            "Scale": 2,
+            "Minimum": null,
+            "Maximum": null,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "Position": "4",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Région",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Region"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "5"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Category",
+          "Settings": {
+            "DisplayName": "Catégorie",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
             "Position": "6"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "SubCategory",
+          "Settings": {
+            "DisplayName": "Sous-Catégorie",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "7"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "AdditionalDescription",
+          "Settings": {
+            "DisplayName": "Description additionnelle",
+            "Editor": "TextArea",
+            "DisplayMode": null,
+            "Hint": "Indiquer des informations supplémentaires",
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": true,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "8"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "AdministratorNote",
+          "Settings": {
+            "DisplayName": "Note à l'administrateur",
+            "Editor": "TextArea",
+            "DisplayMode": null,
+            "Hint": "Vous avez une interrogation, vous ne trouvez pas le modèle voulu? Laissez une note à l'administrateur",
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "9"
           }
         }
       ]
@@ -1712,40 +1798,49 @@
           "FieldName": "TextField",
           "Name": "TypeOfFuel",
           "Settings": {
-            "DisplayName": "Type Of Fuel",
+            "DisplayName": "Type d'essence",
             "Editor": "PredefinedList",
-            "Hint": "Choose a type of fuel",
+            "Hint": "Choisissez un type d'essence",
             "Required": false,
             "TextFieldPredefinedListEditorSettings": {
               "Options": [
                 {
-                  "name": "None",
-                  "value": ""
+                  "name": "Choisir une option...",
+                  "value": "null"
                 },
                 {
-                  "name": "diesel",
+                  "name": "Diesel",
                   "value": "diesel"
                 },
                 {
-                  "name": "essence",
+                  "name": "Essence",
                   "value": "essence"
                 }
               ],
               "Editor": 1,
               "DefaultValue": null
             },
-            "Position": "11"
+            "Position": "13",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
-          "Name": "MachineryModel",
+          "Name": "Model",
           "Settings": {
-            "DisplayName": "Model",
+            "DisplayName": "Modèle",
             "Editor": null,
             "Hint": null,
             "Required": false,
-            "Position": "8",
+            "Position": "9",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -1761,13 +1856,17 @@
           "FieldName": "TextField",
           "Name": "WheelDrive",
           "Settings": {
-            "DisplayName": "Wheel Drive",
+            "DisplayName": "Roues Motrices",
             "Editor": "PredefinedList",
             "Hint": null,
             "Required": false,
-            "Position": "12",
+            "Position": "14",
             "TextFieldPredefinedListEditorSettings": {
               "Options": [
+                {
+                  "name": "Choisir une option...",
+                  "value": "null"
+                },
                 {
                   "name": "2",
                   "value": "2"
@@ -1787,6 +1886,15 @@
               ],
               "Editor": 1,
               "DefaultValue": null
+            },
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
             }
           }
         },
@@ -1794,23 +1902,32 @@
           "FieldName": "NumericField",
           "Name": "Year",
           "Settings": {
-            "DisplayName": "Year",
+            "DisplayName": "Année",
             "Editor": "Select",
             "Hint": null,
             "Required": false,
             "Scale": 0,
-            "Minimum": 1900.0,
-            "Maximum": 2019.0,
+            "Minimum": 1900,
+            "Maximum": 2019,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "15"
+            "Position": "17",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "Hours",
           "Settings": {
-            "DisplayName": "Hours",
+            "DisplayName": "Heures",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -1819,7 +1936,16 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "13"
+            "Position": "15",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -1828,7 +1954,7 @@
           "Settings": {
             "DisplayName": "Condition",
             "Editor": "Switch",
-            "Hint": "Check if machinery is new",
+            "Hint": "Cochez si la machinerie est neuve",
             "Label": null,
             "Position": "6",
             "DisplayMode": null,
@@ -1846,7 +1972,7 @@
           "FieldName": "ContentPickerField",
           "Name": "Advertiser",
           "Settings": {
-            "DisplayName": "Advertiser",
+            "DisplayName": "Annonceur",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -1870,15 +1996,15 @@
           "FieldName": "ContentPickerField",
           "Name": "Brand",
           "Settings": {
-            "DisplayName": "Brand",
+            "DisplayName": "Marque",
             "Editor": null,
             "Hint": null,
             "Required": false,
             "Multiple": false,
             "DisplayedContentTypes": [
-              "MachineryBrand"
+              "FarmMachineryBrand"
             ],
-            "Position": "7",
+            "Position": "8",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -1894,7 +2020,7 @@
           "FieldName": "NumericField",
           "Name": "MotorHP",
           "Settings": {
-            "DisplayName": "Motor HP",
+            "DisplayName": "Force Moteur",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -1903,14 +2029,23 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "9"
+            "Position": "11",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "PTOForce",
           "Settings": {
-            "DisplayName": "PTO Force",
+            "DisplayName": "Force PTO",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -1919,14 +2054,23 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "10"
+            "Position": "12",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "DistanceTraveled",
           "Settings": {
-            "DisplayName": "Distance Traveled",
+            "DisplayName": "Distance parcourue",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -1935,7 +2079,16 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "14"
+            "Position": "16",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -1948,12 +2101,12 @@
             "Required": false,
             "Multiple": false,
             "DisplayedContentTypes": [
-              "MachineryType"
+              "FarmMachineryType"
             ],
             "Position": "5",
             "DisplayMode": null,
             "ContentIndexSettings": {
-              "Included": false,
+              "Included": true,
               "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
@@ -1966,24 +2119,42 @@
           "FieldName": "MediaField",
           "Name": "MainPicture",
           "Settings": {
-            "DisplayName": "Main Picture",
+            "DisplayName": "Image Principale",
             "Editor": null,
             "Hint": "Sélectionnez une photo principale (Si vous annoncez dans la revue, ce sera la photo sélectionnée.)",
             "Required": true,
             "Multiple": false,
-            "Position": "0"
+            "Position": "0",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "MediaField",
           "Name": "WebsitePictures",
           "Settings": {
-            "DisplayName": "Website Pictures",
+            "DisplayName": "Image Site Web",
             "Editor": null,
             "Hint": "Sélectionnez des photos additionnelles (pour le site Internet)",
             "Required": false,
             "Multiple": true,
-            "Position": "1"
+            "Position": "1",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -2003,14 +2174,14 @@
           "FieldName": "TextField",
           "Name": "AdditionalDescription",
           "Settings": {
-            "DisplayName": "Additional Description",
+            "DisplayName": "Description additionnelle",
             "Editor": "TextArea",
             "Hint": "Indiquer des informations supplémentaires",
             "Required": false,
             "TextFieldTextAreaEditorSettings": {
               "Color": null
             },
-            "Position": "19",
+            "Position": "21",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -2026,21 +2197,30 @@
           "FieldName": "TextField",
           "Name": "AdministratorNote",
           "Settings": {
-            "DisplayName": "Administrator Note",
+            "DisplayName": "Note à l'administrateur",
             "Editor": "TextArea",
             "Hint": "Vous avez une interrogation, vous ne trouvez pas le modèle voulu? Laissez une note à l'administrateur",
             "Required": false,
             "TextFieldTextAreaEditorSettings": {
               "Color": null
             },
-            "Position": "20"
+            "Position": "23",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "Price",
           "Settings": {
-            "DisplayName": "Price",
+            "DisplayName": "Prix",
             "Editor": null,
             "Hint": "$ CAN",
             "Required": false,
@@ -2049,152 +2229,7 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "16"
-          }
-        },
-        {
-          "FieldName": "TextField",
-          "Name": "Region",
-          "Settings": {
-            "DisplayName": "Region",
-            "Editor": "PredefinedList",
-            "Hint": null,
-            "Required": false,
-            "TextFieldPredefinedListEditorSettings": {
-              "Options": [
-                {
-                  "name": "Abitibi-Témiscamingue",
-                  "value": "1"
-                },
-                {
-                  "name": "Alberta",
-                  "value": "2"
-                },
-                {
-                  "name": "Bas-Saint-Laurent",
-                  "value": "3"
-                },
-                {
-                  "name": "Capitale-Nationale",
-                  "value": "4"
-                },
-                {
-                  "name": "Centre-du-Québec",
-                  "value": "5"
-                },
-                {
-                  "name": "Chaudière-Appalaches",
-                  "value": "6"
-                },
-                {
-                  "name": "Colombie-Britannique",
-                  "value": "7"
-                },
-                {
-                  "name": "Côte-Nord",
-                  "value": "8"
-                },
-                {
-                  "name": "Estrie",
-                  "value": "9"
-                },
-                {
-                  "name": "États-Unis",
-                  "value": "10"
-                },
-                {
-                  "name": "Europe",
-                  "value": "11"
-                },
-                {
-                  "name": "Gaspésie-Îles-de-la-Madeleine",
-                  "value": "12"
-                },
-                {
-                  "name": "Île-du-Prince-Édouard",
-                  "value": "13"
-                },
-                {
-                  "name": "Lanaudière",
-                  "value": "14"
-                },
-                {
-                  "name": "Laurentides",
-                  "value": "15"
-                },
-                {
-                  "name": "Laval",
-                  "value": "16"
-                },
-                {
-                  "name": "Manitoba",
-                  "value": "17"
-                },
-                {
-                  "name": "Maritimes",
-                  "value": "18"
-                },
-                {
-                  "name": "Mauricie",
-                  "value": "19"
-                },
-                {
-                  "name": "Montérégie",
-                  "value": "20"
-                },
-                {
-                  "name": "Montréal",
-                  "value": "21"
-                },
-                {
-                  "name": "Nord-du-Québec",
-                  "value": "22"
-                },
-                {
-                  "name": "Nouveau-Brunswick",
-                  "value": "23"
-                },
-                {
-                  "name": "Nouvelle-Écosse",
-                  "value": "24"
-                },
-                {
-                  "name": "Nunavut",
-                  "value": "25"
-                },
-                {
-                  "name": "Ontario",
-                  "value": "26"
-                },
-                {
-                  "name": "Outaouais",
-                  "value": "27"
-                },
-                {
-                  "name": "Saguenay–Lac-Saint-Jean",
-                  "value": "28"
-                },
-                {
-                  "name": "Saskatchewan",
-                  "value": "29"
-                },
-                {
-                  "name": "Terre-Neuve-et-Labrador",
-                  "value": "30"
-                },
-                {
-                  "name": "Territoires du Nord-Ouest",
-                  "value": "31"
-                },
-                {
-                  "name": "Yukon",
-                  "value": "32"
-                }
-              ],
-              "Editor": 1,
-              "DefaultValue": null
-            },
-            "Position": "17",
+            "Position": "18",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -2210,12 +2245,16 @@
           "FieldName": "TextField",
           "Name": "PromoTag",
           "Settings": {
-            "DisplayName": "Promo Tag",
+            "DisplayName": "Étiquette promo",
             "Editor": "PredefinedList",
             "Hint": null,
             "Required": false,
             "TextFieldPredefinedListEditorSettings": {
               "Options": [
+                {
+                  "name": "Choisir une option...",
+                  "value": "null"
+                },
                 {
                   "name": "1 seul propriétaire",
                   "value": "1 seul propriétaire"
@@ -2284,31 +2323,124 @@
               "Editor": 1,
               "DefaultValue": null
             },
-            "Position": "18"
+            "Position": "20",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "ContentPickerField",
           "Name": "Category",
           "Settings": {
-            "DisplayName": "Category",
+            "DisplayName": "Catégorie",
             "Editor": null,
             "DisplayMode": null,
             "Hint": null,
             "Required": false,
-            "Multiple": false,
+            "Multiple": true,
             "DisplayedContentTypes": [
               "FarmMachineryCategory"
             ],
             "ContentIndexSettings": {
               "Included": true,
-              "Stored": false,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
               "Template": null
             },
             "Position": "4"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "InventoryNo",
+          "Settings": {
+            "DisplayName": "No. Inventaire",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "10"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "MagazineDescription",
+          "Settings": {
+            "DisplayName": "Description pour revue",
+            "Editor": "TextArea",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "22"
+          }
+        },
+        {
+          "FieldName": "BooleanField",
+          "Name": "Sold",
+          "Settings": {
+            "DisplayName": "Vendu",
+            "Editor": "Switch",
+            "DisplayMode": null,
+            "Hint": "Cochez si cet item a été vendu.",
+            "Label": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "7"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Région",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Region"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "19"
           }
         }
       ]
@@ -2327,6 +2459,68 @@
             "Required": false,
             "Multiple": false,
             "Position": "0"
+          }
+        },
+        {
+          "FieldName": "TaxonomyField",
+          "Name": "ActivityRegion",
+          "Settings": {
+            "DisplayName": "ActivityRegion",
+            "Editor": null,
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Hint": null,
+            "Required": false,
+            "TaxonomyContentItemId": "4k231n18p36g9tq4kx9cv9at4w",
+            "Unique": false,
+            "LeavesOnly": false,
+            "Open": false,
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "ClientNo",
+          "Settings": {
+            "DisplayName": "ClientNo",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Email",
+          "Settings": {
+            "DisplayName": "Email",
+            "Editor": "Email",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         }
       ]
@@ -2495,38 +2689,56 @@
       ]
     },
     {
-      "Name": "ClassifiedAds",
+      "Name": "ClassifiedAd",
       "Settings": {},
       "ContentPartFieldDefinitionRecords": [
         {
           "FieldName": "MediaField",
           "Name": "MainPicture",
           "Settings": {
-            "DisplayName": "Main Picture",
+            "DisplayName": "Image Principale",
             "Editor": null,
-            "Hint": null,
-            "Required": false,
+            "Hint": "Sélectionnez une photo principale (Si vous annoncez dans la revue, ce sera la photo sélectionnée.)",
+            "Required": true,
             "Multiple": false,
-            "Position": "0"
+            "Position": "0",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "MediaField",
           "Name": "WebsitePictures",
           "Settings": {
-            "DisplayName": "Website Pictures",
+            "DisplayName": "Image Site Web",
             "Editor": null,
-            "Hint": null,
+            "Hint": "Sélectionnez des photos additionnelles (pour le site Internet)",
             "Required": false,
             "Multiple": true,
-            "Position": "1"
+            "Position": "1",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "Price",
           "Settings": {
-            "DisplayName": "Price",
+            "DisplayName": "Prix",
             "Editor": null,
             "Hint": "$ CAN",
             "Required": false,
@@ -2535,152 +2747,7 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "2"
-          }
-        },
-        {
-          "FieldName": "TextField",
-          "Name": "Region",
-          "Settings": {
-            "DisplayName": "Region",
-            "Editor": "PredefinedList",
-            "Hint": null,
-            "Required": false,
-            "TextFieldPredefinedListEditorSettings": {
-              "Options": [
-                {
-                  "name": "Abitibi-Témiscamingue",
-                  "value": "1"
-                },
-                {
-                  "name": "Alberta",
-                  "value": "2"
-                },
-                {
-                  "name": "Bas-Saint-Laurent",
-                  "value": "3"
-                },
-                {
-                  "name": "Capitale-Nationale",
-                  "value": "4"
-                },
-                {
-                  "name": "Centre-du-Québec",
-                  "value": "5"
-                },
-                {
-                  "name": "Chaudière-Appalaches",
-                  "value": "6"
-                },
-                {
-                  "name": "Colombie-Britannique",
-                  "value": "7"
-                },
-                {
-                  "name": "Côte-Nord",
-                  "value": "8"
-                },
-                {
-                  "name": "Estrie",
-                  "value": "9"
-                },
-                {
-                  "name": "États-Unis",
-                  "value": "10"
-                },
-                {
-                  "name": "Europe",
-                  "value": "11"
-                },
-                {
-                  "name": "Gaspésie-Îles-de-la-Madeleine",
-                  "value": "12"
-                },
-                {
-                  "name": "Île-du-Prince-Édouard",
-                  "value": "13"
-                },
-                {
-                  "name": "Lanaudière",
-                  "value": "14"
-                },
-                {
-                  "name": "Laurentides",
-                  "value": "15"
-                },
-                {
-                  "name": "Laval",
-                  "value": "16"
-                },
-                {
-                  "name": "Manitoba",
-                  "value": "17"
-                },
-                {
-                  "name": "Maritimes",
-                  "value": "18"
-                },
-                {
-                  "name": "Mauricie",
-                  "value": "19"
-                },
-                {
-                  "name": "Montérégie",
-                  "value": "20"
-                },
-                {
-                  "name": "Montréal",
-                  "value": "21"
-                },
-                {
-                  "name": "Nord-du-Québec",
-                  "value": "22"
-                },
-                {
-                  "name": "Nouveau-Brunswick",
-                  "value": "23"
-                },
-                {
-                  "name": "Nouvelle-Écosse",
-                  "value": "24"
-                },
-                {
-                  "name": "Nunavut",
-                  "value": "25"
-                },
-                {
-                  "name": "Ontario",
-                  "value": "26"
-                },
-                {
-                  "name": "Outaouais",
-                  "value": "27"
-                },
-                {
-                  "name": "Saguenay–Lac-Saint-Jean",
-                  "value": "28"
-                },
-                {
-                  "name": "Saskatchewan",
-                  "value": "29"
-                },
-                {
-                  "name": "Terre-Neuve-et-Labrador",
-                  "value": "30"
-                },
-                {
-                  "name": "Territoires du Nord-Ouest",
-                  "value": "31"
-                },
-                {
-                  "name": "Yukon",
-                  "value": "32"
-                }
-              ],
-              "Editor": 1,
-              "DefaultValue": null
-            },
-            "Position": "3",
+            "Position": "2",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": false,
@@ -2696,22 +2763,40 @@
           "FieldName": "TextField",
           "Name": "Town",
           "Settings": {
-            "DisplayName": "Town",
+            "DisplayName": "Ville",
             "Editor": null,
             "Hint": null,
             "Required": false,
-            "Position": "4"
+            "Position": "5",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
           "Name": "PostalCode",
           "Settings": {
-            "DisplayName": "Postal Code",
+            "DisplayName": "Code Postal",
             "Editor": null,
             "Hint": null,
             "Required": false,
-            "Position": "5"
+            "Position": "6",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -2722,40 +2807,111 @@
             "Editor": null,
             "Hint": "Test de l'annonce",
             "Required": false,
-            "Position": "6"
+            "Position": "7"
           }
         },
         {
           "FieldName": "TextField",
           "Name": "Company",
           "Settings": {
-            "DisplayName": "Company",
+            "DisplayName": "Compagnie",
             "Editor": null,
             "Hint": null,
             "Required": false,
-            "Position": "7"
+            "Position": "8",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
           "Name": "ContactPerson",
           "Settings": {
-            "DisplayName": "Contact Person",
+            "DisplayName": "Personne Contact",
             "Editor": null,
             "Hint": null,
             "Required": false,
-            "Position": "8"
+            "Position": "9",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
           "Name": "Email",
           "Settings": {
-            "DisplayName": "Email",
+            "DisplayName": "Courriel",
             "Editor": null,
             "Hint": null,
             "Required": false,
-            "Position": "9"
+            "Position": "10",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "BooleanField",
+          "Name": "Sold",
+          "Settings": {
+            "DisplayName": "Vendu",
+            "Editor": "Switch",
+            "DisplayMode": null,
+            "Hint": null,
+            "Label": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "3"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Région",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Region"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "4"
           }
         }
       ]
@@ -2768,24 +2924,42 @@
           "FieldName": "MediaField",
           "Name": "MainPicture",
           "Settings": {
-            "DisplayName": "Main Picture",
+            "DisplayName": "Image Principale",
             "Editor": null,
-            "Hint": null,
-            "Required": false,
+            "Hint": "Sélectionnez une photo principale (Si vous annoncez dans la revue, ce sera la photo sélectionnée.)",
+            "Required": true,
             "Multiple": false,
-            "Position": "0"
+            "Position": "0",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "MediaField",
           "Name": "WebsitePictures",
           "Settings": {
-            "DisplayName": "Website Pictures",
+            "DisplayName": "Image Site Web",
             "Editor": null,
-            "Hint": null,
+            "Hint": "Sélectionnez des photos additionnelles (pour le site Internet)",
             "Required": false,
             "Multiple": true,
-            "Position": "1"
+            "Position": "1",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -2805,7 +2979,7 @@
           "FieldName": "ContentPickerField",
           "Name": "Advertiser",
           "Settings": {
-            "DisplayName": "Advertiser",
+            "DisplayName": "Annonceur",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -2837,11 +3011,11 @@
             "DisplayedContentTypes": [
               "FarmMachineryAccessoryType"
             ],
-            "Position": "4",
+            "Position": "5",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
-              "Stored": false,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -2855,9 +3029,9 @@
           "Settings": {
             "DisplayName": "Condition",
             "Editor": "Switch",
-            "Hint": null,
-            "Label": "check if new",
-            "Position": "5",
+            "Hint": "Cochez si la machinerie est neuve",
+            "Label": null,
+            "Position": "6",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -2873,7 +3047,7 @@
           "FieldName": "NumericField",
           "Name": "Price",
           "Settings": {
-            "DisplayName": "Price",
+            "DisplayName": "Prix",
             "Editor": null,
             "Hint": "$ CAN",
             "Required": false,
@@ -2882,152 +3056,7 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "6"
-          }
-        },
-        {
-          "FieldName": "TextField",
-          "Name": "Region",
-          "Settings": {
-            "DisplayName": "Region",
-            "Editor": "PredefinedList",
-            "Hint": null,
-            "Required": false,
-            "TextFieldPredefinedListEditorSettings": {
-              "Options": [
-                {
-                  "name": "Abitibi-Témiscamingue",
-                  "value": "1"
-                },
-                {
-                  "name": "Alberta",
-                  "value": "2"
-                },
-                {
-                  "name": "Bas-Saint-Laurent",
-                  "value": "3"
-                },
-                {
-                  "name": "Capitale-Nationale",
-                  "value": "4"
-                },
-                {
-                  "name": "Centre-du-Québec",
-                  "value": "5"
-                },
-                {
-                  "name": "Chaudière-Appalaches",
-                  "value": "6"
-                },
-                {
-                  "name": "Colombie-Britannique",
-                  "value": "7"
-                },
-                {
-                  "name": "Côte-Nord",
-                  "value": "8"
-                },
-                {
-                  "name": "Estrie",
-                  "value": "9"
-                },
-                {
-                  "name": "États-Unis",
-                  "value": "10"
-                },
-                {
-                  "name": "Europe",
-                  "value": "11"
-                },
-                {
-                  "name": "Gaspésie-Îles-de-la-Madeleine",
-                  "value": "12"
-                },
-                {
-                  "name": "Île-du-Prince-Édouard",
-                  "value": "13"
-                },
-                {
-                  "name": "Lanaudière",
-                  "value": "14"
-                },
-                {
-                  "name": "Laurentides",
-                  "value": "15"
-                },
-                {
-                  "name": "Laval",
-                  "value": "16"
-                },
-                {
-                  "name": "Manitoba",
-                  "value": "17"
-                },
-                {
-                  "name": "Maritimes",
-                  "value": "18"
-                },
-                {
-                  "name": "Mauricie",
-                  "value": "19"
-                },
-                {
-                  "name": "Montérégie",
-                  "value": "20"
-                },
-                {
-                  "name": "Montréal",
-                  "value": "21"
-                },
-                {
-                  "name": "Nord-du-Québec",
-                  "value": "22"
-                },
-                {
-                  "name": "Nouveau-Brunswick",
-                  "value": "23"
-                },
-                {
-                  "name": "Nouvelle-Écosse",
-                  "value": "24"
-                },
-                {
-                  "name": "Nunavut",
-                  "value": "25"
-                },
-                {
-                  "name": "Ontario",
-                  "value": "26"
-                },
-                {
-                  "name": "Outaouais",
-                  "value": "27"
-                },
-                {
-                  "name": "Saguenay–Lac-Saint-Jean",
-                  "value": "28"
-                },
-                {
-                  "name": "Saskatchewan",
-                  "value": "29"
-                },
-                {
-                  "name": "Terre-Neuve-et-Labrador",
-                  "value": "30"
-                },
-                {
-                  "name": "Territoires du Nord-Ouest",
-                  "value": "31"
-                },
-                {
-                  "name": "Yukon",
-                  "value": "32"
-                }
-              ],
-              "Editor": 1,
-              "DefaultValue": null
-            },
-            "Position": "7",
+            "Position": "17",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -3043,13 +3072,13 @@
           "FieldName": "ContentPickerField",
           "Name": "Brand",
           "Settings": {
-            "DisplayName": "Brand",
+            "DisplayName": "Marque",
             "Editor": null,
             "Hint": null,
             "Required": false,
             "Multiple": false,
             "DisplayedContentTypes": [
-              "MachineryBrand"
+              "FarmMachineryBrand"
             ],
             "Position": "8",
             "DisplayMode": null,
@@ -3067,23 +3096,36 @@
           "FieldName": "TextField",
           "Name": "Model",
           "Settings": {
-            "DisplayName": "Model",
+            "DisplayName": "Modèle",
             "Editor": null,
             "Hint": null,
             "Required": false,
-            "Position": "9"
+            "Position": "9",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
           "Name": "WheelDrive",
           "Settings": {
-            "DisplayName": "Wheel Drive",
+            "DisplayName": "Roues Motrices",
             "Editor": "PredefinedList",
             "Hint": null,
             "Required": false,
             "TextFieldPredefinedListEditorSettings": {
               "Options": [
+                {
+                  "name": "Choisir une option...",
+                  "value": "null"
+                },
                 {
                   "name": "2",
                   "value": "2"
@@ -3104,14 +3146,23 @@
               "Editor": 1,
               "DefaultValue": null
             },
-            "Position": "10"
+            "Position": "11",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "PTOForce",
           "Settings": {
-            "DisplayName": "PTO Force",
+            "DisplayName": "Force PTO",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -3120,14 +3171,23 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "11"
+            "Position": "12",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "Capacity",
           "Settings": {
-            "DisplayName": "Capacity",
+            "DisplayName": "Capacité",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -3136,7 +3196,16 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "12"
+            "Position": "13",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -3152,14 +3221,14 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "13"
+            "Position": "14"
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "Diameter",
           "Settings": {
-            "DisplayName": "Diameter",
+            "DisplayName": "Diamètre",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -3168,14 +3237,23 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "14"
+            "Position": "15",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "Year",
           "Settings": {
-            "DisplayName": "Year",
+            "DisplayName": "Année",
             "Editor": "Select",
             "Hint": null,
             "Required": false,
@@ -3184,19 +3262,32 @@
             "Maximum": 2019.0,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "15"
+            "Position": "16",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
           "Name": "PromoTag",
           "Settings": {
-            "DisplayName": "Promo Tag",
+            "DisplayName": "Étiquette promo",
             "Editor": "PredefinedList",
             "Hint": null,
             "Required": false,
             "TextFieldPredefinedListEditorSettings": {
               "Options": [
+                {
+                  "name": "Choisir une option...",
+                  "value": "null"
+                },
                 {
                   "name": "1 seul propriétaire",
                   "value": "1 seul propriétaire"
@@ -3265,33 +3356,168 @@
               "Editor": 1,
               "DefaultValue": null
             },
-            "Position": "16"
+            "Position": "19",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
           "Name": "AdditionalDescription",
           "Settings": {
-            "DisplayName": "Additional Description",
+            "DisplayName": "Description additionnelle",
             "Editor": "TextArea",
             "Hint": "Indiquer des informations supplémentaires",
             "Required": false,
             "TextFieldTextAreaEditorSettings": {
               "Color": null
             },
-            "Position": "17"
+            "Position": "20",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": true,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
           "Name": "AdministratorNote",
           "Settings": {
-            "DisplayName": "Administrator Note",
+            "DisplayName": "Note à l'administrateur",
             "Editor": "TextArea",
             "Hint": "Vous avez une interrogation, vous ne trouvez pas le modèle voulu? Laissez une note à l'administrateur.",
             "Required": false,
             "TextFieldTextAreaEditorSettings": {
               "Color": null
+            },
+            "Position": "22",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "BooleanField",
+          "Name": "Sold",
+          "Settings": {
+            "DisplayName": "Vendu",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": "Cochez si cet item a été vendu.",
+            "Label": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "7"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "MagazineDescription",
+          "Settings": {
+            "DisplayName": "Description pour revue",
+            "Editor": "TextArea",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "21"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Category",
+          "Settings": {
+            "DisplayName": "Catégorie",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": true,
+            "DisplayedContentTypes": [
+              "FarmMachineryCategory"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "4"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "InventoryNo",
+          "Settings": {
+            "DisplayName": "No. Inventaire",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "10"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Région",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Region"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
             },
             "Position": "18"
           }
@@ -3306,24 +3532,42 @@
           "FieldName": "MediaField",
           "Name": "MainPicture",
           "Settings": {
-            "DisplayName": "Main Picture",
+            "DisplayName": "Image Principale",
             "Editor": null,
-            "Hint": null,
-            "Required": false,
+            "Hint": "Sélectionnez une photo principale (Si vous annoncez dans la revue, ce sera la photo sélectionnée.)",
+            "Required": true,
             "Multiple": false,
-            "Position": "0"
+            "Position": "0",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "MediaField",
           "Name": "WebsitePictures",
           "Settings": {
-            "DisplayName": "Website Pictures",
+            "DisplayName": "Image Site Web",
             "Editor": null,
-            "Hint": null,
+            "Hint": "Sélectionnez des photos additionnelles (pour le site Internet)",
             "Required": false,
             "Multiple": true,
-            "Position": "1"
+            "Position": "1",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -3343,7 +3587,7 @@
           "FieldName": "ContentPickerField",
           "Name": "Advertiser",
           "Settings": {
-            "DisplayName": "Advertiser",
+            "DisplayName": "Annonceur",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -3351,7 +3595,16 @@
             "DisplayedContentTypes": [
               "Advertiser"
             ],
-            "Position": "3"
+            "Position": "3",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -3366,7 +3619,16 @@
             "DisplayedContentTypes": [
               "OtherEquipmentType"
             ],
-            "Position": "4"
+            "Position": "5",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -3375,16 +3637,25 @@
           "Settings": {
             "DisplayName": "Condition",
             "Editor": "Switch",
-            "Hint": "Check if is new",
+            "Hint": "Cochez si la machinerie est neuve",
             "Label": null,
-            "Position": "5"
+            "Position": "6",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "Price",
           "Settings": {
-            "DisplayName": "Price",
+            "DisplayName": "Prix",
             "Editor": null,
             "Hint": "$ CAN",
             "Required": false,
@@ -3393,156 +3664,11 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "6"
-          }
-        },
-        {
-          "FieldName": "TextField",
-          "Name": "Region",
-          "Settings": {
-            "DisplayName": "Region",
-            "Editor": "PredefinedList",
-            "Hint": null,
-            "Required": false,
-            "TextFieldPredefinedListEditorSettings": {
-              "Options": [
-                {
-                  "name": "Abitibi-Témiscamingue",
-                  "value": "1"
-                },
-                {
-                  "name": "Alberta",
-                  "value": "2"
-                },
-                {
-                  "name": "Bas-Saint-Laurent",
-                  "value": "3"
-                },
-                {
-                  "name": "Capitale-Nationale",
-                  "value": "4"
-                },
-                {
-                  "name": "Centre-du-Québec",
-                  "value": "5"
-                },
-                {
-                  "name": "Chaudière-Appalaches",
-                  "value": "6"
-                },
-                {
-                  "name": "Colombie-Britannique",
-                  "value": "7"
-                },
-                {
-                  "name": "Côte-Nord",
-                  "value": "8"
-                },
-                {
-                  "name": "Estrie",
-                  "value": "9"
-                },
-                {
-                  "name": "États-Unis",
-                  "value": "10"
-                },
-                {
-                  "name": "Europe",
-                  "value": "11"
-                },
-                {
-                  "name": "Gaspésie-Îles-de-la-Madeleine",
-                  "value": "12"
-                },
-                {
-                  "name": "Île-du-Prince-Édouard",
-                  "value": "13"
-                },
-                {
-                  "name": "Lanaudière",
-                  "value": "14"
-                },
-                {
-                  "name": "Laurentides",
-                  "value": "15"
-                },
-                {
-                  "name": "Laval",
-                  "value": "16"
-                },
-                {
-                  "name": "Manitoba",
-                  "value": "17"
-                },
-                {
-                  "name": "Maritimes",
-                  "value": "18"
-                },
-                {
-                  "name": "Mauricie",
-                  "value": "19"
-                },
-                {
-                  "name": "Montérégie",
-                  "value": "20"
-                },
-                {
-                  "name": "Montréal",
-                  "value": "21"
-                },
-                {
-                  "name": "Nord-du-Québec",
-                  "value": "22"
-                },
-                {
-                  "name": "Nouveau-Brunswick",
-                  "value": "23"
-                },
-                {
-                  "name": "Nouvelle-Écosse",
-                  "value": "24"
-                },
-                {
-                  "name": "Nunavut",
-                  "value": "25"
-                },
-                {
-                  "name": "Ontario",
-                  "value": "26"
-                },
-                {
-                  "name": "Outaouais",
-                  "value": "27"
-                },
-                {
-                  "name": "Saguenay–Lac-Saint-Jean",
-                  "value": "28"
-                },
-                {
-                  "name": "Saskatchewan",
-                  "value": "29"
-                },
-                {
-                  "name": "Terre-Neuve-et-Labrador",
-                  "value": "30"
-                },
-                {
-                  "name": "Territoires du Nord-Ouest",
-                  "value": "31"
-                },
-                {
-                  "name": "Yukon",
-                  "value": "32"
-                }
-              ],
-              "Editor": 1,
-              "DefaultValue": null
-            },
-            "Position": "7",
+            "Position": "8",
             "DisplayMode": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -3554,12 +3680,16 @@
           "FieldName": "TextField",
           "Name": "PromoTag",
           "Settings": {
-            "DisplayName": "Promo Tag",
+            "DisplayName": "Étiquette promo",
             "Editor": "PredefinedList",
             "Hint": null,
             "Required": false,
             "TextFieldPredefinedListEditorSettings": {
               "Options": [
+                {
+                  "name": "Choisir une option...",
+                  "value": "null"
+                },
                 {
                   "name": "1 seul propriétaire",
                   "value": "1 seul propriétaire"
@@ -3628,35 +3758,170 @@
               "Editor": 1,
               "DefaultValue": null
             },
-            "Position": "8"
+            "Position": "10",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
           "Name": "AdditionalDescription",
           "Settings": {
-            "DisplayName": "Additional Description",
+            "DisplayName": "Description additionnelle",
             "Editor": "TextArea",
             "Hint": "Indiquer des informations supplémentaires",
             "Required": false,
             "TextFieldTextAreaEditorSettings": {
               "Color": null
             },
-            "Position": "9"
+            "Position": "12",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": true,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
           "Name": "AdministratorNote",
           "Settings": {
-            "DisplayName": "Administrator Note",
+            "DisplayName": "Note à l'administrateur",
             "Editor": "TextArea",
             "Hint": "Vous avez une interrogation, vous ne trouvez pas le modèle voulu? Laissez une note à l'administrateur.",
             "Required": false,
             "TextFieldTextAreaEditorSettings": {
               "Color": null
             },
-            "Position": "10"
+            "Position": "14",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "BooleanField",
+          "Name": "Sold",
+          "Settings": {
+            "DisplayName": "Vendu",
+            "Editor": "Switch",
+            "DisplayMode": null,
+            "Hint": null,
+            "Label": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "7"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "MagazineDescription",
+          "Settings": {
+            "DisplayName": "Description pour revue",
+            "Editor": "TextArea",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "13"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Région",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Region"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "9"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Category",
+          "Settings": {
+            "DisplayName": "Catégorie",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": true,
+            "DisplayedContentTypes": [
+              "FarmMachineryCategory"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "4"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "InventoryNo",
+          "Settings": {
+            "DisplayName": "No. Inventaire",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "11"
           }
         }
       ]
@@ -3669,22 +3934,42 @@
           "FieldName": "MediaField",
           "Name": "MainPicture",
           "Settings": {
-            "DisplayName": "Main Picture",
+            "DisplayName": "Image Principale",
             "Editor": null,
             "Hint": null,
             "Required": false,
-            "Multiple": false
+            "Multiple": false,
+            "Position": "0",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "MediaField",
           "Name": "WebsitePictures",
           "Settings": {
-            "DisplayName": "Website Pictures",
+            "DisplayName": "Image Site Web",
             "Editor": null,
-            "Hint": null,
+            "Hint": "Sélectionnez des photos additionnelles (pour le site Internet)",
             "Required": false,
-            "Multiple": true
+            "Multiple": true,
+            "Position": "1",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -3696,21 +3981,32 @@
             "Hint": null,
             "Label": null,
             "Width": 560,
-            "Height": 315
+            "Height": 315,
+            "Position": "2"
           }
         },
         {
           "FieldName": "ContentPickerField",
           "Name": "Advertiser",
           "Settings": {
-            "DisplayName": "Advertiser",
+            "DisplayName": "Annonceur",
             "Editor": null,
             "Hint": null,
             "Required": false,
             "Multiple": false,
             "DisplayedContentTypes": [
               "Advertiser"
-            ]
+            ],
+            "Position": "3",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -3723,6 +4019,10 @@
             "Required": false,
             "TextFieldPredefinedListEditorSettings": {
               "Options": [
+                {
+                  "name": "Choisir une option...",
+                  "value": "null"
+                },
                 {
                   "name": "Chalet/Maison",
                   "value": "Chalet/Maison"
@@ -3770,6 +4070,16 @@
               ],
               "Editor": 1,
               "DefaultValue": null
+            },
+            "Position": "4",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
             }
           }
         },
@@ -3777,12 +4087,16 @@
           "FieldName": "TextField",
           "Name": "ActivityType",
           "Settings": {
-            "DisplayName": "Activity Type",
+            "DisplayName": "Type d'activité",
             "Editor": "PredefinedList",
             "Hint": null,
             "Required": false,
             "TextFieldPredefinedListEditorSettings": {
               "Options": [
+                {
+                  "name": "Choisir une option...",
+                  "value": "null"
+                },
                 {
                   "name": "Autre",
                   "value": "Autre"
@@ -3846,6 +4160,16 @@
               ],
               "Editor": 1,
               "DefaultValue": null
+            },
+            "Position": "5",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
             }
           }
         },
@@ -3853,7 +4177,7 @@
           "FieldName": "NumericField",
           "Name": "Price",
           "Settings": {
-            "DisplayName": "Price",
+            "DisplayName": "Prix",
             "Editor": null,
             "Hint": "$ CAN",
             "Required": false,
@@ -3861,151 +4185,46 @@
             "Minimum": null,
             "Maximum": null,
             "Placeholder": null,
-            "DefaultValue": null
+            "DefaultValue": null,
+            "Position": "7",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "TextField",
-          "Name": "Region",
+          "Name": "Status",
           "Settings": {
-            "DisplayName": "Region",
+            "DisplayName": "Statut",
             "Editor": "PredefinedList",
             "Hint": null,
             "Required": false,
             "TextFieldPredefinedListEditorSettings": {
               "Options": [
                 {
-                  "name": "Abitibi-Témiscamingue",
-                  "value": "1"
+                  "name": "Choisir une option...",
+                  "value": "null"
                 },
                 {
-                  "name": "Alberta",
-                  "value": "2"
+                  "name": "À louer",
+                  "value": "À louer"
                 },
                 {
-                  "name": "Bas-Saint-Laurent",
-                  "value": "3"
-                },
-                {
-                  "name": "Capitale-Nationale",
-                  "value": "4"
-                },
-                {
-                  "name": "Centre-du-Québec",
-                  "value": "5"
-                },
-                {
-                  "name": "Chaudière-Appalaches",
-                  "value": "6"
-                },
-                {
-                  "name": "Colombie-Britannique",
-                  "value": "7"
-                },
-                {
-                  "name": "Côte-Nord",
-                  "value": "8"
-                },
-                {
-                  "name": "Estrie",
-                  "value": "9"
-                },
-                {
-                  "name": "États-Unis",
-                  "value": "10"
-                },
-                {
-                  "name": "Europe",
-                  "value": "11"
-                },
-                {
-                  "name": "Gaspésie-Îles-de-la-Madeleine",
-                  "value": "12"
-                },
-                {
-                  "name": "Île-du-Prince-Édouard",
-                  "value": "13"
-                },
-                {
-                  "name": "Lanaudière",
-                  "value": "14"
-                },
-                {
-                  "name": "Laurentides",
-                  "value": "15"
-                },
-                {
-                  "name": "Laval",
-                  "value": "16"
-                },
-                {
-                  "name": "Manitoba",
-                  "value": "17"
-                },
-                {
-                  "name": "Maritimes",
-                  "value": "18"
-                },
-                {
-                  "name": "Mauricie",
-                  "value": "19"
-                },
-                {
-                  "name": "Montérégie",
-                  "value": "20"
-                },
-                {
-                  "name": "Montréal",
-                  "value": "21"
-                },
-                {
-                  "name": "Nord-du-Québec",
-                  "value": "22"
-                },
-                {
-                  "name": "Nouveau-Brunswick",
-                  "value": "23"
-                },
-                {
-                  "name": "Nouvelle-Écosse",
-                  "value": "24"
-                },
-                {
-                  "name": "Nunavut",
-                  "value": "25"
-                },
-                {
-                  "name": "Ontario",
-                  "value": "26"
-                },
-                {
-                  "name": "Outaouais",
-                  "value": "27"
-                },
-                {
-                  "name": "Saguenay–Lac-Saint-Jean",
-                  "value": "28"
-                },
-                {
-                  "name": "Saskatchewan",
-                  "value": "29"
-                },
-                {
-                  "name": "Terre-Neuve-et-Labrador",
-                  "value": "30"
-                },
-                {
-                  "name": "Territoires du Nord-Ouest",
-                  "value": "31"
-                },
-                {
-                  "name": "Yukon",
-                  "value": "32"
+                  "name": "À vendre",
+                  "value": "À vendre"
                 }
               ],
               "Editor": 1,
               "DefaultValue": null
             },
+            "Position": "9",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": false,
@@ -4018,34 +4237,10 @@
           }
         },
         {
-          "FieldName": "TextField",
-          "Name": "Status",
-          "Settings": {
-            "DisplayName": "Status",
-            "Editor": "PredefinedList",
-            "Hint": null,
-            "Required": false,
-            "TextFieldPredefinedListEditorSettings": {
-              "Options": [
-                {
-                  "name": "À louer",
-                  "value": "À louer"
-                },
-                {
-                  "name": "À vendre",
-                  "value": "À vendre"
-                }
-              ],
-              "Editor": 1,
-              "DefaultValue": null
-            }
-          }
-        },
-        {
           "FieldName": "NumericField",
           "Name": "NumberOfRooms",
           "Settings": {
-            "DisplayName": "Number Of Rooms",
+            "DisplayName": "Nombre de chambres",
             "Editor": null,
             "Hint": null,
             "Required": false,
@@ -4053,14 +4248,24 @@
             "Minimum": null,
             "Maximum": null,
             "Placeholder": null,
-            "DefaultValue": null
+            "DefaultValue": null,
+            "Position": "10",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
           "FieldName": "NumericField",
           "Name": "Area",
           "Settings": {
-            "DisplayName": "Area",
+            "DisplayName": "Superficie",
             "Editor": null,
             "Hint": "pc",
             "Required": false,
@@ -4068,7 +4273,61 @@
             "Minimum": null,
             "Maximum": null,
             "Placeholder": null,
-            "DefaultValue": null
+            "DefaultValue": null,
+            "Position": "11",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        },
+        {
+          "FieldName": "BooleanField",
+          "Name": "Sold",
+          "Settings": {
+            "DisplayName": "Vendu",
+            "Editor": "Switch",
+            "DisplayMode": null,
+            "Hint": null,
+            "Label": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "8"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Region",
+          "Settings": {
+            "DisplayName": "Région",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Region"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "6"
           }
         }
       ]
@@ -4163,8 +4422,8 @@
             "Editor": null,
             "DisplayMode": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -4694,7 +4953,163 @@
           }
         }
       ]
+    },
+    {
+      "Name": "AdvertisersListPage",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "FeaturedAdvertisers",
+          "Settings": {
+            "DisplayName": "Annonceurs vedettes",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": true,
+            "DisplayedContentTypes": [
+              "Advertiser"
+            ],
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ProductInformationRequest",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "TextField",
+          "Name": "Name",
+          "Settings": {
+            "DisplayName": "Name",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "0"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Email",
+          "Settings": {
+            "DisplayName": "Email",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "1"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Phone",
+          "Settings": {
+            "DisplayName": "Phone",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "2"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Town",
+          "Settings": {
+            "DisplayName": "Town",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "3"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Message",
+          "Settings": {
+            "DisplayName": "Message",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "4"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "ProductID",
+          "Settings": {
+            "DisplayName": "Product ID",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": true,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "5"
+          }
+        }
+      ]
     }
   ],
-  "Serial": 582
+  "Serial": 238
 }

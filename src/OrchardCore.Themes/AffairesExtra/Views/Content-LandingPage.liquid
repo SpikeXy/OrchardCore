@@ -22,7 +22,7 @@
             </ul>
             <div class="search-box tab-content" id="SearchTabContent">
                 <div class="tab-pane fade show active" id="farm-machinery-new" role="tabpanel" aria-labelledby="farm-machinery-new-tab">
-                    <form accept-charset="UTF-8" action="/equipements" method="get" >
+                    <form accept-charset="UTF-8" action="equipements" method="get" >
                         <input type="hidden" id="condition" name="condition" value="true" />
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
@@ -56,42 +56,13 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
+                                {% assign regions = Queries.AllRegions | query %}
                                 <label for="region">{{ "Region" | t }}</label>
                                 <select id="region" class="form-control" name="region">
                                     <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                    <option value="1">Abitibi-Témiscamingue</option>
-                                    <option value="2">Alberta</option>
-                                    <option value="3">Bas-Saint-Laurent</option>
-                                    <option value="4">Capitale-Nationale</option>
-                                    <option value="5">Centre-du-Québec</option>
-                                    <option value="6">Chaudière-Appalaches</option>
-                                    <option value="7">Colombie-Britannique</option>
-                                    <option value="8">Côte-Nord</option>
-                                    <option value="9">Estrie</option>
-                                    <option value="10">États-Unis</option>
-                                    <option value="11">Europe</option>
-                                    <option value="12">Gaspésie-Îles-de-la-Madeleine</option>
-                                    <option value="13">Île-du-Prince-Édouard</option>
-                                    <option value="14">Lanaudière</option>
-                                    <option value="15">Laurentides</option>
-                                    <option value="16">Laval</option>
-                                    <option value="17">Manitoba</option>
-                                    <option value="18">Maritimes</option>
-                                    <option value="19">Mauricie</option>
-                                    <option value="20">Montérégie</option>
-                                    <option value="21">Montréal</option>
-                                    <option value="22">Mauricie</option>
-                                    <option value="23">Nord-du-Québec</option>
-                                    <option value="24">Nouveau-Brunswick</option>
-                                    <option value="25">Nouvelle-Écosse</option>
-                                    <option value="26">Nunavut</option>
-                                    <option value="27">Ontario</option>
-                                    <option value="28">Outaouais</option>
-                                    <option value="29">Saguenay–Lac-Saint-Jean</option>
-                                    <option value="30">Saskatchewan</option>
-                                    <option value="31">Terre-Neuve-et-Labrador</option>
-                                    <option value="32">Territoires du Nord-Ouest</option>
-                                    <option value="33">Yukon</option>
+                                    {% for item in regions %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-sm-3">
@@ -134,7 +105,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="farm-machinery-used" role="tabpanel" aria-labelledby="farm-machinery-used-tab">
-                    <form accept-charset="UTF-8" action="/equipements" method="get" >
+                    <form accept-charset="UTF-8" action="equipements" method="get" >
                         <input type="hidden" id="condition" name="condition" value="false" />
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
@@ -168,42 +139,13 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
+                                {% assign regions = Queries.AllRegions | query %}
                                 <label for="region">{{ "Region" | t }}</label>
                                 <select id="region" class="form-control" name="region">
                                     <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                    <option value="1">Abitibi-Témiscamingue</option>
-                                    <option value="2">Alberta</option>
-                                    <option value="3">Bas-Saint-Laurent</option>
-                                    <option value="4">Capitale-Nationale</option>
-                                    <option value="5">Centre-du-Québec</option>
-                                    <option value="6">Chaudière-Appalaches</option>
-                                    <option value="7">Colombie-Britannique</option>
-                                    <option value="8">Côte-Nord</option>
-                                    <option value="9">Estrie</option>
-                                    <option value="10">États-Unis</option>
-                                    <option value="11">Europe</option>
-                                    <option value="12">Gaspésie-Îles-de-la-Madeleine</option>
-                                    <option value="13">Île-du-Prince-Édouard</option>
-                                    <option value="14">Lanaudière</option>
-                                    <option value="15">Laurentides</option>
-                                    <option value="16">Laval</option>
-                                    <option value="17">Manitoba</option>
-                                    <option value="18">Maritimes</option>
-                                    <option value="19">Mauricie</option>
-                                    <option value="20">Montérégie</option>
-                                    <option value="21">Montréal</option>
-                                    <option value="22">Mauricie</option>
-                                    <option value="23">Nord-du-Québec</option>
-                                    <option value="24">Nouveau-Brunswick</option>
-                                    <option value="25">Nouvelle-Écosse</option>
-                                    <option value="26">Nunavut</option>
-                                    <option value="27">Ontario</option>
-                                    <option value="28">Outaouais</option>
-                                    <option value="29">Saguenay–Lac-Saint-Jean</option>
-                                    <option value="30">Saskatchewan</option>
-                                    <option value="31">Terre-Neuve-et-Labrador</option>
-                                    <option value="32">Territoires du Nord-Ouest</option>
-                                    <option value="33">Yukon</option>
+                                    {% for item in regions %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-sm-3">
@@ -246,7 +188,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="real-estate" role="tabpanel" aria-labelledby="real-estate-tab">
-                    <form action="/immobilier" method="get" >
+                    <form action="immobilier" method="get" >
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
                                 {% assign machineryCategories = Queries.AllMachineryCategories | query %}
@@ -325,7 +267,7 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
-                    <form action="/services" method="get" >
+                    <form action="services" method="get" >
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
                                 {% assign machineryCategories = Queries.AllMachineryCategories | query %}
@@ -348,42 +290,13 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
+                                {% assign regions = Queries.AllRegions | query %}
                                 <label for="region">{{ "Region" | t }}</label>
                                 <select id="region" class="form-control" name="region">
                                     <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                    <option value="1">Abitibi-Témiscamingue</option>
-                                    <option value="2">Alberta</option>
-                                    <option value="3">Bas-Saint-Laurent</option>
-                                    <option value="4">Capitale-Nationale</option>
-                                    <option value="5">Centre-du-Québec</option>
-                                    <option value="6">Chaudière-Appalaches</option>
-                                    <option value="7">Colombie-Britannique</option>
-                                    <option value="8">Côte-Nord</option>
-                                    <option value="9">Estrie</option>
-                                    <option value="10">États-Unis</option>
-                                    <option value="11">Europe</option>
-                                    <option value="12">Gaspésie-Îles-de-la-Madeleine</option>
-                                    <option value="13">Île-du-Prince-Édouard</option>
-                                    <option value="14">Lanaudière</option>
-                                    <option value="15">Laurentides</option>
-                                    <option value="16">Laval</option>
-                                    <option value="17">Manitoba</option>
-                                    <option value="18">Maritimes</option>
-                                    <option value="19">Mauricie</option>
-                                    <option value="20">Montérégie</option>
-                                    <option value="21">Montréal</option>
-                                    <option value="22">Mauricie</option>
-                                    <option value="23">Nord-du-Québec</option>
-                                    <option value="24">Nouveau-Brunswick</option>
-                                    <option value="25">Nouvelle-Écosse</option>
-                                    <option value="26">Nunavut</option>
-                                    <option value="27">Ontario</option>
-                                    <option value="28">Outaouais</option>
-                                    <option value="29">Saguenay–Lac-Saint-Jean</option>
-                                    <option value="30">Saskatchewan</option>
-                                    <option value="31">Terre-Neuve-et-Labrador</option>
-                                    <option value="32">Territoires du Nord-Ouest</option>
-                                    <option value="33">Yukon</option>
+                                    {% for item in regions %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-sm-3">
@@ -415,45 +328,16 @@
                     </form>
                 </div>
                 <div class="tab-pane fade" id="classified-ads" role="tabpanel" aria-labelledby="classified-ads-tab">
-                    <form action="/petites-annonces-classees" method="get" >
+                    <form action="petites-annonces-classees" method="get" >
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
+                                {% assign regions = Queries.AllRegions | query %}
                                 <label for="region">{{ "Region" | t }}</label>
                                 <select id="region" class="form-control" name="region">
                                     <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                    <option value="1">Abitibi-Témiscamingue</option>
-                                    <option value="2">Alberta</option>
-                                    <option value="3">Bas-Saint-Laurent</option>
-                                    <option value="4">Capitale-Nationale</option>
-                                    <option value="5">Centre-du-Québec</option>
-                                    <option value="6">Chaudière-Appalaches</option>
-                                    <option value="7">Colombie-Britannique</option>
-                                    <option value="8">Côte-Nord</option>
-                                    <option value="9">Estrie</option>
-                                    <option value="10">États-Unis</option>
-                                    <option value="11">Europe</option>
-                                    <option value="12">Gaspésie-Îles-de-la-Madeleine</option>
-                                    <option value="13">Île-du-Prince-Édouard</option>
-                                    <option value="14">Lanaudière</option>
-                                    <option value="15">Laurentides</option>
-                                    <option value="16">Laval</option>
-                                    <option value="17">Manitoba</option>
-                                    <option value="18">Maritimes</option>
-                                    <option value="19">Mauricie</option>
-                                    <option value="20">Montérégie</option>
-                                    <option value="21">Montréal</option>
-                                    <option value="22">Mauricie</option>
-                                    <option value="23">Nord-du-Québec</option>
-                                    <option value="24">Nouveau-Brunswick</option>
-                                    <option value="25">Nouvelle-Écosse</option>
-                                    <option value="26">Nunavut</option>
-                                    <option value="27">Ontario</option>
-                                    <option value="28">Outaouais</option>
-                                    <option value="29">Saguenay–Lac-Saint-Jean</option>
-                                    <option value="30">Saskatchewan</option>
-                                    <option value="31">Terre-Neuve-et-Labrador</option>
-                                    <option value="32">Territoires du Nord-Ouest</option>
-                                    <option value="33">Yukon</option>
+                                    {% for item in regions %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
                             <div class="col-sm-3">
@@ -480,6 +364,10 @@
 </header>
 {% endzone %}
 <section>
+<a class="e-widget no-button" href="https://gleam.io/0XTkD/concours-laffaire-la-plus-extra" rel="nofollow" data-loading-text="Chargement...">Concours L'affaire la plus Extra</a>
+<script type="text/javascript" src="https://js.gleam.io/e.js" async="true"></script>
+</section>
+<section>
 
     {% assign contentDefinitions = Queries.ContentDefinitions | query %}
     {{ contentDefinitions[0].contentPartDefinitionRecords }}
@@ -494,10 +382,15 @@
             {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
             {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
             {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
-            {% assign img_alt =  machinery_brand | append: ' ' | append: item.Content.FarmMachinery.MachineryModel.Text %}
+            {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachinery.Region.ContentItemIds[0]] %}
+            {% assign img_alt =  machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
             <div class="card mb-3">
                 <a href="{{ item | display_url }}">
-                    {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | img_tag: alt: img_alt, class:'card-img-top' }}
+                    {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
+                        {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | img_tag: alt: img_alt, class:'card-img-top' }}
+                    {% else %}
+                        <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png" />
+                    {% endif %}
                 </a>
                 <div class="card-body">
                     {% if item.Content.FarmMachinery.Price.Value > 0 %}
@@ -507,14 +400,18 @@
                     {% endif %}
                     <h5 class="card-title">
                         <a href="{{ item | display_url }}">
-                            {{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.MachineryModel.Text }}
+                            {{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}
                         </a>
                     </h5>
-                    {% if item.Content.FarmMachinery.Year.Value != null %}
+                    {% if item.Content.FarmMachinery.Year.Value != null and item.Content.FarmMachinery.Year.Value > 0 %}
                     <p class="card-text">Année: {{ item.Content.FarmMachinery.Year.Value }}</p>
                     {% endif %}
+                    {% if machinery_advertiser %}
                     <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
-                    <p class="card-text">Région: {{ item.Content.FarmMachinery.Region.Text }}</p>
+                    {% endif %}
+                    {% if machinery_region %}
+                    <p class="card-text">Région: {{ machinery_region }}</p>
+                    {% endif %}
 
                 </div>
                 <div class="card-footer text-center">

@@ -1,0 +1,68 @@
+// Core variables and mixins
+@import "variables-orchard.scss";
+@import "mixins.scss";
+// Global CSS
+@import "global.scss";
+// Components
+@import "navbar.scss";
+@import "masthead.scss";
+@import "services.scss";
+@import "portfolio.scss";
+@import "timeline.scss";
+@import "team.scss";
+@import "contact.scss";
+@import "footer.scss";
+
+.after-content {
+    color: #fff;
+    font-size: .75rem;
+    background: #e1160d;
+    background: -moz-linear-gradient(top, #e1160d 0%, #7a0b07 100%);
+    background: -webkit-linear-gradient(top, #e1160d 0%, #7a0b07 100%);
+    background: linear-gradient(to bottom, #e1160d 0%, #7a0b07 100%);
+
+    .container {
+        padding: 40px 0;
+    }
+}
+
+.search-box {
+    background-color: rgba(0, 0, 0, .5);
+    padding: 40px;
+}
+
+body {
+    background: #fdfdfd;
+}
+
+.price {
+    font-weight: 900;
+    font-size: 1.5rem;
+    margin: 20px 0;
+}
+
+.brand-model {
+    font-weight: normal;
+    font-size: 0.5em;
+    display: block;
+}
+
+.product-table td {
+    padding: .75rem 0;
+    border-top: 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs {
+    .nav-link {
+        background-color: rgba(0,0,0, 0.5) !important;
+        color: #fff !important;
+        border-color: #dee2e6 #dee2e6 #fff !important;
+
+        &.active {
+            background-color: #e1150d !important;
+            color: white !important;
+            border-color: #e1150d !important;
+        }
+    }
+}

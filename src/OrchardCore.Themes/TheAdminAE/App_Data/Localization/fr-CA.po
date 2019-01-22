@@ -50,6 +50,9 @@ msgstr "Dernière mise à jour {0} par {1}"
 msgid "Published"
 msgstr "Publié"
 
+msgid "Draft"
+msgstr "Brouillon"
+
 msgid "Edit"
 msgstr "Modifier"
 

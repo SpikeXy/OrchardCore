@@ -51,7 +51,7 @@ namespace OrchardCore.Media.Drivers
 
             if (await updater.TryUpdateModelAsync(model, Prefix, f => f.Paths))
             {
-                field.Paths = JsonConvert.DeserializeObject<string[]>(model.Paths);
+                field.Paths = model.Paths != null ? JsonConvert.DeserializeObject<string[]>(model.Paths) : new string[] { };
 
                 var settings = context.PartFieldDefinition.Settings.ToObject<MediaFieldSettings>();
                 

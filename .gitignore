@@ -189,3 +189,4 @@ node_modules/
 
 wwwroot
 !OrchardCore.Themes/**/wwwroot
+src/OrchardCore.Cms.Web/App_Data/Sites/*/Media

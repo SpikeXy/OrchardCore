@@ -35,7 +35,7 @@ namespace AffairesExtra.Migration
         public ILogger Logger { get; set; }
         public IChangeToken ChangeToken => _signal.GetToken(AffairesExtraMigrationCacheKey);
 
-        public async Task<IEnumerable<dynamic>> Migrate()
+        public async Task<IEnumerable<dynamic>> GetImportProductsData(string id = null)
         {
             var connection = _store.Configuration.ConnectionFactory.CreateConnection();
 
@@ -44,7 +44,7 @@ namespace AffairesExtra.Migration
                 using (connection)
                 {
                     connection.Open();
-                    return await connection.QueryAsync("SELECT * FROM products_import");
+                    return await connection.QueryAsync("SELECT * FROM import_products" + id);
                 }
             }
             catch (Exception e)
@@ -55,5 +55,23 @@ namespace AffairesExtra.Migration
 
         }
 
+        public async Task<IEnumerable<dynamic>> GetImportImagesData()
+        {
+            var connection = _store.Configuration.ConnectionFactory.CreateConnection();
+
+            try
+            {
+                using (connection)
+                {
+                    connection.Open();
+                    return await connection.QueryAsync("SELECT * FROM import_images");
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.LogError("An error occured while executing the SQL query: {0}", e.Message);
+                throw;
+            }
+        }
     }
 }
