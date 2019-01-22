@@ -46,14 +46,7 @@
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                {% assign machineryBrands = Queries.AllMachineryBrands | query %}
-                                <label for="brand">{{ "Marque" | t }}</label>
-                                <select id="brand" class="form-control" name="brand">
-                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                    {% for item in machineryBrands %}
-                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                    {% endfor %}
-                                </select>
+
                             </div>
                             <div class="col-sm-3">
                                 {% assign regions = Queries.AllRegions | query %}
@@ -369,9 +362,6 @@
 <script type="text/javascript" src="https://js.gleam.io/e.js" async="true"></script>
 
 <section>
-
-    {% assign contentDefinitions = Queries.ContentDefinitions | query %}
-    {{ contentDefinitions[0].contentPartDefinitionRecords }}
 
     <!-- ANNONCES EN VEDETTE -->
     <h2 class="text-center mb-5">Annonces en vedette</h2>
