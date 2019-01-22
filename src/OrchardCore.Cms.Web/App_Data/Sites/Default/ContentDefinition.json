@@ -1990,6 +1990,10 @@
               "Sanitized": false,
               "Tokenized": false,
               "Template": null
+            },
+            "ContentPickerFieldLuceneEditorSettings": {
+              "Index": "Search",
+              "Indices": null
             }
           }
         },
@@ -2981,7 +2985,7 @@
           "Name": "Advertiser",
           "Settings": {
             "DisplayName": "Annonceur",
-            "Editor": null,
+            "Editor": "Lucene",
             "Hint": null,
             "Required": false,
             "Multiple": false,
@@ -2997,6 +3001,10 @@
               "Sanitized": false,
               "Tokenized": false,
               "Template": null
+            },
+            "ContentPickerFieldLuceneEditorSettings": {
+              "Index": "Search",
+              "Indices": null
             }
           }
         },
@@ -3665,7 +3673,7 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "8",
+            "Position": "10",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -3759,7 +3767,7 @@
               "Editor": 1,
               "DefaultValue": null
             },
-            "Position": "10",
+            "Position": "12",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": false,
@@ -3782,7 +3790,7 @@
             "TextFieldTextAreaEditorSettings": {
               "Color": null
             },
-            "Position": "12",
+            "Position": "14",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -3805,7 +3813,7 @@
             "TextFieldTextAreaEditorSettings": {
               "Color": null
             },
-            "Position": "14",
+            "Position": "16",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": false,
@@ -3854,7 +3862,7 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "13"
+            "Position": "15"
           }
         },
         {
@@ -3878,7 +3886,7 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "9"
+            "Position": "11"
           }
         },
         {
@@ -3922,7 +3930,51 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "11"
+            "Position": "13"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Brand",
+          "Settings": {
+            "DisplayName": "Marque",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "FarmMachineryBrand"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "8"
+          }
+        },
+        {
+          "FieldName": "TextField",
+          "Name": "Model",
+          "Settings": {
+            "DisplayName": "Modèle",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "9"
           }
         }
       ]
@@ -5116,5 +5168,5 @@
       ]
     }
   ],
-  "Serial": 244
+  "Serial": 272
 }
