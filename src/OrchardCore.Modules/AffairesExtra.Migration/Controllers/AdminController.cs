@@ -272,7 +272,7 @@ namespace AffairesExtra.Migration.Controllers
                 //contentItem.Content.TitlePart.Title = brand;
                 contentItem.Content.AutoroutePart.Path = "machinerie-agricole/" + Slugify(brand);
 
-                //await _contentManager.CreateAsync(contentItem, VersionOptions.DraftRequired);
+                await _contentManager.CreateAsync(contentItem, VersionOptions.DraftRequired);
 
                 // creates a published item
                 await _contentManager.PublishAsync(contentItem);
