@@ -1,4 +1,4 @@
-{% script source:"https://www.google.com/recaptcha/api.js", at:"Foot" %}
+{% script src:"https://www.google.com/recaptcha/api.js" %}
 {% assign machinery_type = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Type.ContentItemIds[0]] %}
 {% assign machinery_brand = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
 {% assign machinery_advertiser = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
@@ -27,39 +27,43 @@
             </div>
 			
 			<table class="table border-bottom product-table">
+                {%if machinery_brand != null and machinery_brand != "" %}
 				<tr>
 					<td>{{ "Brand" | t }} : </td>
 					<td class="text-right">{{ machinery_brand | display_text }}</td>
 				</tr>
+                {% endif %}
+                {%if Model.ContentItem.Content.FarmMachinery.Model.Text != null and Model.ContentItem.Content.FarmMachinery.Model.Text != "" %}
 				<tr>
 					<td>{{ "Model" | t }} : </td>
 					<td class="text-right">{{ Model.ContentItem.Content.FarmMachinery.Model.Text }}</td>
 				</tr>
-				{%if Model.ContentItem.Content.FarmMachinery.WheelDrive.Text != null %}
+                {% endif %}
+				{%if Model.ContentItem.Content.FarmMachinery.WheelDrive.Text != null and Model.ContentItem.Content.FarmMachinery.WheelDrive.Text != "0" %}
 				<tr>
 					<td>{{ "Wheel drive" | t }} : </td>
 					<td class="text-right">{{ Model.ContentItem.Content.FarmMachinery.WheelDrive.Text }}</td>
 				</tr>
 				{% endif %}
-				{%if Model.ContentItem.Content.FarmMachinery.MotorHP.Value != null %}
+				{%if Model.ContentItem.Content.FarmMachinery.MotorHP.Value != null and Model.ContentItem.Content.FarmMachinery.MotorHP.Value != "0" %}
 				<tr>
 					<td>{{ "Motor HP" | t }} : </td>
 					<td class="text-right">{{ Model.ContentItem.Content.FarmMachinery.MotorHP.Value }}</td>
 				</tr>
 				{% endif %}
-				{%if Model.ContentItem.Content.FarmMachinery.PTOForce.Value != null %}
+				{%if Model.ContentItem.Content.FarmMachinery.PTOForce.Value != null and Model.ContentItem.Content.FarmMachinery.PTOForce.Value != "0" %}
 				<tr>
 					<td>{{ "PTO force" | t }} : </td>
 					<td class="text-right">{{ Model.ContentItem.Content.FarmMachinery.PTOForce.Value }}</td>
 				</tr>
 				{% endif %}
-				{%if Model.ContentItem.Content.FarmMachinery.Year.Value != null %}
+				{%if Model.ContentItem.Content.FarmMachinery.Year.Value != null and Model.ContentItem.Content.FarmMachinery.Year.Value != "0" %}
 				<tr>
 					<td>{{ "Year" | t }} : </td>
 					<td class="text-right">{{ Model.ContentItem.Content.FarmMachinery.Year.Value }}</td>
 				</tr>
 				{% endif %}
-				{%if Model.ContentItem.Content.FarmMachinery.Hours.Value != null %}
+				{%if Model.ContentItem.Content.FarmMachinery.Hours.Value != null and Model.ContentItem.Content.FarmMachinery.Hours.Value != "0" %}
 				<tr>
 					<td>{{ "Hours" | t }} : </td>
 					<td class="text-right">{{ Model.ContentItem.Content.FarmMachinery.Hours.Value }}</td>
@@ -248,7 +252,7 @@
             {% assign img_alt =  machinery_type | append: ' ' | machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
             <div class="card mb-3">
                 <a href="{{ item | display_url }}">
-                    {% if item.Content.FarmMachinery.WebsitePictures.Paths > 0 %}
+                    {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
                         {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | img_tag: alt: img_alt, class:'card-img-top' }}
                     {% else %}
                         <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png">

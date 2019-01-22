@@ -363,10 +363,11 @@
     </div>
 </header>
 {% endzone %}
-<section>
+
+<h2 class="text-center mb-5 mt-5">Concour l'affaire la plus extra !</h2>
 <a class="e-widget no-button" href="https://gleam.io/0XTkD/concours-laffaire-la-plus-extra" rel="nofollow" data-loading-text="Chargement...">Concours L'affaire la plus Extra</a>
 <script type="text/javascript" src="https://js.gleam.io/e.js" async="true"></script>
-</section>
+
 <section>
 
     {% assign contentDefinitions = Queries.ContentDefinitions | query %}
@@ -421,7 +422,7 @@
         </div>
         {% endfor %}
     </div>
-
+    <h2 class="text-center mb-5 mt-5">Rubriques</h2>
     {% assign farmMachineryCategories = Queries.FarmMachineryCategories | query %}
     <div class="owl-carousel owl-theme">
         {% for item in farmMachineryCategories %}

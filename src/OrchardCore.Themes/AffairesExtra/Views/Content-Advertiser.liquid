@@ -1,3 +1,8 @@
+{% if Request.Query.Page != null %}
+{% assign from = Request.Query.Page | int32 | minus: 1 | times: 9 %}
+{% else %}
+{% assign from = 0 %}
+{% endif %}
 <section>
     <h1>{{ Model.ContentItem }}</h1>
     <div class="container">
@@ -106,60 +111,105 @@
         <hr class="mb-5" />
         {% endif %}
     </div>
-
+    
     <!-- ANNONCES -->
-    {% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: 10, from: 0, condition: "*", region: "*", category: "*", type: "*", model: "*", advertiser: Model.ContentItem.ContentItemId, brand: "*", pricefrom: 0, priceto: 500000, year: null %}
+    {% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: 100000, from: 0, condition: "*", region: "*", category: "*", type: "*", model: "*", advertiser: Model.ContentItem.ContentItemId, brand: "*", pricefrom: 0, priceto: 500000, year: null %}
+    {% assign totalRecords = searchFarmMachineries.size %}
+    {% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: 9, from: from, condition: "*", region: "*", category: "*", type: "*", model: "*", advertiser: Model.ContentItem.ContentItemId, brand: "*", pricefrom: 0, priceto: 500000, year: null %}
 
-    {% assign count = searchFarmMachineries | size %}
-    {%if count > 0 %}
+    {%if searchFarmMachineries.size > 0 %}
 
 
     <div class="row">
-                {% for item in searchFarmMachineries %}
-                <div class="col-md-4 d-flex align-items-stretch">
+        {% for item in searchFarmMachineries %}
+        <div class="col-md-4 d-flex align-items-stretch">
 
-                    {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
-                    {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
-                    {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
-                    {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachinery.Region.ContentItemIds[0]] %}
-                    {% assign img_alt =  machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
-                    <div class="card mb-3">
+            {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
+            {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
+            {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
+            {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachinery.Region.ContentItemIds[0]] %}
+            {% assign img_alt =  machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
+            <div class="card mb-3">
+                <a href="{{ item | display_url }}">
+                    {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
+                    {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | img_tag: alt: img_alt, class:'card-img-top' }}
+                    {% else %}
+                    <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png" />
+                    {% endif %}
+                </a>
+                <div class="card-body">
+                    {% if item.Content.FarmMachinery.Price.Value > 0 %}
+                    <h5 class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</h5>
+                    {% else %}
+                    <h5 class="card-text">{{ "Price upon request" | t }}</h5>
+                    {% endif %}
+                    <h5 class="card-title">
                         <a href="{{ item | display_url }}">
-                            {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
-                            {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | img_tag: alt: img_alt, class:'card-img-top' }}
-                            {% else %}
-                            <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png" />
-                            {% endif %}
+                            {{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}
                         </a>
-                        <div class="card-body">
-                            <h5 class="card-title">{{ machinery_type | display_text }} </h5>
-                            <h4 class="card-title">{{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}</h4>
-                            {% if item.Content.FarmMachinery.Price.Value > 0 %}
-                            <p class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</p>
-                            {% endif %}
-                            {% if item.Content.FarmMachinery.Year.Value != null and item.Content.FarmMachinery.Year.Value > 0 %}
-                            <p class="card-text">Année: {{ item.Content.FarmMachinery.Year.Value }}</p>
-                            {% endif %}
-                            {% if machinery_advertiser %}
-                            <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
-                            {% endif %}
-                            {% if machinery_region %}
-                            <p class="card-text">Région: {{ machinery_region }}</p>
-                            {% endif %}
+                    </h5>
+                    {% if item.Content.FarmMachinery.Year.Value != null and item.Content.FarmMachinery.Year.Value > 0 %}
+                    <p class="card-text">Année: {{ item.Content.FarmMachinery.Year.Value }}</p>
+                    {% endif %}
+                    {% if machinery_advertiser %}
+                    <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
+                    {% endif %}
+                    {% if machinery_region %}
+                    <p class="card-text">Région: {{ machinery_region }}</p>
+                    {% endif %}
 
-                        </div>
-                        <div class="card-footer text-center">
-                            <a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a>
-                        </div>
-                    </div>
                 </div>
-                {% endfor %}
+                <div class="card-footer text-center">
+                    <a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a>
+                </div>
             </div>
+        </div>
+        {% endfor %}
+    </div>
+    <nav class="mt-5">
+        <ul class="pagination justify-content-center">
+            {% assign totalPages = totalRecords | divided_by: 9 %}
+            {% assign testTotal = totalPages | times: 9 %}
+            {% if testTotal < totalRecords %}
+            {% assign totalPages = totalPages | plus: 1 %}
+            {% endif %}
+            {% if Request.Query.Page != null %}
+            {% assign startPage = Request.Query.Page | int32 %}
+            {% assign currentPage = Request.Query.Page | int32 %}
+            {% else %}
+            {% assign startPage = 1 %}
+            {% endif %}
 
+            {% assign endPage = startPage | plus: 2 %}
+            {% if endPage > totalPages %}
+            {% assign endPage = totalPages %}
+            {% assign startPage = totalPages | minus: 2 %}
+            {% endif %}
 
+            {% if startPage <= 1 %}
+            <li class="page-item disabled">
+            {% else %}
+            <li class="page-item">
+            {% endif %}
+                <a class="page-link" href="?page={{currentPage | minus: 1}}" tabindex="-1">{{ "Previous" | t }}</a>
+            </li>
+            {% for i in (startPage..endPage) %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{i}}">{{i}}</a>
+            </li>
+            {% endfor %}
+            {% if endPage >= totalPages %}
+            <li class="page-item disabled">
+            {% else %}
+            <li class="page-item">
+            {% endif %}
+                <a class="page-link" href="?page={{currentPage | plus: 1}}">{{ "Next" | t }}</a>
+            </li>
+        </ul>
+    </nav>
     {% else %}
 
-        <div class="jumbotron">
+    <div class="jumbotron">
             <h1 class="display-4">{{ "No result found" | t }}</h1>
             <p class="lead">{{ "There may be no results corresponding to the criterion (s) of your search." | t }}</p>
             <div class="my-4">

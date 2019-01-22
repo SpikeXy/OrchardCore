@@ -5,6 +5,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\js\agency.js" />
+    <EmbeddedResource Include="Assets\js\jqBootstrapValidation.js" />
+    <EmbeddedResource Include="Assets\scss\affaires-extra.scss" />
+    <EmbeddedResource Include="Assets\scss\bootstrap-grid-ext.scss" />
+    <EmbeddedResource Include="Assets\scss\modules\_flow.scss" />
+    <EmbeddedResource Include="Assets\scss\modules\_widgets.scss" />
+    <EmbeddedResource Include="Assets\scss\_contact.scss" />
+    <EmbeddedResource Include="Assets\scss\_footer.scss" />
+    <EmbeddedResource Include="Assets\scss\_global.scss" />
+    <EmbeddedResource Include="Assets\scss\_masthead.scss" />
+    <EmbeddedResource Include="Assets\scss\_mixins.scss" />
+    <EmbeddedResource Include="Assets\scss\_navbar.scss" />
+    <EmbeddedResource Include="Assets\scss\_portfolio.scss" />
+    <EmbeddedResource Include="Assets\scss\_services.scss" />
+    <EmbeddedResource Include="Assets\scss\_team.scss" />
+    <EmbeddedResource Include="Assets\scss\_timeline.scss" />
+    <EmbeddedResource Include="Assets\scss\_variables-orchard.scss" />
+    <EmbeddedResource Include="Assets\scss\_variables.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\OrchardCore\OrchardCore.ContentManagement\OrchardCore.ContentManagement.csproj" />
     <ProjectReference Include="..\..\OrchardCore\OrchardCore.DisplayManagement\OrchardCore.DisplayManagement.csproj" />
     <ProjectReference Include="..\..\OrchardCore\OrchardCore.Theme.Targets\OrchardCore.Theme.Targets.csproj" />
@@ -13,6 +34,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>

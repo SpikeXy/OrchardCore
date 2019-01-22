@@ -1134,10 +1134,11 @@
             "DisplayName": null,
             "Description": null,
             "Editor": null,
-            "Pattern": "machinerie-agricole/{{ ContentItem | display_text | slugify }}",
+            "Pattern": "equipement-agricole/categorie/{{ ContentItem | display_text | slugify }}",
             "AllowCustomPath": "False",
             "ShowHomepageOption": "False",
-            "ContentIndexSettings": {}
+            "ContentIndexSettings": {},
+            "AllowUpdatePath": "True"
           }
         },
         {
@@ -4963,7 +4964,7 @@
           "Name": "FeaturedAdvertisers",
           "Settings": {
             "DisplayName": "Annonceurs vedettes",
-            "Editor": null,
+            "Editor": "Lucene",
             "DisplayMode": null,
             "Hint": null,
             "Required": false,
@@ -4979,7 +4980,11 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "0"
+            "Position": "0",
+            "ContentPickerFieldLuceneEditorSettings": {
+              "Index": "Search",
+              "Indices": null
+            }
           }
         }
       ]
@@ -5111,5 +5116,5 @@
       ]
     }
   ],
-  "Serial": 238
+  "Serial": 244
 }
