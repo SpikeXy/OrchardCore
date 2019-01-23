@@ -15,7 +15,6 @@
     <ProjectReference Include="..\..\OrchardCore.Modules\AffairesExtra.Migration\AffairesExtra.Migration.csproj" />
     <ProjectReference Include="..\..\OrchardCore.Modules\OrchardCore.HealthChecks\OrchardCore.HealthChecks.csproj" />
     <ProjectReference Include="..\..\OrchardCore.Themes\AffairesExtra\AffairesExtra.csproj" />
-    <ProjectReference Include="..\..\OrchardCore.Themes\TheAdminAE\TheAdminAE.csproj" />
     <ProjectReference Include="..\..\OrchardCore\OrchardCore.Infrastructure\OrchardCore.Infrastructure.csproj" />
   </ItemGroup>
 
@@ -104,6 +103,7 @@
     <ProjectReference Include="..\..\OrchardCore.Themes\TheBlogTheme\TheBlogTheme.csproj" PrivateAssets="none" />
     <ProjectReference Include="..\..\OrchardCore.Themes\TheComingSoonTheme\TheComingSoonTheme.csproj" PrivateAssets="none" />
     <ProjectReference Include="..\..\OrchardCore.Themes\TheTheme\TheTheme.csproj" PrivateAssets="none" />
+    <ProjectReference Include="..\..\OrchardCore.Themes\TheAdminAE\TheAdminAE.csproj" PrivateAssets="none" />
   </ItemGroup>
 
 </Project>

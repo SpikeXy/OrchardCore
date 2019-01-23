@@ -60,7 +60,7 @@
         "OrchardCore.Widgets",
 
         // Themes
-        "TheAgencyTheme",
+        "AffairesExtraTheme",
         "TheAdmin",
         "SafeMode"
       ]
@@ -68,7 +68,7 @@
     {
       "name": "themes",
       "admin": "TheAdmin",
-      "site": "TheAgencyTheme"
+      "site": "AffairesExtraTheme"
     },
     {
       "name": "settings",
@@ -711,7 +711,7 @@
                 "ContentType": "LinkMenuItem",
                 "ContentItemId": "[js:uuid()]",
                 "LinkMenuItemPart": {
-                  "Name": "Équipement neuf",
+                  "Name": "ï¿½quipement neuf",
                   "Url": "~/equipement-agricole-neuf"
                 }
               },
@@ -719,7 +719,7 @@
                 "ContentType": "LinkMenuItem",
                 "ContentItemId": "[js:uuid()]",
                 "LinkMenuItemPart": {
-                  "Name": "Équipement usagé",
+                  "Name": "ï¿½quipement usagï¿½",
                   "Url": "~/equipement-agricole-usage"
                 }
               },
@@ -735,7 +735,7 @@
                 "ContentType": "LinkMenuItem",
                 "ContentItemId": "[js:uuid()]",
                 "LinkMenuItemPart": {
-                  "Name": "Petites annonces classées",
+                  "Name": "Petites annonces classï¿½es",
                   "Url": "~/petites-annonces-classees"
                 }
               },
@@ -759,7 +759,7 @@
                 "ContentType": "LinkMenuItem",
                 "ContentItemId": "[js:uuid()]",
                 "LinkMenuItemPart": {
-                  "Name": "À propos",
+                  "Name": "ï¿½ propos",
                   "Url": "~/a-propos"
                 }
               },
@@ -767,7 +767,7 @@
                 "ContentType": "LinkMenuItem",
                 "ContentItemId": "[js:uuid()]",
                 "LinkMenuItemPart": {
-                  "Name": "Abonnement à la revue Affaires Extra",
+                  "Name": "Abonnement ï¿½ la revue Affaires Extra",
                   "Url": "~/abonnement-a-revue"
                 }
               },
