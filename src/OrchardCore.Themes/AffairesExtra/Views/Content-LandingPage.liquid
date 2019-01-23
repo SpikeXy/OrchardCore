@@ -378,7 +378,7 @@
             <div class="card mb-3">
                 <a href="{{ item | display_url }}">
                     {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
-                        {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | img_tag: alt: img_alt, class:'card-img-top' }}
+                        {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | resize_url: 348 | img_tag: alt: img_alt, class:'card-img-top' }}
                     {% else %}
                         <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png" />
                     {% endif %}
@@ -418,7 +418,7 @@
         {% for item in farmMachineryCategories %}
         <div class="card mb-3 item">
             <a href="{{ item | display_url }}">
-                <img class="card-img-top" src="{{ item.Content.FarmMachineryCategory.Picture.Paths[0] | asset_url }}" />
+                {{ item.Content.FarmMachineryCategory.Picture.Paths[0] | asset_url | resize_url: 268 | img_tag: class:'card-img-top' }}
             </a>
             <div class="card-body">
                 <p class="card-title">
