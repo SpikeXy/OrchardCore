@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -170,7 +171,8 @@ namespace AffairesExtra.Migration.Controllers
         }
 
         [HttpPost, ActionName("ImportAdvertisers")]
-        public async Task<ActionResult> ImportAdvertisers() {
+        public async Task<ActionResult> ImportAdvertisers()
+        {
             if (!await _authorizationService.AuthorizeAsync(User, Permissions.ManageAffairesExtraMigration))
             {
                 return Unauthorized();
@@ -194,12 +196,15 @@ namespace AffairesExtra.Migration.Controllers
                 contentItem.Content.Advertiser.ClientNo.Text = advertiser.ClientNo;
                 contentItem.Content.Advertiser.Email.Text = advertiser.AdvertiserEmailContact;
 
-                string image = advertiser.ImageUrl.ToString();
+                string image = advertiser.PrincipalImage.ToString();
 
-                contentItem.Content.Advertiser.Logo.Paths.Add("annonceur/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + image.Split('/').Last()).ToLower());
-                if (System.IO.File.Exists(mainImportPicturePath + image.Split('/').Last()) && !System.IO.File.Exists(AdvertiserMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + image.Split('/').Last()).ToLower()))
+                if (image != "")
                 {
-                    System.IO.File.Copy(mainImportPicturePath + image.Split('/').Last(), AdvertiserMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + image.Split('/').Last()).ToLower());
+                    if (System.IO.File.Exists(mainImportPicturePath + image.Split('/').Last()) && !System.IO.File.Exists(AdvertiserMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + image.Split('/').Last()).ToLower()))
+                    {
+                        System.IO.File.Copy(mainImportPicturePath + image.Split('/').Last(), AdvertiserMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + image.Split('/').Last()).ToLower());
+                        contentItem.Content.Advertiser.Logo.Paths.Add("annonceur/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + image.Split('/').Last()).ToLower());
+                    }
                 }
 
                 await _contentManager.CreateAsync(contentItem, VersionOptions.DraftRequired);
@@ -323,7 +328,7 @@ namespace AffairesExtra.Migration.Controllers
                     //}
 
                     //if we find an advertiser we assign it
-                    var advertiser = advertisers.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
+                    var advertiser = advertisers.Where(x => x.DisplayText.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
                     if (advertiser != null)
                     {
                         contentItem.Content.FarmMachinery.Advertiser.ContentItemIds.Add(advertiser.ContentItemId);
@@ -331,55 +336,61 @@ namespace AffairesExtra.Migration.Controllers
                     }
 
                     //if we find a brand we assign it
-                    if (farmMachineryBrands.Where(x => x.Content.TitlePart.Title == product.Brand).FirstOrDefault() != null)
+                    if (farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.Content.TitlePart.Title == product.Brand).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachinery.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery type we assign it
-                    if (farmMachineryTypes.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault() != null)
+                    if (farmMachineryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Type.ContentItemIds.Add(farmMachineryTypes.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachinery.Type.ContentItemIds.Add(farmMachineryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #1
-                    if (farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category).FirstOrDefault() != null)
+                    if (farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachinery.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #2
-                    if (farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category2).FirstOrDefault() != null)
+                    if (farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category2).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachinery.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a region we assign it
-                    if (regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault() != null)
+                    if (regions.Where(x => x.DisplayText == product.Region).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Region.ContentItemIds.Add(regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachinery.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
                     }
 
                     contentItem.Content.FarmMachinery.MotorHP.Value = product.MotorHP;
                     contentItem.Content.FarmMachinery.PTOForce.Value = product.ForcePTO;
 
                     //main picture
-                    string imagePrincipale = HttpUtility.UrlDecode(product.ImageUrl.ToString(), Encoding.UTF8);
-                    contentItem.Content.FarmMachinery.MainPicture.Paths.Add("machinerie agricole/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
-                    if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                    string imagePrincipale = product.PrincipalImage.ToString();
+                    if (!String.IsNullOrEmpty(imagePrincipale))
                     {
-                        System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), FarmMachineryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                        {
+                            System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), FarmMachineryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                            contentItem.Content.FarmMachinery.MainPicture.Paths.Add("machinerie agricole/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        }
                     }
 
                     //website pictures
                     var websiteImages = images.Where(x => x.ProductId == product.ProductId).OrderBy(x => x.Order);
                     foreach (var image in websiteImages)
                     {
-                        string imageSiteWeb = HttpUtility.UrlDecode(image.ImageUrl.ToString(), Encoding.UTF8);
-                        contentItem.Content.FarmMachinery.WebsitePictures.Paths.Add("machinerie agricole/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                        if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                        string imageSiteWeb = image.Image;
+                        if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            {
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                contentItem.Content.FarmMachinery.WebsitePictures.Paths.Add("machinerie agricole/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            }
                         }
                     }
 
@@ -388,7 +399,7 @@ namespace AffairesExtra.Migration.Controllers
                     contentItem.Content.FarmMachinery.AdditionalDescription.Text = product.Description;
                     //contentItem.Content.FarmMachinery.AdministratorNote.Text = product.TypeOfFuel;
                     //contentItem.Content.FarmMachinery.Price.Value = product.TypeOfFuel;
-                    
+
                     contentItem.Content.FarmMachinery.PromoTag.Text = product.PromoFlag;
                     contentItem.Content.FarmMachinery.InventoryNo.Text = product.InventoryNo;
                     contentItem.Content.FarmMachinery.WheelDrive.Text = product.WheelDrive;
@@ -436,14 +447,14 @@ namespace AffairesExtra.Migration.Controllers
                     var contentItem = await _contentManager.NewAsync("FarmMachineryAccessory");
 
                     await _contentItemDisplayManager.UpdateEditorAsync(contentItem, this, true);
-                    
+
                     contentItem.Content.FarmMachineryAccessory.Model.Text = product.Model;
                     contentItem.Content.FarmMachineryAccessory.Year.Value = product.Year;
                     contentItem.Content.FarmMachineryAccessory.Condition.Value = product.Condition == "Neuf" ? true : false;
                     contentItem.Content.FarmMachineryAccessory.Sold.Value = product.Sold == "VRAI" ? true : false;
 
                     //if we find an advertiser we assign it
-                    var advertiser = advertisers.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
+                    var advertiser = advertisers.Where(x => x.DisplayText.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
                     if (advertiser != null)
                     {
                         contentItem.Content.FarmMachineryAccessory.Advertiser.ContentItemIds.Add(advertiser.ContentItemId);
@@ -451,27 +462,27 @@ namespace AffairesExtra.Migration.Controllers
                     }
 
                     //if we find a brand we assign it
-                    if (farmMachineryBrands.Where(x => x.Content.TitlePart.Title == product.Brand).FirstOrDefault() != null)
+                    if (farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.Content.TitlePart.Title == product.Brand).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachineryAccessory.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery type we assign it
-                    if (farmMachineryAccessoryTypes.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault() != null)
+                    if (farmMachineryAccessoryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Type.ContentItemIds.Add(farmMachineryAccessoryTypes.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachineryAccessory.Type.ContentItemIds.Add(farmMachineryAccessoryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #1
-                    if (farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category).FirstOrDefault() != null)
+                    if (farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachineryAccessory.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #2
-                    if (farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category2).FirstOrDefault() != null)
+                    if (farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category2).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachineryAccessory.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault().ContentItemId);
                     }
                     else
                     {
@@ -482,22 +493,28 @@ namespace AffairesExtra.Migration.Controllers
                     contentItem.Content.FarmMachineryAccessory.PTOForce.Value = product.ForcePTO;
 
                     //main picture
-                    string imagePrincipale = HttpUtility.UrlDecode(product.ImageUrl.ToString(), Encoding.UTF8);
-                    contentItem.Content.FarmMachineryAccessory.MainPicture.Paths.Add("machinerie agricole (accessoire)/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
-                    if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryAccessoryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                    string imagePrincipale = product.PrincipalImage.ToString();
+                    if (!String.IsNullOrEmpty(imagePrincipale))
                     {
-                        System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), FarmMachineryAccessoryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryAccessoryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                        {
+                            System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), FarmMachineryAccessoryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                            contentItem.Content.FarmMachineryAccessory.MainPicture.Paths.Add("machinerie agricole (accessoire)/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        }
                     }
 
                     //website pictures
                     var websiteImages = images.Where(x => x.ProductId == product.ProductId).OrderBy(x => x.Order);
                     foreach (var image in websiteImages)
                     {
-                        string imageSiteWeb = HttpUtility.UrlDecode(image.ImageUrl.ToString(), Encoding.UTF8);
-                        contentItem.Content.FarmMachineryAccessory.WebsitePictures.Paths.Add("machinerie agricole (accessoire)/site web/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                        if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                        string imageSiteWeb = image.Image;
+                        if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            {
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                contentItem.Content.FarmMachineryAccessory.WebsitePictures.Paths.Add("machinerie agricole (accessoire)/site web/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            }
                         }
                     }
 
@@ -505,9 +522,9 @@ namespace AffairesExtra.Migration.Controllers
                     contentItem.Content.FarmMachineryAccessory.AdditionalDescription.Text = product.Description;
 
                     //if we find a region we assign it
-                    if (regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault() != null)
+                    if (regions.Where(x => x.DisplayText == product.Region).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Region.ContentItemIds.Add(regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault().ContentItemId);
+                        contentItem.Content.FarmMachineryAccessory.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
                     }
 
                     contentItem.Content.FarmMachineryAccessory.PromoTag.Text = product.PromoFlag;
@@ -576,7 +593,7 @@ namespace AffairesExtra.Migration.Controllers
                     contentItem.Content.OtherEquipment.Sold.Value = product.Sold == "VRAI" ? true : false;
 
                     //if we find an advertiser we assign it
-                    var advertiser = advertisers.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
+                    var advertiser = advertisers.Where(x => x.DisplayText.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
                     if (advertiser != null)
                     {
                         contentItem.Content.OtherEquipment.Advertiser.ContentItemIds.Add(advertiser.ContentItemId);
@@ -584,46 +601,52 @@ namespace AffairesExtra.Migration.Controllers
                     }
 
                     //if we find a machinery type we assign it
-                    if (otherEquipmentTypes.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault() != null)
+                    if (otherEquipmentTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault() != null)
                     {
-                        contentItem.Content.OtherEquipment.Type.ContentItemIds.Add(otherEquipmentTypes.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
+                        contentItem.Content.OtherEquipment.Type.ContentItemIds.Add(otherEquipmentTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #1
-                    if (farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category).FirstOrDefault() != null)
+                    if (farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault() != null)
                     {
-                        contentItem.Content.OtherEquipment.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category).FirstOrDefault().ContentItemId);
+                        contentItem.Content.OtherEquipment.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #2
-                    if (farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category2).FirstOrDefault() != null)
+                    if (farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault() != null)
                     {
-                        contentItem.Content.OtherEquipment.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.Content.TitlePart.Title == product.Category2).FirstOrDefault().ContentItemId);
+                        contentItem.Content.OtherEquipment.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a brand we assign it
-                    if (farmMachineryBrands.Where(x => x.Content.TitlePart.Title == product.Brand).FirstOrDefault() != null)
+                    if (farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault() != null)
                     {
-                        contentItem.Content.OtherEquipment.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.Content.TitlePart.Title == product.Brand).FirstOrDefault().ContentItemId);
+                        contentItem.Content.OtherEquipment.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault().ContentItemId);
                     }
 
                     //main picture
-                    string imagePrincipale = HttpUtility.UrlDecode(product.ImageUrl.ToString(), Encoding.UTF8);
-                    contentItem.Content.OtherEquipment.MainPicture.Paths.Add("autre équipement/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
-                    if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(OtherEquipmentMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                    string imagePrincipale = product.PrincipalImage.ToString();
+                    if (!String.IsNullOrEmpty(imagePrincipale))
                     {
-                        System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), OtherEquipmentMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(OtherEquipmentMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                        {
+                            System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), OtherEquipmentMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                            contentItem.Content.OtherEquipment.MainPicture.Paths.Add("autre équipement/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        }
                     }
 
                     //website pictures
                     var websiteImages = images.Where(x => x.ProductId == product.ProductId).OrderBy(x => x.Order);
                     foreach (var image in websiteImages)
                     {
-                        string imageSiteWeb = HttpUtility.UrlDecode(image.ImageUrl.ToString(), Encoding.UTF8);
-                        contentItem.Content.OtherEquipment.WebsitePictures.Paths.Add("autre équipement/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                        if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(OtherEquipmentWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                        string imageSiteWeb = image.Image;
+                        if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), OtherEquipmentWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(OtherEquipmentWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            {
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), OtherEquipmentWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                contentItem.Content.OtherEquipment.WebsitePictures.Paths.Add("autre équipement/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            }
                         }
                     }
 
@@ -632,9 +655,9 @@ namespace AffairesExtra.Migration.Controllers
                     contentItem.Content.OtherEquipment.AdditionalDescription.Text = product.Description;
 
                     //if we find a region we assign it
-                    if (regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault() != null)
+                    if (regions.Where(x => x.DisplayText == product.Region).FirstOrDefault() != null)
                     {
-                        contentItem.Content.OtherEquipment.Region.ContentItemIds.Add(regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault().ContentItemId);
+                        contentItem.Content.OtherEquipment.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
                     }
 
                     contentItem.Content.OtherEquipment.PromoTag.Text = product.PromoFlag;
@@ -669,6 +692,9 @@ namespace AffairesExtra.Migration.Controllers
 
             var images = await _migrationService.GetImportImagesData();
             var advertisers = await GetAllContentItemsFromTypeAsync("Advertiser");
+            var realEstateTypes = await GetAllContentItemsFromTypeAsync("RealEstateType");
+            var realEstateActivityTypes = await GetAllContentItemsFromTypeAsync("RealEstateActivityType");
+            var realEstateStatus = await GetAllContentItemsFromTypeAsync("RealEstateStatus");
             var regions = await GetAllContentItemsFromTypeAsync("Region");
 
             foreach (dynamic product in products)
@@ -680,46 +706,72 @@ namespace AffairesExtra.Migration.Controllers
                     await _contentItemDisplayManager.UpdateEditorAsync(contentItem, this, true);
 
                     //main picture
-                    string imagePrincipale = HttpUtility.UrlDecode(product.ImageUrl.ToString(), Encoding.UTF8);
-                    contentItem.Content.RealEstate.MainPicture.Paths.Add("immobilier/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
-                    if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(RealEstateMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                    string imagePrincipale = product.PrincipalImage.ToString();
+                    if (!String.IsNullOrEmpty(imagePrincipale))
                     {
-                        System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), RealEstateMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(RealEstateMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                        {
+                            System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), RealEstateMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                            contentItem.Content.RealEstate.MainPicture.Paths.Add("immobilier/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        }
                     }
 
                     //website pictures
                     var websiteImages = images.Where(x => x.ProductId == product.ProductId).OrderBy(x => x.Order);
                     foreach (var image in websiteImages)
                     {
-                        string imageSiteWeb = HttpUtility.UrlDecode(image.ImageUrl.ToString(), Encoding.UTF8);
-                        contentItem.Content.RealEstate.WebsitePictures.Paths.Add("immobilier/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                        if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(RealEstateWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                        string imageSiteWeb = image.Image;
+                        if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), RealEstateWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(RealEstateWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            {
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), RealEstateWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                contentItem.Content.RealEstate.WebsitePictures.Paths.Add("immobilier/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            }
                         }
                     }
 
                     //if we find an advertiser we assign it
-                    var advertiser = advertisers.Where(x => x.Content.TitlePart.Title.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
+                    var advertiser = advertisers.Where(x => x.DisplayText.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
                     if (advertiser != null)
                     {
                         contentItem.Content.RealEstate.Advertiser.ContentItemIds.Add(advertiser.ContentItemId);
                         contentItem.Owner = advertiser.Content.Advertiser.Email.Text;
                     }
 
-                    contentItem.Content.RealEstate.YoutubeVideo.RawAddress = product.YoutubeLink;
+                    //if we find a RealEstateType we assign it
+                    var realEstateType = realEstateTypes.Where(x => x.DisplayText.ToString().Trim() == product.RealEstateType.ToString().Trim()).FirstOrDefault();
+                    if (realEstateType != null)
+                    {
+                        contentItem.Content.RealEstate.Type.ContentItemIds.Add(realEstateType.ContentItemId);
+                    }
+
+                    //if we find a RealEstateActivityType we assign it
+                    var realEstateActivityType = realEstateActivityTypes.Where(x => x.DisplayText.ToString().Trim() == product.ActivityType.ToString().Trim()).FirstOrDefault();
+                    if (realEstateActivityType != null)
+                    {
+                        contentItem.Content.RealEstate.ActivityType.ContentItemIds.Add(realEstateActivityType.ContentItemId);
+                    }
+
                     contentItem.Content.RealEstate.Type.Text = product.RealEstateType;
                     contentItem.Content.RealEstate.ActivityType.Text = product.ActivityType;
+
+                    contentItem.Content.RealEstate.YoutubeVideo.RawAddress = product.YoutubeLink;
                     //contentItem.Content.RealEstate.Price = "";
                     contentItem.Content.RealEstate.Sold.Value = product.Sold == "VRAI" ? true : false;
 
                     //if we find a region we assign it
-                    if (regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault() != null)
+                    if (regions.Where(x => x.DisplayText == product.Region).FirstOrDefault() != null)
                     {
-                        contentItem.Content.RealEstate.Region.ContentItemIds.Add(regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault().ContentItemId);
+                        contentItem.Content.RealEstate.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
                     }
 
-                    contentItem.Content.RealEstate.Status.Text = product.RealEstateStatus;
+                    //if we find a status we assign it
+                    if (realEstateStatus.Where(x => x.DisplayText == product.RealEstateStatus).FirstOrDefault() != null)
+                    {
+                        contentItem.Content.RealEstate.Status.ContentItemIds.Add(realEstateStatus.Where(x => x.DisplayText == product.RealEstateStatus).FirstOrDefault().ContentItemId);
+                    }
+                    
                     contentItem.Content.RealEstate.NumberOfRooms.Value = product.NumberOfRooms;
                     contentItem.Content.RealEstate.Area.Value = product.Area;
                     contentItem.CreatedUtc = DateTime.Parse(product.CreationDate);
@@ -766,29 +818,36 @@ namespace AffairesExtra.Migration.Controllers
                     contentItem.Content.ClassifiedAd.Sold.Value = product.Sold == "VRAI" ? true : false;
 
                     //main picture
-                    string imagePrincipale = HttpUtility.UrlDecode(product.ImageUrl.ToString(), Encoding.UTF8);
-                    contentItem.Content.ClassifiedAd.MainPicture.Paths.Add("annonce classée/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
-                    if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(ClassifiedAdMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                    string imagePrincipale = product.PrincipalImage.ToString();
+
+                    if (!String.IsNullOrEmpty(imagePrincipale))
                     {
-                        System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), ClassifiedAdMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        contentItem.Content.ClassifiedAd.MainPicture.Paths.Add("annonce classée/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(ClassifiedAdMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                        {
+                            System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), ClassifiedAdMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        }
                     }
 
                     //website pictures
                     var websiteImages = images.Where(x => x.ProductId == product.ProductId).OrderBy(x => x.Order);
                     foreach (var image in websiteImages)
                     {
-                        string imageSiteWeb = HttpUtility.UrlDecode(image.ImageUrl.ToString(), Encoding.UTF8);
-                        contentItem.Content.ClassifiedAd.WebsitePictures.Paths.Add("annonce classée/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                        if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                        string imageSiteWeb = image.Image;
+                        if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            contentItem.Content.ClassifiedAd.WebsitePictures.Paths.Add("annonce classée/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            {
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            }
                         }
                     }
 
                     //if we find a region we assign it
-                    if (regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault() != null)
+                    if (regions.Where(x => x.DisplayText == product.Region).FirstOrDefault() != null)
                     {
-                        contentItem.Content.ClassifiedAd.Region.ContentItemIds.Add(regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault().ContentItemId);
+                        contentItem.Content.ClassifiedAd.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
                     }
 
                     contentItem.Content.ClassifiedAd.Description.Text = product.Description;
@@ -827,7 +886,7 @@ namespace AffairesExtra.Migration.Controllers
 
             var products = await _migrationService.GetImportProductsData();
             var images = await _migrationService.GetImportImagesData();
-            //var advertisers = await GetAllContentItemsFromTypeAsync("Advertiser");
+            var advertisers = await GetAllContentItemsFromTypeAsync("Advertiser");
             var regions = await GetAllContentItemsFromTypeAsync("Region");
 
 
@@ -840,31 +899,37 @@ namespace AffairesExtra.Migration.Controllers
                     await _contentItemDisplayManager.UpdateEditorAsync(contentItem, this, true);
 
                     //main picture
-                    string imagePrincipale = HttpUtility.UrlDecode(product.ImageUrl.ToString(), Encoding.UTF8);
-                    contentItem.Content.Service.MainPicture.Paths.Add("service/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
-                    if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(ServiceMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                    string imagePrincipale = product.PrincipalImage.ToString();
+                    if (!String.IsNullOrEmpty(imagePrincipale))
                     {
-                        System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), ServiceMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(ServiceMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
+                        {
+                            System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), ServiceMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                            contentItem.Content.Service.MainPicture.Paths.Add("service/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                        }
                     }
 
                     //website pictures
                     var websiteImages = images.Where(x => x.ProductId == product.ProductId).OrderBy(x => x.Order);
                     foreach (var image in websiteImages)
                     {
-                        string imageSiteWeb = HttpUtility.UrlDecode(image.ImageUrl.ToString(), Encoding.UTF8);
-                        contentItem.Content.Service.WebsitePictures.Paths.Add("service/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                        if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(ServiceWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                        string imageSiteWeb = image.Image;
+                        if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), ServiceWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(ServiceWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            {
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), ServiceWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                contentItem.Content.Service.WebsitePictures.Paths.Add("service/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                            }
                         }
                     }
 
                     //if we find a region we assign it
-                    if (regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault() != null)
+                    if (regions.Where(x => x.DisplayText == product.Region).FirstOrDefault() != null)
                     {
-                        contentItem.Content.Service.Region.ContentItemIds.Add(regions.Where(x => x.Content.TitlePart.Title == product.Region).FirstOrDefault().ContentItemId);
+                        contentItem.Content.Service.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
                     }
-                
+
                     contentItem.Content.Service.YoutubeVideo.RawAddress = product.YoutubeLink;
                     contentItem.Content.Service.AdditionalDescription.Text = product.Description;
                     contentItem.Content.Service.Category.Text = product.ServiceCategory.ToString().Trim();
@@ -884,6 +949,13 @@ namespace AffairesExtra.Migration.Controllers
             }
 
             return View();
+        }
+
+        private static string urlDecode(string url) {
+            var result = url;
+            result = result.Replace("%20", " ");
+
+            return result;
         }
     }
 }

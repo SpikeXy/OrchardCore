@@ -1392,6 +1392,75 @@
           "Settings": {}
         }
       ]
+    },
+    {
+      "Name": "Acme",
+      "DisplayName": "Acme",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "Acme",
+          "Name": "Acme",
+          "Settings": {}
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "ServiceCategory",
+      "DisplayName": "ServiceCategory",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "ServiceCategory",
+          "Name": "ServiceCategory",
+          "Settings": {}
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "RealEstateStatus",
+      "DisplayName": "RealEstateStatus",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "RealEstateStatus",
+          "Name": "RealEstateStatus",
+          "Settings": {}
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {}
+        }
+      ]
     }
   ],
   "ContentPartDefinitionRecords": [
@@ -1666,46 +1735,6 @@
         },
         {
           "FieldName": "TextField",
-          "Name": "Category",
-          "Settings": {
-            "DisplayName": "Catégorie",
-            "Editor": null,
-            "DisplayMode": null,
-            "Hint": null,
-            "Required": false,
-            "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
-              "Analyzed": false,
-              "Sanitized": false,
-              "Tokenized": false,
-              "Template": null
-            },
-            "Position": "6"
-          }
-        },
-        {
-          "FieldName": "TextField",
-          "Name": "SubCategory",
-          "Settings": {
-            "DisplayName": "Sous-Catégorie",
-            "Editor": null,
-            "DisplayMode": null,
-            "Hint": null,
-            "Required": false,
-            "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
-              "Analyzed": false,
-              "Sanitized": false,
-              "Tokenized": false,
-              "Template": null
-            },
-            "Position": "7"
-          }
-        },
-        {
-          "FieldName": "TextField",
           "Name": "AdditionalDescription",
           "Settings": {
             "DisplayName": "Description additionnelle",
@@ -1721,7 +1750,7 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "8"
+            "Position": "6"
           }
         },
         {
@@ -1741,7 +1770,31 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "9"
+            "Position": "7"
+          }
+        },
+        {
+          "FieldName": "TaxonomyField",
+          "Name": "Category",
+          "Settings": {
+            "DisplayName": "Catégorie",
+            "Editor": null,
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Hint": null,
+            "Required": false,
+            "TaxonomyContentItemId": "4kbzfphzk3p95yxrh3vxgb47dy",
+            "Unique": true,
+            "LeavesOnly": true,
+            "Open": false,
+            "Position": "8"
           }
         }
       ]
@@ -4118,170 +4171,6 @@
           }
         },
         {
-          "FieldName": "TextField",
-          "Name": "Type",
-          "Settings": {
-            "DisplayName": "Type",
-            "Editor": "PredefinedList",
-            "Hint": null,
-            "Required": false,
-            "TextFieldPredefinedListEditorSettings": {
-              "Options": [
-                {
-                  "name": "Choisir une option...",
-                  "value": "null"
-                },
-                {
-                  "name": "Chalet/Maison",
-                  "value": "Chalet/Maison"
-                },
-                {
-                  "name": "Domaine",
-                  "value": "Domaine"
-                },
-                {
-                  "name": "Espace commercial",
-                  "value": "Espace commercial"
-                },
-                {
-                  "name": "Espace industriel",
-                  "value": "Espace industriel"
-                },
-                {
-                  "name": "Étable/Grange",
-                  "value": "Étable/Grange"
-                },
-                {
-                  "name": "Ferme/Fermette",
-                  "value": "Ferme/Fermette"
-                },
-                {
-                  "name": "Garage",
-                  "value": "Garage"
-                },
-                {
-                  "name": "Pourvoirie",
-                  "value": "Pourvoirie"
-                },
-                {
-                  "name": "Terre à bois",
-                  "value": "Terre à bois"
-                },
-                {
-                  "name": "Terre agricole",
-                  "value": "Terre agricole"
-                },
-                {
-                  "name": "Terre constructible",
-                  "value": "Terre constructible"
-                }
-              ],
-              "Editor": 1,
-              "DefaultValue": null
-            },
-            "Position": "4",
-            "DisplayMode": null,
-            "ContentIndexSettings": {
-              "Included": true,
-              "Stored": true,
-              "Analyzed": false,
-              "Sanitized": false,
-              "Tokenized": false,
-              "Template": null
-            }
-          }
-        },
-        {
-          "FieldName": "TextField",
-          "Name": "ActivityType",
-          "Settings": {
-            "DisplayName": "Type d'activité",
-            "Editor": "PredefinedList",
-            "Hint": null,
-            "Required": false,
-            "TextFieldPredefinedListEditorSettings": {
-              "Options": [
-                {
-                  "name": "Choisir une option...",
-                  "value": "null"
-                },
-                {
-                  "name": "Autre",
-                  "value": "Autre"
-                },
-                {
-                  "name": "Avicole",
-                  "value": "Avicole"
-                },
-                {
-                  "name": "Bovine",
-                  "value": "Bovine"
-                },
-                {
-                  "name": "Céréalière",
-                  "value": "Céréalière"
-                },
-                {
-                  "name": "Élevage petits animaux",
-                  "value": "Élevage petits animaux"
-                },
-                {
-                  "name": "Équestre",
-                  "value": "Équestre"
-                },
-                {
-                  "name": "Érablière",
-                  "value": "Érablière"
-                },
-                {
-                  "name": "Forestière",
-                  "value": "Forestière"
-                },
-                {
-                  "name": "Horticulture",
-                  "value": "Horticulture"
-                },
-                {
-                  "name": "Laitière",
-                  "value": "Laitière"
-                },
-                {
-                  "name": "Maraichère",
-                  "value": "Maraichère"
-                },
-                {
-                  "name": "Multiple",
-                  "value": "Multiple"
-                },
-                {
-                  "name": "Porcine",
-                  "value": "Porcine"
-                },
-                {
-                  "name": "Verger",
-                  "value": "Verger"
-                },
-                {
-                  "name": "Vignoble",
-                  "value": "Vignoble"
-                }
-              ],
-              "Editor": 1,
-              "DefaultValue": null
-            },
-            "Position": "5",
-            "DisplayMode": null,
-            "ContentIndexSettings": {
-              "Included": true,
-              "Stored": true,
-              "Analyzed": false,
-              "Sanitized": false,
-              "Tokenized": false,
-              "Template": null
-            }
-          }
-        },
-        {
           "FieldName": "NumericField",
           "Name": "Price",
           "Settings": {
@@ -4294,45 +4183,7 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "7",
-            "DisplayMode": null,
-            "ContentIndexSettings": {
-              "Included": true,
-              "Stored": true,
-              "Analyzed": false,
-              "Sanitized": false,
-              "Tokenized": false,
-              "Template": null
-            }
-          }
-        },
-        {
-          "FieldName": "TextField",
-          "Name": "Status",
-          "Settings": {
-            "DisplayName": "Statut",
-            "Editor": "PredefinedList",
-            "Hint": null,
-            "Required": false,
-            "TextFieldPredefinedListEditorSettings": {
-              "Options": [
-                {
-                  "name": "Choisir une option...",
-                  "value": "null"
-                },
-                {
-                  "name": "À louer",
-                  "value": "À louer"
-                },
-                {
-                  "name": "À vendre",
-                  "value": "À vendre"
-                }
-              ],
-              "Editor": 1,
-              "DefaultValue": null
-            },
-            "Position": "9",
+            "Position": "8",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -4411,7 +4262,7 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "8"
+            "Position": "9"
           }
         },
         {
@@ -4435,15 +4286,15 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "6"
+            "Position": "7"
           }
         },
         {
           "FieldName": "ContentPickerField",
-          "Name": "test",
+          "Name": "Type",
           "Settings": {
-            "DisplayName": "test",
-            "Editor": null,
+            "DisplayName": "Type",
+            "Editor": "Lucene",
             "DisplayMode": null,
             "Hint": null,
             "Required": false,
@@ -4458,7 +4309,68 @@
               "Sanitized": false,
               "Tokenized": false,
               "Template": null
-            }
+            },
+            "ContentPickerFieldLuceneEditorSettings": {
+              "Index": "Search",
+              "Indices": null
+            },
+            "Position": "4"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "ActivityType",
+          "Settings": {
+            "DisplayName": "Activity Type",
+            "Editor": "Lucene",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "RealEstateActivityType"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "ContentPickerFieldLuceneEditorSettings": {
+              "Index": "Search",
+              "Indices": null
+            },
+            "Position": "5"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Status",
+          "Settings": {
+            "DisplayName": "Status",
+            "Editor": "Lucene",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "RealEstateStatus"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "ContentPickerFieldLuceneEditorSettings": {
+              "Index": "Search",
+              "Indices": null
+            },
+            "Position": "6"
           }
         }
       ]
@@ -5244,7 +5156,43 @@
           }
         }
       ]
+    },
+    {
+      "Name": "Acme",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "TextField",
+          "Name": "Taxonomy",
+          "Settings": {
+            "DisplayName": "Taxonomy"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "Test",
+          "Settings": {
+            "DisplayName": "Test",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "Taxonomy"
+            ],
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
+          }
+        }
+      ]
     }
   ],
-  "Serial": 311
+  "Serial": 407
 }
