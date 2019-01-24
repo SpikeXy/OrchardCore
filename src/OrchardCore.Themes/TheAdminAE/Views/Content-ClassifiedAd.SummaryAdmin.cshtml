@@ -19,7 +19,7 @@
 
         </div>*@
 
-    <a admin-for="@contentItem" asp-route-returnUrl="@FullRequestPath">@contentItem.Content.TitlePart.Title</a> - <small class="text-muted">@T[contentItem.ContentType]</small>
+    <a admin-for="@contentItem" asp-route-returnUrl="@FullRequestPath">@contentItem.DisplayText</a> - <small class="text-muted">@T[contentItem.ContentType]</small>
 
     @if (Model.Header != null)
     {

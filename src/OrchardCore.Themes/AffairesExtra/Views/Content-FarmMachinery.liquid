@@ -2,6 +2,7 @@
 {% assign machinery_type = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Type.ContentItemIds[0]] %}
 {% assign machinery_brand = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
 {% assign machinery_advertiser = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
+{% assign machinery_region = Content.ContentItemId[Model.ContentItem.Content.FarmMachinery.Region.ContentItemIds[0]] %}
 
 <section>
     {% if Request.Query.sent != null %}
@@ -73,6 +74,12 @@
 				<tr>
 					<td>{{ "Inventory #" | t }} : </td>
 					<td class="text-right">{{ Model.ContentItem.Content.FarmMachinery.InventoryNo.Text }}</td>
+				</tr>
+                {% endif %}
+                {%if machinery_region != null %}
+				<tr>
+					<td>{{ "Region" | t }} : </td>
+					<td class="text-right">{{ machinery_region | display_text }}</td>
 				</tr>
                 {% endif %}
                 {%if machinery_advertiser != null %}
@@ -253,7 +260,7 @@
             <div class="card mb-3">
                 <a href="{{ item | display_url }}">
                     {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
-                        {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | img_tag: alt: img_alt, class:'card-img-top' }}
+                        {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | resize_url: 480 | img_tag: alt: img_alt, class:'card-img-top' }}
                     {% else %}
                         <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png">
                     {% endif %}

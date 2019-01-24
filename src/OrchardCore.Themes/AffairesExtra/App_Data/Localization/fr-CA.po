@@ -175,3 +175,19 @@ msgstr "Déconnexion"
 
 msgid "Manage Content"
 msgstr "Gestion du contenu"
+
+msgid "Zip Code"
+msgstr "Code Postal"
+
+msgid "Contact Person"
+msgstr "Personne Contact"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Previous"
+msgstr "Précédant"
+
+msgid "Next"
+msgstr "Suivant"
+

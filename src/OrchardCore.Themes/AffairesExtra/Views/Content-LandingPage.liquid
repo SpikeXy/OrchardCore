@@ -35,7 +35,7 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            <div class="col-sm-3">
+                            <!--<div class="col-sm-3">
                                 {% assign machineryTypes = Queries.AllMachineryTypes | query %}
                                 <label for="type">{{ "Type" | t }}</label>
                                 <select id="type" class="form-control" name="type">
@@ -44,9 +44,16 @@
                                     <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
                                     {% endfor %}
                                 </select>
-                            </div>
+                            </div>-->
                             <div class="col-sm-3">
-
+                                {% assign machineryBrands = Queries.AllMachineryBrands | query %}
+                                <label for="brand">{{ "Marque" | t }}</label>
+                                <select id="brand" class="form-control" name="brand">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in machineryBrands %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                             <div class="col-sm-3">
                                 {% assign regions = Queries.AllRegions | query %}
@@ -111,7 +118,7 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            <div class="col-sm-3">
+                            <!--<div class="col-sm-3">
                                 {% assign machineryTypes = Queries.AllMachineryTypes | query %}
                                 <label for="type">{{ "Type" | t }}</label>
                                 <select id="type" class="form-control" name="type">
@@ -120,7 +127,7 @@
                                     <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
                                     {% endfor %}
                                 </select>
-                            </div>
+                            </div>-->
                             <div class="col-sm-3">
                                 {% assign machineryBrands = Queries.AllMachineryBrands | query %}
                                 <label for="brand">{{ "Marque" | t }}</label>
@@ -184,41 +191,57 @@
                     <form action="immobilier" method="get" >
                         <div class="form-row align-items-center">
                             <div class="col-sm-3">
-                                {% assign machineryCategories = Queries.AllMachineryCategories | query %}
-                                <label for="category">{{ "Property type" | t }}</label>
-                                <select id="category" class="form-control" name="category">
+                                <label for="type">{{ "Property type" | t }}</label>
+                                <select id="type" class="form-control" name="type">
                                     <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                    {% for item in machineryCategories %}
-                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                    {% endfor %}
+                                    <option value="Chalet/Maison">Chalet/Maison</option>
+                                    <option value="Domaine">Domaine</option>
+                                    <option value="Espace commercial">Espace commercial</option>
+                                    <option value="Espace industriel">Espace industriel</option>
+                                    <option value="Étable/Grange">Étable/Grange</option>
+                                    <option value="Ferme/Fermette">Ferme/Fermette</option>
+                                    <option value="Garage">Garage</option>
+                                    <option value="Pourvoirie">Pourvoirie</option>
+                                    <option value="Terre à bois">Terre à bois</option>
+                                    <option value="Terre agricole">Terre agricole</option>
+                                    <option value="Terre constructible">Terre constructible</option>
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                {% assign machineryCategories = Queries.AllMachineryCategories | query %}
-                                <label for="category">{{ "Activity type" | t }}</label>
-                                <select id="category" class="form-control" name="category">
+                                <label for="activitytype">{{ "Activity type" | t }}</label>
+                                <select id="activitytype" class="form-control" name="activitytype">
                                     <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                    {% for item in machineryCategories %}
-                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                    {% endfor %}
+                                    <option value="Autre">Autre</option>
+                                    <option value="Avicole">Avicole</option>
+                                    <option value="Bovine">Bovine</option>
+                                    <option value="Céréalière">Céréalière</option>
+                                    <option value="Élevage petits animaux">Élevage petits animaux</option>
+                                    <option value="Équestre">Équestre</option>
+                                    <option value="Érablière">Érablière</option>
+                                    <option value="Forestière">Forestière</option>
+                                    <option value="Horticulture">Horticulture</option>
+                                    <option value="Laitière">Laitière</option>
+                                    <option value="Maraichère">Maraichère</option>
+                                    <option value="Multiple">Multiple</option>
+                                    <option value="Porcine">Porcine</option>
+                                    <option value="Verger">Verger</option>
+                                    <option value="Vignoble">Vignoble</option>
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                {% assign machineryCategories = Queries.AllMachineryCategories | query %}
-                                <label for="category">{{ "Property status" | t }}</label>
-                                <select id="category" class="form-control" name="category">
+                                <label for="status">{{ "Property status" | t }}</label>
+                                <select id="status" class="form-control" name="status">
                                     <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                    {% for item in machineryCategories %}
-                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                    {% endfor %}
+                                    <option value="À louer">À louer</option>
+                                    <option value="À vendre">À vendre</option>
                                 </select>
                             </div>
                             <div class="col-sm-3">
-                                {% assign machineryCategories = Queries.AllMachineryCategories | query %}
-                                <label for="category">{{ "Region" | t }}</label>
-                                <select id="category" class="form-control" name="category">
+                                {% assign regions = Queries.AllRegions | query %}
+                                <label for="region">{{ "Region" | t }}</label>
+                                <select id="region" class="form-control" name="region">
                                     <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                    {% for item in machineryCategories %}
+                                    {% for item in regions %}
                                     <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
                                     {% endfor %}
                                 </select>
@@ -230,12 +253,12 @@
                                 <input type="hidden" name="priceto" id="priceto" value="200000" />
                             </div>
                             <div class="col-sm-3">
-                                <label for="price">{{ "Area" | t }}</label>
-                                <input type="text" id="price" class="form-control" name="price" />
+                                <label for="area">{{ "Area" | t }}</label>
+                                <input type="number" id="area" class="form-control" name="area" min="0" />
                             </div>
                             <div class="col-sm-3">
-                                <label for="price">{{ "# of rooms" | t }}</label>
-                                <input type="text" id="price" class="form-control" name="price" />
+                                <label for="nbofroom">{{ "# of rooms" | t }}</label>
+                                <input type="number" id="nbofroom" class="form-control" name="nbofroom" min="0" />
                             </div>
                             <div class="col-sm-3">
                                 {% assign advertisers = Queries.Advertisers | query %}
@@ -243,7 +266,7 @@
                                 <select id="advertiser" class="form-control" name="advertiser">
                                     <option value="*" selected="">{{ "Choose..." | t }}</option>
                                     {% for item in advertisers %}
-                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    <option value="{{ item.ContentItemId }}" {% if Request.Query.advertiser | downcase == item.ContentItemId | downcase %}selected{% endif %}>{{ item | display_text }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -378,7 +401,7 @@
             <div class="card mb-3">
                 <a href="{{ item | display_url }}">
                     {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
-                        {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | resize_url: 348 | img_tag: alt: img_alt, class:'card-img-top' }}
+                        {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | resize_url: 480 | img_tag: alt: img_alt, class:'card-img-top' }}
                     {% else %}
                         <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png" />
                     {% endif %}
@@ -418,7 +441,7 @@
         {% for item in farmMachineryCategories %}
         <div class="card mb-3 item">
             <a href="{{ item | display_url }}">
-                {{ item.Content.FarmMachineryCategory.Picture.Paths[0] | asset_url | resize_url: 268 | img_tag: class:'card-img-top' }}
+                {{ item.Content.FarmMachineryCategory.Picture.Paths[0] | asset_url | resize_url: 480 | img_tag: class:'card-img-top' }}
             </a>
             <div class="card-body">
                 <p class="card-title">

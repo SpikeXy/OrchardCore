@@ -1346,6 +1346,52 @@
           }
         }
       ]
+    },
+    {
+      "Name": "RealEstateType",
+      "DisplayName": "RealEstateType",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "RealEstateType",
+          "Name": "RealEstateType",
+          "Settings": {}
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "RealEstateActivityType",
+      "DisplayName": "RealEstateActivityType",
+      "Settings": {
+        "Creatable": "True",
+        "Draftable": "True",
+        "Versionable": "True",
+        "Listable": "True",
+        "Securable": "True"
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "RealEstateActivityType",
+          "Name": "RealEstateActivityType",
+          "Settings": {}
+        },
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {}
+        }
+      ]
     }
   ],
   "ContentPartDefinitionRecords": [
@@ -2414,8 +2460,8 @@
             "Hint": "Cochez si cet item a été vendu.",
             "Label": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -2755,8 +2801,8 @@
             "Position": "2",
             "DisplayMode": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -2809,10 +2855,19 @@
           "Name": "Description",
           "Settings": {
             "DisplayName": "Description",
-            "Editor": null,
+            "Editor": "TextArea",
             "Hint": "Test de l'annonce",
             "Required": false,
-            "Position": "7"
+            "Position": "7",
+            "DisplayMode": null,
+            "ContentIndexSettings": {
+              "Included": false,
+              "Stored": false,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         },
         {
@@ -3433,8 +3488,8 @@
             "Hint": "Cochez si cet item a été vendu.",
             "Label": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -3835,8 +3890,8 @@
             "Hint": null,
             "Label": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -4280,8 +4335,8 @@
             "Position": "9",
             "DisplayMode": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -4305,8 +4360,8 @@
             "Position": "10",
             "DisplayMode": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -4330,8 +4385,8 @@
             "Position": "11",
             "DisplayMode": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -4349,8 +4404,8 @@
             "Hint": null,
             "Label": null,
             "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
+              "Included": true,
+              "Stored": true,
               "Analyzed": false,
               "Sanitized": false,
               "Tokenized": false,
@@ -4381,6 +4436,29 @@
               "Template": null
             },
             "Position": "6"
+          }
+        },
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "test",
+          "Settings": {
+            "DisplayName": "test",
+            "Editor": null,
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Multiple": false,
+            "DisplayedContentTypes": [
+              "RealEstateType"
+            ],
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            }
           }
         }
       ]
@@ -5168,5 +5246,5 @@
       ]
     }
   ],
-  "Serial": 272
+  "Serial": 311
 }

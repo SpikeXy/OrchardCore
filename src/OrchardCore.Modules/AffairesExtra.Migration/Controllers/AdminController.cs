@@ -833,7 +833,7 @@ namespace AffairesExtra.Migration.Controllers
 
             foreach (dynamic product in products)
             {
-                if (product.IsClassifiedAd == "Oui")
+                if (product.IsService == "Oui")
                 {
                     var contentItem = await _contentManager.NewAsync("Service");
 

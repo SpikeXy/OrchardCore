@@ -7,7 +7,7 @@
                 <a href="{{ item | display_url }}">
                     <div class="pb-3">{{ item | display_text }}</div>
                     {% if item.Content.Advertiser.Logo.Paths[0] != null %}
-                    <img src="{{ item.Content.Advertiser.Logo.Paths[0] | asset_url }}" alt="logo" class="img-fluid"  />
+                    <img src="{{ item.Content.Advertiser.Logo.Paths[0] | asset_url | resize_url: 480 }}" alt="logo" class="img-fluid"  />
                     {% else %}
                     <img src="/AffairesExtra/img/noimage.png" alt="logo" class="img-fluid" />
                     {% endif %}
