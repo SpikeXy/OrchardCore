@@ -315,14 +315,14 @@
             {% else %}
             <li class="page-item">
             {% endif %}
-                <a class="page-link" href="?condition={{ Request.Query.condition }}&category={{ Request.Query.category }}&brand={{ Request.Query.brand }}&region={{ Request.Query.region }}&advertiser={{ Request.Query.advertiser }}&year={{ Request.Query.year }}&my_range={{ Request.Query.pricefrom }}%3B{{ Request.Query.priceto }}&pricefrom={{ Request.Query.pricefrom }}&priceto={{ Request.Query.priceto }}&description=&page={{ currentPage | int32 | minus: 1}}" tabindex="-1">{{ "Previous" | t }}</a>
+                <a class="page-link" href="?page={{ currentPage | int32 | minus: 1}}" tabindex="-1">{{ "Previous" | t }}</a>
             </li>
             {% if nextPageRecords > 0 %}
             <li class="page-item">
             {% else %}
             <li class="page-item disabled">
             {% endif %}
-                <a class="page-link" href="?condition={{ Request.Query.condition }}&category={{ Request.Query.category }}&brand={{ Request.Query.brand }}&region={{ Request.Query.region }}&advertiser={{ Request.Query.advertiser }}&year={{ Request.Query.year }}&my_range={{ Request.Query.pricefrom }}%3B{{ Request.Query.priceto }}&pricefrom={{ Request.Query.pricefrom }}&priceto={{ Request.Query.priceto }}&description=&page={{ currentPage | int32 | plus: 1}}">{{ "Next" | t }}</a>
+                <a class="page-link" href="?page={{ currentPage | int32 | plus: 1}}">{{ "Next" | t }}</a>
             </li>
         </ul>
     </nav>
