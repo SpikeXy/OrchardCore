@@ -186,7 +186,7 @@ msgid "Status"
 msgstr "Statut"
 
 msgid "Previous"
-msgstr "Précédant"
+msgstr "Précédent"
 
 msgid "Next"
 msgstr "Suivant"

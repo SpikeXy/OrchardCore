@@ -1394,29 +1394,6 @@
       ]
     },
     {
-      "Name": "Acme",
-      "DisplayName": "Acme",
-      "Settings": {
-        "Creatable": "True",
-        "Draftable": "True",
-        "Versionable": "True",
-        "Listable": "True",
-        "Securable": "True"
-      },
-      "ContentTypePartDefinitionRecords": [
-        {
-          "PartName": "Acme",
-          "Name": "Acme",
-          "Settings": {}
-        },
-        {
-          "PartName": "TitlePart",
-          "Name": "TitlePart",
-          "Settings": {}
-        }
-      ]
-    },
-    {
       "Name": "ServiceCategory",
       "DisplayName": "ServiceCategory",
       "Settings": {
@@ -1790,9 +1767,9 @@
             },
             "Hint": null,
             "Required": false,
-            "TaxonomyContentItemId": "4kbzfphzk3p95yxrh3vxgb47dy",
+            "TaxonomyContentItemId": "4senetw0x2gds61tn9vry4p5ws",
             "Unique": true,
-            "LeavesOnly": true,
+            "LeavesOnly": false,
             "Open": false,
             "Position": "8"
           }
@@ -3781,7 +3758,7 @@
             "Maximum": null,
             "Placeholder": null,
             "DefaultValue": null,
-            "Position": "10",
+            "Position": "11",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -3875,7 +3852,7 @@
               "Editor": 1,
               "DefaultValue": null
             },
-            "Position": "12",
+            "Position": "13",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": false,
@@ -3898,7 +3875,7 @@
             "TextFieldTextAreaEditorSettings": {
               "Color": null
             },
-            "Position": "14",
+            "Position": "15",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": true,
@@ -3921,7 +3898,7 @@
             "TextFieldTextAreaEditorSettings": {
               "Color": null
             },
-            "Position": "16",
+            "Position": "17",
             "DisplayMode": null,
             "ContentIndexSettings": {
               "Included": false,
@@ -3970,7 +3947,7 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "15"
+            "Position": "16"
           }
         },
         {
@@ -3994,7 +3971,7 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "11"
+            "Position": "12"
           }
         },
         {
@@ -4038,7 +4015,7 @@
               "Tokenized": false,
               "Template": null
             },
-            "Position": "13"
+            "Position": "14"
           }
         },
         {
@@ -4083,6 +4060,31 @@
               "Template": null
             },
             "Position": "9"
+          }
+        },
+        {
+          "FieldName": "NumericField",
+          "Name": "Year",
+          "Settings": {
+            "DisplayName": "Année",
+            "Editor": "Select",
+            "DisplayMode": null,
+            "Hint": null,
+            "Required": false,
+            "Scale": 0,
+            "Minimum": 1900.0,
+            "Maximum": 2019.0,
+            "Placeholder": null,
+            "DefaultValue": null,
+            "ContentIndexSettings": {
+              "Included": true,
+              "Stored": true,
+              "Analyzed": false,
+              "Sanitized": false,
+              "Tokenized": false,
+              "Template": null
+            },
+            "Position": "10"
           }
         }
       ]
@@ -5156,43 +5158,7 @@
           }
         }
       ]
-    },
-    {
-      "Name": "Acme",
-      "Settings": {},
-      "ContentPartFieldDefinitionRecords": [
-        {
-          "FieldName": "TextField",
-          "Name": "Taxonomy",
-          "Settings": {
-            "DisplayName": "Taxonomy"
-          }
-        },
-        {
-          "FieldName": "ContentPickerField",
-          "Name": "Test",
-          "Settings": {
-            "DisplayName": "Test",
-            "Editor": null,
-            "DisplayMode": null,
-            "Hint": null,
-            "Required": false,
-            "Multiple": false,
-            "DisplayedContentTypes": [
-              "Taxonomy"
-            ],
-            "ContentIndexSettings": {
-              "Included": false,
-              "Stored": false,
-              "Analyzed": false,
-              "Sanitized": false,
-              "Tokenized": false,
-              "Template": null
-            }
-          }
-        }
-      ]
     }
   ],
-  "Serial": 407
+  "Serial": 431
 }

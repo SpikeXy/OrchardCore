@@ -386,10 +386,10 @@ namespace AffairesExtra.Migration.Controllers
                         string imageSiteWeb = image.Image;
                         if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb) && !System.IO.File.Exists(FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower()))
                             {
-                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                                contentItem.Content.FarmMachinery.WebsitePictures.Paths.Add("machinerie agricole/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb, FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                                contentItem.Content.FarmMachinery.WebsitePictures.Paths.Add("machinerie agricole/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
                         }
                     }
@@ -510,10 +510,10 @@ namespace AffairesExtra.Migration.Controllers
                         string imageSiteWeb = image.Image;
                         if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb) && !System.IO.File.Exists(FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower()))
                             {
-                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                                contentItem.Content.FarmMachineryAccessory.WebsitePictures.Paths.Add("machinerie agricole (accessoire)/site web/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb, FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                                contentItem.Content.FarmMachineryAccessory.WebsitePictures.Paths.Add("machinerie agricole (accessoire)/site web/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
                         }
                     }
@@ -545,8 +545,8 @@ namespace AffairesExtra.Migration.Controllers
             return View();
         }
 
-        [HttpPost, ActionName("CleanOtherEquipement")]
-        public async Task<IActionResult> CleanOtherEquipement()
+        [HttpPost, ActionName("CleanOtherEquipment")]
+        public async Task<IActionResult> CleanOtherEquipment()
         {
             if (!await _authorizationService.AuthorizeAsync(User, Permissions.ManageAffairesExtraMigration))
             {
@@ -642,10 +642,10 @@ namespace AffairesExtra.Migration.Controllers
                         string imageSiteWeb = image.Image;
                         if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(OtherEquipmentWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb) && !System.IO.File.Exists(OtherEquipmentWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower()))
                             {
-                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), OtherEquipmentWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                                contentItem.Content.OtherEquipment.WebsitePictures.Paths.Add("autre équipement/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb, OtherEquipmentWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                                contentItem.Content.OtherEquipment.WebsitePictures.Paths.Add("autre équipement/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
                         }
                     }
@@ -662,6 +662,7 @@ namespace AffairesExtra.Migration.Controllers
 
                     contentItem.Content.OtherEquipment.PromoTag.Text = product.PromoFlag;
                     contentItem.Content.OtherEquipment.InventoryNo.Text = product.InventoryNo;
+                    contentItem.Content.OtherEquipment.Year.Value = product.Year;
                     contentItem.CreatedUtc = DateTime.Parse(product.CreationDate);
 
                     await _contentManager.CreateAsync(contentItem, VersionOptions.DraftRequired);
@@ -723,10 +724,10 @@ namespace AffairesExtra.Migration.Controllers
                         string imageSiteWeb = image.Image;
                         if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(RealEstateWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb) && !System.IO.File.Exists(RealEstateWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower()))
                             {
-                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), RealEstateWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                                contentItem.Content.RealEstate.WebsitePictures.Paths.Add("immobilier/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb, RealEstateWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                                contentItem.Content.RealEstate.WebsitePictures.Paths.Add("immobilier/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
                         }
                     }
@@ -771,7 +772,7 @@ namespace AffairesExtra.Migration.Controllers
                     {
                         contentItem.Content.RealEstate.Status.ContentItemIds.Add(realEstateStatus.Where(x => x.DisplayText == product.RealEstateStatus).FirstOrDefault().ContentItemId);
                     }
-                    
+
                     contentItem.Content.RealEstate.NumberOfRooms.Value = product.NumberOfRooms;
                     contentItem.Content.RealEstate.Area.Value = product.Area;
                     contentItem.CreatedUtc = DateTime.Parse(product.CreationDate);
@@ -836,10 +837,10 @@ namespace AffairesExtra.Migration.Controllers
                         string imageSiteWeb = image.Image;
                         if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            contentItem.Content.ClassifiedAd.WebsitePictures.Paths.Add("annonce classée/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            contentItem.Content.ClassifiedAd.WebsitePictures.Paths.Add("annonce classée/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb) && !System.IO.File.Exists(ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower()))
                             {
-                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb, ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
                         }
                     }
@@ -888,7 +889,8 @@ namespace AffairesExtra.Migration.Controllers
             var images = await _migrationService.GetImportImagesData();
             var advertisers = await GetAllContentItemsFromTypeAsync("Advertiser");
             var regions = await GetAllContentItemsFromTypeAsync("Region");
-
+            var taxonomies = await GetAllContentItemsFromTypeAsync("Taxonomy");
+            var taxonomy = taxonomies.Where(x => x.DisplayText == "Catégories de service").FirstOrDefault();
 
             foreach (dynamic product in products)
             {
@@ -916,10 +918,10 @@ namespace AffairesExtra.Migration.Controllers
                         string imageSiteWeb = image.Image;
                         if (!String.IsNullOrEmpty(imageSiteWeb))
                         {
-                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb.Split('/').Last()) && !System.IO.File.Exists(ServiceWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower()))
+                            if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb) && !System.IO.File.Exists(ServiceWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower()))
                             {
-                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb.Split('/').Last(), ServiceWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
-                                contentItem.Content.Service.WebsitePictures.Paths.Add("service/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb.Split('/').Last()).ToLower());
+                                System.IO.File.Copy(webImportPicturePath + imageSiteWeb, ServiceWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                                contentItem.Content.Service.WebsitePictures.Paths.Add("service/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
                         }
                     }
@@ -932,8 +934,34 @@ namespace AffairesExtra.Migration.Controllers
 
                     contentItem.Content.Service.YoutubeVideo.RawAddress = product.YoutubeLink;
                     contentItem.Content.Service.AdditionalDescription.Text = product.Description;
-                    contentItem.Content.Service.Category.Text = product.ServiceCategory.ToString().Trim();
-                    contentItem.Content.Service.SubCategory.Text = product.ServiceSubCategory.ToString().Trim();
+
+                    var taxonomyId = "";
+                    foreach (var item in taxonomy.Content.TaxonomyPart.Terms)
+                    {
+                        if (item.DisplayText == product.ServiceCategory.ToString().Trim())
+                        {
+                            taxonomyId = item.ContentItemId;
+                        }
+
+                        if (item.Terms != null)
+                        {
+                            foreach (var subitem in item.Terms)
+                            {
+                                if (subitem.DisplayText == product.ServiceSubCategory.ToString().Trim())
+                                {
+                                    taxonomyId = subitem.ContentItemId;
+                                }
+                            }
+                        }
+                    }
+
+                    if (taxonomyId != "")
+                    {
+                        contentItem.Content.Service.Category.TermContentItemIds.Add(taxonomyId);
+                    }
+
+                    //contentItem.Content.Service.Category.Text = product.ServiceCategory.ToString().Trim();
+                    //contentItem.Content.Service.SubCategory.Text = product.ServiceSubCategory.ToString().Trim();
                     contentItem.DisplayText = product.Name.ToString().Trim();
                     //contentItem.Content.TitlePart.Title = product.Name.ToString().Trim();
                     contentItem.CreatedUtc = DateTime.Parse(product.CreationDate);
@@ -951,7 +979,8 @@ namespace AffairesExtra.Migration.Controllers
             return View();
         }
 
-        private static string urlDecode(string url) {
+        private static string urlDecode(string url)
+        {
             var result = url;
             result = result.Replace("%20", " ");
 

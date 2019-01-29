@@ -25,7 +25,9 @@
                     {{ "Price upon request" | t }}
                     {% endif %}
                 </div>
-
+                {% if Model.ContentItem.Content.FarmMachineryAccessory.PromoTag.Text != '' %}
+                <p><span class="tag">{{ Model.ContentItem.Content.FarmMachineryAccessory.PromoTag.Text }}</span></p>
+                {% endif %}
                 <table class="table border-bottom product-table">
                     {%if machinery_brand != null and machinery_brand != "" %}
                     <tr>

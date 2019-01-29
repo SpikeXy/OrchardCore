@@ -1,8 +1,91 @@
-{% if Request.Query.Page != null %}
-{% assign from = Request.Query.Page | int32 | minus: 1 | times: 9 %}
-{% else %}
-{% assign from = 0 %}
+{% assign query_condition = "false" %}
+{% if Request.Form.condition != null %}
+  {% assign query_condition = Request.Form.condition %}  
 {% endif %}
+{% if Request.Query.condition != null %}
+  {% assign query_condition = Request.Query.condition %}  
+{% endif %}
+
+{% assign query_region = '*' %}
+{% if Request.Form.region != null %}
+  {% assign query_region = Request.Form.region %}
+{% endif %}
+{% if Request.Query.region != null %}
+  {% assign query_region = Request.Query.region %}
+{% endif %}
+
+{% assign query_category = "*" %}
+{% if Request.Form.category != null %}
+  {% assign query_category = Request.Form.category | downcase %}
+{% endif %}
+{% if Request.Query.category != null %}
+  {% assign query_category = Request.Query.category | downcase %}
+{% endif %}
+
+{% assign query_model = "*" %}
+{% if Request.Form.model != null %}
+  {% assign query_model = Request.Form.model | downcase %}
+{% endif %}
+{% if Request.Query.model != null %}
+  {% assign query_model = Request.Query.model | downcase %}
+{% endif %}
+
+{% assign query_advertiser = "*" %}
+{% if Request.Form.advertiser != null %}
+  {% assign query_advertiser = Request.Form.advertiser | downcase %}
+{% endif %}
+{% if Request.Query.advertiser != null %}
+  {% assign query_advertiser = Request.Query.advertiser | downcase %}
+{% endif %}
+
+{% assign query_brand = "*" %}
+{% if Request.Form.brand != null %}
+  {% assign query_brand = Request.Form.brand | downcase %}
+{% endif %}
+{% if Request.Query.brand != null %}
+  {% assign query_brand = Request.Query.brand | downcase %}
+{% endif %}
+
+{% assign query_year = 0 %}
+{% if Request.Form.year != null %}
+  {% assign query_year = Request.Form.year %}
+{% endif %}
+{% if Request.Query.year != null %}
+  {% assign query_year = Request.Query.year %}
+{% endif %}
+
+{% assign query_price_from = 0 %}
+{% if Request.Form.pricefrom != null %}
+  {% assign query_price_from = Request.Form.pricefrom %}
+{% endif %}
+{% if Request.Query.pricefrom != null %}
+  {% assign query_price_from = Request.Query.pricefrom %}
+{% endif %}
+
+{% assign query_price_to = 500000 %}
+{% if Request.Form.priceto != null %}
+  {% assign query_price_to = Request.Form.priceto %}
+{% endif %}
+{% if Request.Query.priceto != null %}
+  {% assign query_price_to = Request.Query.priceto %}
+{% endif %}
+
+{% assign query_size = 9 %}
+{% if Request.Form.size != null %}
+  {% assign query_size = Request.Form.size %}
+{% endif %}
+{% if Request.Query.size != null %}
+  {% assign query_size = Request.Query.size %}
+{% endif %}
+
+{% assign query_from = 0 %}
+{% if Request.Form.page != null %}
+  {% assign query_from = Request.Form.page %}
+{% endif %}
+{% if Request.Query.page != null %}
+  {% assign query_from = Request.Query.page %}
+{% endif %}
+
 <section>
     <h1>{{ Model.ContentItem }}</h1>
     <div class="container">
@@ -113,97 +196,132 @@
     </div>
     
     <!-- ANNONCES -->
-    {% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: 100000, from: 0, condition: "*", region: "*", category: "*", type: "*", model: "*", advertiser: Model.ContentItem.ContentItemId, brand: "*", pricefrom: 0, priceto: 500000, year: null %}
-    {% assign totalRecords = searchFarmMachineries.size %}
-    {% assign searchFarmMachineries = Queries.FarmMachinerySearch | query: size: 9, from: from, condition: "*", region: "*", category: "*", type: "*", model: "*", advertiser: Model.ContentItem.ContentItemId, brand: "*", pricefrom: 0, priceto: 500000, year: null %}
+    {% assign query_from_next = query_from | int32 | plus: 1 | times: 9 %}
+    {% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from_next, condition: '*', region: '*', category: '*', model: '*', brand: '*', advertiser: Model.ContentItem.ContentItemId, pricefrom: 0, priceto: 0, year: 0 %}
+    {% assign nextPageRecords = searchFarmMachineries.size %}
+    {% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from, condition: '*', region: '*', category: '*', model: '*', brand: '*', advertiser: Model.ContentItem.ContentItemId, pricefrom: 0, priceto: 0, year: 0 %}
 
     {%if searchFarmMachineries.size > 0 %}
 
 
     <div class="row">
         {% for item in searchFarmMachineries %}
-        <div class="col-md-4 d-flex align-items-stretch">
-
-            {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
-            {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
-            {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
-            {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachinery.Region.ContentItemIds[0]] %}
-            {% assign img_alt =  machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
-            <div class="card mb-3">
-                <a href="{{ item | display_url }}">
-                    {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
-                    {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | resize_url: 480 | img_tag: alt: img_alt, class:'card-img-top' }}
-                    {% else %}
-                    <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png" />
-                    {% endif %}
-                </a>
-                <div class="card-body">
-                    {% if item.Content.FarmMachinery.Price.Value > 0 %}
-                    <h5 class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</h5>
-                    {% else %}
-                    <h5 class="card-text">{{ "Price upon request" | t }}</h5>
-                    {% endif %}
-                    <h5 class="card-title">
-                        <a href="{{ item | display_url }}">
-                            {{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}
+            <div class="col-md-4 d-flex align-items-stretch">
+                {% if item.Content.FarmMachinery != null %}
+                    {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
+                    {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
+                    {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
+                    {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachinery.Region.ContentItemIds[0]] %}
+                    {% assign img_alt =  machinery_type | append: ' ' | machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
+                    <div class="card mb-3 w-100">
+                        <a href="{{ item | display_url }}" class="image d-flex justify-content-center align-items-center">
+                            {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
+                                {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | resize_url: 480, 240 | img_tag: alt: img_alt, class:'card-img-top' }}
+                            {% else %}
+                                <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png">
+                            {% endif %}
                         </a>
-                    </h5>
-                    {% if item.Content.FarmMachinery.Year.Value != null and item.Content.FarmMachinery.Year.Value > 0 %}
-                    <p class="card-text">Année: {{ item.Content.FarmMachinery.Year.Value }}</p>
-                    {% endif %}
-                    {% if machinery_advertiser %}
-                    <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
-                    {% endif %}
-                    {% if machinery_region %}
-                    <p class="card-text">Région: {{ machinery_region }}</p>
-                    {% endif %}
-
-                </div>
-                <div class="card-footer text-center">
-                    <a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a>
-                </div>
+                        <div class="card-body">
+                          	{% if item.Content.FarmMachinery.PromoTag.Text != '' %}
+                          	<p><span class="tag">{{ item.Content.FarmMachinery.PromoTag.Text }}</span></p>
+                            {% endif %}
+                            {% if item.Content.FarmMachinery.Price.Value > 0 %}
+                            <h5 class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</h5>
+                            {% else %}
+                            <h5 class="card-text">{{ "Price upon request" | t }}</h5>
+                            {% endif %}    
+                            <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}</a></h5> 
+                            <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
+                            <p class="card-text">Région: {{ machinery_region | display_text }}</p>
+                        </div>
+                        <div class="card-footer text-center"><a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a></div>
+                    </div>
+                {% elsif item.Content.FarmMachineryAccessory != null  %}
+                    {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachineryAccessory.Type.ContentItemIds[0]] %}
+                    {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachineryAccessory.Brand.ContentItemIds[0]] %}
+                    {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachineryAccessory.Advertiser.ContentItemIds[0]] %}
+                    {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachineryAccessory.Region.ContentItemIds[0]] %}
+                    {% assign img_alt =  machinery_type | append: ' ' | machinery_brand | append: ' ' | append: item.Content.FarmMachineryAccessory.Model.Text %}
+                    <div class="card mb-3 w-100">
+                        <a href="{{ item | display_url }}" class="image d-flex justify-content-center align-items-center">
+                            {% if item.Content.FarmMachineryAccessory.WebsitePictures.Paths.size > 0 %}
+                                {{ item.Content.FarmMachineryAccessory.WebsitePictures.Paths[0] | asset_url | resize_url: 480, 240 | img_tag: alt: img_alt, class:'card-img-top' }}
+                            {% else %}
+                                <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png">
+                            {% endif %}
+                        </a>
+                        <div class="card-body">
+                          	{% if item.Content.FarmMachineryAccessory.PromoTag.Text != '' %}
+                          	<p><span class="tag">{{ item.Content.FarmMachineryAccessory.PromoTag.Text }}</span></p>
+                            {% endif %}
+                            {% if item.Content.FarmMachineryAccessory.Price.Value > 0 %}
+                            <h5 class="card-text">{{ item.Content.FarmMachineryAccessory.Price.Value }} $ CAD</h5>
+                            {% else %}
+                            <h5 class="card-text">{{ "Price upon request" | t }}</h5>
+                            {% endif %}    
+                            <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}</a></h5> 
+                            <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
+                            <p class="card-text">Région: {{ machinery_region | display_text }}</p>
+                        </div>
+                        <div class="card-footer text-center"><a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a></div>
+                    </div>
+                {% elsif item.Content.OtherEquipment != null  %}
+                    {% assign machinery_type = Content.ContentItemId[item.Content.OtherEquipment.Type.ContentItemIds[0]] %}
+                    {% assign machinery_brand = Content.ContentItemId[item.Content.OtherEquipment.Brand.ContentItemIds[0]] %}
+                    {% assign machinery_advertiser = Content.ContentItemId[item.Content.OtherEquipment.Advertiser.ContentItemIds[0]] %}
+                    {% assign machinery_region = Content.ContentItemId[item.Content.OtherEquipment.Region.ContentItemIds[0]] %}
+                    {% assign img_alt =  machinery_type | append: ' ' | machinery_brand | append: ' ' | append: item.Content.OtherEquipment.Model.Text %}
+                    <div class="card mb-3 w-100">
+                        <a href="{{ item | display_url }}" class="image d-flex justify-content-center align-items-center">
+                            {% if item.Content.OtherEquipment.WebsitePictures.Paths.size > 0 %}
+                                {{ item.Content.OtherEquipment.WebsitePictures.Paths[0] | asset_url | resize_url: 480, 240 | img_tag: alt: img_alt, class:'card-img-top' }}
+                            {% else %}
+                                <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png">
+                            {% endif %}
+                        </a>
+                        <div class="card-body">
+                          	{% if item.Content.OtherEquipment.PromoTag.Text != '' %}
+                          	<p><span class="tag">{{ item.Content.OtherEquipment.PromoTag.Text }}</span></p>
+                            {% endif %}
+                            {% if item.Content.OtherEquipment.Price.Value > 0 %}
+                            <h5 class="card-text">{{ item.Content.OtherEquipment.Price.Value }} $ CAD</h5>
+                            {% else %}
+                            <h5 class="card-text">{{ "Price upon request" | t }}</h5>
+                            {% endif %}    
+                            <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.OtherEquipment.Model.Text }}</a></h5> 
+                            {% if machinery_advertiser != null %}
+                            <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
+                            {% endif %}
+                            {% if machinery_region != null %}
+                            <p class="card-text">Région: {{ machinery_region | display_text }}</p>
+                            {% endif %}
+                        </div>
+                        <div class="card-footer text-center"><a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a></div>
+                    </div>
+                {% endif %}
             </div>
-        </div>
         {% endfor %}
     </div>
     <nav class="mt-5">
         <ul class="pagination justify-content-center">
-            {% assign totalPages = totalRecords | divided_by: 9 %}
-            {% assign testTotal = totalPages | times: 9 %}
-            {% if testTotal < totalRecords %}
-            {% assign totalPages = totalPages | plus: 1 %}
-            {% endif %}
             {% if Request.Query.Page != null %}
-            {% assign startPage = Request.Query.Page | int32 %}
-            {% assign currentPage = Request.Query.Page | int32 %}
+                {% assign currentPage = Request.Query.Page | int32 %}
             {% else %}
-            {% assign startPage = 1 %}
+                {% assign currentPage = 1 %}
             {% endif %}
-
-            {% assign endPage = startPage | plus: 2 %}
-            {% if endPage > totalPages %}
-            {% assign endPage = totalPages %}
-            {% assign startPage = totalPages | minus: 2 %}
-            {% endif %}
-
-            {% if startPage <= 1 %}
+            {% if currentPage == 1 %}
             <li class="page-item disabled">
             {% else %}
             <li class="page-item">
             {% endif %}
-                <a class="page-link" href="?page={{currentPage | minus: 1}}" tabindex="-1">{{ "Previous" | t }}</a>
+                <a class="page-link" href="?condition={{ Request.Query.condition }}&category={{ Request.Query.category }}&brand={{ Request.Query.brand }}&region={{ Request.Query.region }}&advertiser={{ Request.Query.advertiser }}&year={{ Request.Query.year }}&my_range={{ Request.Query.pricefrom }}%3B{{ Request.Query.priceto }}&pricefrom={{ Request.Query.pricefrom }}&priceto={{ Request.Query.priceto }}&description=&page={{ currentPage | int32 | minus: 1}}" tabindex="-1">{{ "Previous" | t }}</a>
             </li>
-            {% for i in (startPage..endPage) %}
+            {% if nextPageRecords > 0 %}
             <li class="page-item">
-                <a class="page-link" href="?page={{i}}">{{i}}</a>
-            </li>
-            {% endfor %}
-            {% if endPage >= totalPages %}
-            <li class="page-item disabled">
             {% else %}
-            <li class="page-item">
+            <li class="page-item disabled">
             {% endif %}
-                <a class="page-link" href="?page={{currentPage | plus: 1}}">{{ "Next" | t }}</a>
+                <a class="page-link" href="?condition={{ Request.Query.condition }}&category={{ Request.Query.category }}&brand={{ Request.Query.brand }}&region={{ Request.Query.region }}&advertiser={{ Request.Query.advertiser }}&year={{ Request.Query.year }}&my_range={{ Request.Query.pricefrom }}%3B{{ Request.Query.priceto }}&pricefrom={{ Request.Query.pricefrom }}&priceto={{ Request.Query.priceto }}&description=&page={{ currentPage | int32 | plus: 1}}">{{ "Next" | t }}</a>
             </li>
         </ul>
     </nav>

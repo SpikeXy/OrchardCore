@@ -26,7 +26,9 @@
                     {{ "Price upon request" | t }}
                 {% endif %}
             </div>
-			
+            {% if Model.ContentItem.Content.FarmMachinery.PromoTag.Text != '' %}
+            <p><span class="tag">{{ Model.ContentItem.Content.FarmMachinery.PromoTag.Text }}</span></p>
+            {% endif %}
 			<table class="table border-bottom product-table">
                 {%if machinery_brand != null and machinery_brand != "" %}
 				<tr>
@@ -258,7 +260,7 @@
             {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachinery.Region.ContentItemIds[0]] %}
             {% assign img_alt =  machinery_type | append: ' ' | machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
             <div class="card mb-3">
-                <a href="{{ item | display_url }}">
+                <a href="{{ item | display_url }}" class="image d-flex justify-content-center align-items-center">
                     {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
                         {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | resize_url: 480 | img_tag: alt: img_alt, class:'card-img-top' }}
                     {% else %}
@@ -281,7 +283,6 @@
                 {% if machinery_region %}
                 <p class="card-text">Région: {{ machinery_region }}</p>
                 {% endif %}
-
               </div>
               <div class="card-footer text-center"><a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a></div>
             </div>

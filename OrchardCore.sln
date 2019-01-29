@@ -375,6 +375,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheAdminAE", "src\OrchardCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AffairesExtra.Migration", "src\OrchardCore.Modules\AffairesExtra.Migration\AffairesExtra.Migration.csproj", "{C03AEAD4-B127-44F7-9AED-82D374817661}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AffairesExtra.Contents", "src\OrchardCore.Modules\AffairesExtra.Data\AffairesExtra.Contents.csproj", "{FE76AB41-61DF-4C07-A7F9-75B44A446CA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -993,6 +995,10 @@ Global
 		{C03AEAD4-B127-44F7-9AED-82D374817661}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C03AEAD4-B127-44F7-9AED-82D374817661}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C03AEAD4-B127-44F7-9AED-82D374817661}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE76AB41-61DF-4C07-A7F9-75B44A446CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE76AB41-61DF-4C07-A7F9-75B44A446CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE76AB41-61DF-4C07-A7F9-75B44A446CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE76AB41-61DF-4C07-A7F9-75B44A446CA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1167,7 +1173,8 @@ Global
 		{76023624-8D28-4666-9CA6-5978ACC2571D} = {A066395F-6F73-45DC-B5A6-B4E306110DCE}
 		{8AFF731A-4824-4A98-8D41-1C287B263C01} = {AF3BADEA-CC93-4116-B3C1-F8D074EBEE4F}
 		{6165061F-1091-42D5-905D-D797D785FDBC} = {AF3BADEA-CC93-4116-B3C1-F8D074EBEE4F}
-		{C03AEAD4-B127-44F7-9AED-82D374817661} = {90030E85-0C4F-456F-B879-443E8A3F220D}
+		{C03AEAD4-B127-44F7-9AED-82D374817661} = {A066395F-6F73-45DC-B5A6-B4E306110DCE}
+		{FE76AB41-61DF-4C07-A7F9-75B44A446CA3} = {A066395F-6F73-45DC-B5A6-B4E306110DCE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46A1D25A-78D1-4476-9CBF-25B75E296341}
