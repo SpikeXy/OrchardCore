@@ -3,6 +3,7 @@ using AffairesExtra.Contents.Models;
 using OrchardCore.ContentManagement;
 using YesSql.Indexes;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace AffairesExtra.Contents.Indexes
 {
@@ -32,7 +33,7 @@ namespace AffairesExtra.Contents.Indexes
                         string categoryId = null;
                         if (contentItem.Content.FarmMachinery.Category.ContentItemIds.Count > 0)
                         {
-                            categoryId = contentItem.Content.FarmMachinery.Category.ContentItemIds[0];
+                            categoryId = contentItem.Content.FarmMachinery.Category.ContentItemIds.ToString(Formatting.None);
                         }
 
                         string brandId = null;
@@ -84,7 +85,7 @@ namespace AffairesExtra.Contents.Indexes
                         string categoryId = null;
                         if (contentItem.Content.FarmMachineryAccessory.Category.ContentItemIds.Count > 0)
                         {
-                            categoryId = contentItem.Content.FarmMachineryAccessory.Category.ContentItemIds[0];
+                            categoryId = contentItem.Content.FarmMachineryAccessory.Category.ContentItemIds.ToString(Formatting.None);
                         }
 
                         string brandId = null;
@@ -136,7 +137,7 @@ namespace AffairesExtra.Contents.Indexes
                         string categoryId = null;
                         if (contentItem.Content.OtherEquipment.Category.ContentItemIds.Count > 0)
                         {
-                            categoryId = contentItem.Content.OtherEquipment.Category.ContentItemIds[0];
+                            categoryId = contentItem.Content.OtherEquipment.Category.ContentItemIds.ToString(Formatting.None);
                         }
 
                         string brandId = null;

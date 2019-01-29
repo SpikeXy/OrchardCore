@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web;
+using AffairesExtra.Migration.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -377,6 +378,9 @@ namespace AffairesExtra.Migration.Controllers
                             System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), FarmMachineryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                             contentItem.Content.FarmMachinery.MainPicture.Paths.Add("machinerie agricole/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                         }
+                        else {
+                            Console.WriteLine("Could not import principal image {" + product.PrincipalImage.ToString() + "}: " + product.ImageUrl.ToString());
+                        }
                     }
 
                     //website pictures
@@ -390,6 +394,10 @@ namespace AffairesExtra.Migration.Controllers
                             {
                                 System.IO.File.Copy(webImportPicturePath + imageSiteWeb, FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                                 contentItem.Content.FarmMachinery.WebsitePictures.Paths.Add("machinerie agricole/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                            }
+                            else
+                            {
+                                Console.WriteLine("Could not import website image {" + image.Image.ToString() + "}: " + image.ImageUrl.ToString());
                             }
                         }
                     }
@@ -501,6 +509,10 @@ namespace AffairesExtra.Migration.Controllers
                             System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), FarmMachineryAccessoryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                             contentItem.Content.FarmMachineryAccessory.MainPicture.Paths.Add("machinerie agricole (accessoire)/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                         }
+                        else
+                        {
+                            Console.WriteLine("Could not import principal image {" + product.PrincipalImage.ToString() + "}: " + product.ImageUrl.ToString());
+                        }
                     }
 
                     //website pictures
@@ -515,6 +527,10 @@ namespace AffairesExtra.Migration.Controllers
                                 System.IO.File.Copy(webImportPicturePath + imageSiteWeb, FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                                 contentItem.Content.FarmMachineryAccessory.WebsitePictures.Paths.Add("machinerie agricole (accessoire)/site web/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Could not import website image {" + image.Image.ToString() + "}: " + image.ImageUrl.ToString());
                         }
                     }
 
@@ -633,6 +649,10 @@ namespace AffairesExtra.Migration.Controllers
                             System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), OtherEquipmentMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                             contentItem.Content.OtherEquipment.MainPicture.Paths.Add("autre équipement/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                         }
+                        else
+                        {
+                            Console.WriteLine("Could not import principal image {" + product.PrincipalImage.ToString() + "}: " + product.ImageUrl.ToString());
+                        }
                     }
 
                     //website pictures
@@ -647,6 +667,10 @@ namespace AffairesExtra.Migration.Controllers
                                 System.IO.File.Copy(webImportPicturePath + imageSiteWeb, OtherEquipmentWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                                 contentItem.Content.OtherEquipment.WebsitePictures.Paths.Add("autre équipement/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Could not import website image {" + image.Image.ToString() + "}: " + image.ImageUrl.ToString());
                         }
                     }
 
@@ -675,7 +699,7 @@ namespace AffairesExtra.Migration.Controllers
                 }
             }
 
-            return View();
+            return View(new OtherEquipmentViewModel { Id = id });
         }
 
         [HttpPost, ActionName("ImportRealEstate")]
@@ -715,6 +739,10 @@ namespace AffairesExtra.Migration.Controllers
                             System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), RealEstateMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                             contentItem.Content.RealEstate.MainPicture.Paths.Add("immobilier/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                         }
+                        else
+                        {
+                            Console.WriteLine("Could not import principal image {" + product.PrincipalImage.ToString() + "}: " + product.ImageUrl.ToString());
+                        }
                     }
 
                     //website pictures
@@ -729,6 +757,10 @@ namespace AffairesExtra.Migration.Controllers
                                 System.IO.File.Copy(webImportPicturePath + imageSiteWeb, RealEstateWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                                 contentItem.Content.RealEstate.WebsitePictures.Paths.Add("immobilier/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Could not import website image {" + image.Image.ToString() + "}: " + image.ImageUrl.ToString());
                         }
                     }
 
@@ -828,6 +860,10 @@ namespace AffairesExtra.Migration.Controllers
                         {
                             System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), ClassifiedAdMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                         }
+                        else
+                        {
+                            Console.WriteLine("Could not import principal image {" + product.PrincipalImage.ToString() + "}: " + product.ImageUrl.ToString());
+                        }
                     }
 
                     //website pictures
@@ -841,6 +877,10 @@ namespace AffairesExtra.Migration.Controllers
                             if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb) && !System.IO.File.Exists(ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower()))
                             {
                                 System.IO.File.Copy(webImportPicturePath + imageSiteWeb, ClassifiedAdWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                            }
+                            else
+                            {
+                                Console.WriteLine("Could not import website image {" + image.Image.ToString() + "}: " + image.ImageUrl.ToString());
                             }
                         }
                     }
@@ -909,6 +949,10 @@ namespace AffairesExtra.Migration.Controllers
                             System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), ServiceMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                             contentItem.Content.Service.MainPicture.Paths.Add("service/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                         }
+                        else
+                        {
+                            Console.WriteLine("Could not import principal image {" + product.PrincipalImage.ToString() + "}: " + product.ImageUrl.ToString());
+                        }
                     }
 
                     //website pictures
@@ -923,6 +967,10 @@ namespace AffairesExtra.Migration.Controllers
                                 System.IO.File.Copy(webImportPicturePath + imageSiteWeb, ServiceWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                                 contentItem.Content.Service.WebsitePictures.Paths.Add("service/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Could not import website image {" + image.Image.ToString() + "}: " + image.ImageUrl.ToString());
                         }
                     }
 

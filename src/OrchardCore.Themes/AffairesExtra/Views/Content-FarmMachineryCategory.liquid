@@ -1,4 +1,4 @@
-{% assign query_condition = "false" %}
+{% assign query_condition = '*' %}
 {% if Request.Form.condition != null %}
   {% assign query_condition = Request.Form.condition %}  
 {% endif %}
@@ -90,262 +90,245 @@
   <div class="container justify-content-center align-self-center">
       <div class="intro-text">
           <ul class="nav nav-tabs" id="SearchTab" role="tablist">
-              <li class="nav-item">
-                {%if query_condition | downcase == "true" %}
-                <a class="nav-link active" id="farm-machinery-new-tab" data-toggle="tab" href="#farm-machinery-new" role="tab" aria-controls="farm-machinery-new" aria-selected="true">{{ "New" | t }}</a>
-                {% else %}
-                <a class="nav-link" id="farm-machinery-new-tab" data-toggle="tab" href="#farm-machinery-new" role="tab" aria-controls="farm-machinery-new" aria-selected="true">{{ "New" | t }}</a>
-                {% endif %}
-              </li>
-              <li class="nav-item">
-                {%if query_condition | downcase == "false" %}
-                <a class="nav-link active" id="farm-machinery-used-tab" data-toggle="tab" href="#farm-machinery-used" role="tab" aria-controls="farm-machinery-used" aria-selected="false">{{ "Used" | t }}</a>
-                {% else %}
-                <a class="nav-link" id="farm-machinery-used-tab" data-toggle="tab" href="#farm-machinery-used" role="tab" aria-controls="farm-machinery-used" aria-selected="false">{{ "Used" | t }}</a>
-                {% endif %}
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="real-estate-tab" data-toggle="tab" href="#real-estate" role="tab" aria-controls="real-estate" aria-selected="false">{{ "Real Estate" | t }}</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="services" aria-selected="false">Services</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="classified-ads-tab" data-toggle="tab" href="#classified-ads" role="tab" aria-controls="classified-ads" aria-selected="false">{{ "Classified Ads" | t }}</a>
-              </li>
+                <li class="nav-item">
+                    <a class="nav-link active" id="farm-machinery-new-tab" data-toggle="tab" href="#farm-machinery-new" role="tab" aria-controls="farm-machinery-new" aria-selected="true">{{ "New" | t }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="farm-machinery-used-tab" data-toggle="tab" href="#farm-machinery-used" role="tab" aria-controls="farm-machinery-used" aria-selected="false">{{ "Used" | t }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="real-estate-tab" data-toggle="tab" href="#real-estate" role="tab" aria-controls="real-estate" aria-selected="false">{{ "Real Estate" | t }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="services-tab" data-toggle="tab" href="#services" role="tab" aria-controls="services" aria-selected="false">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="classified-ads-tab" data-toggle="tab" href="#classified-ads" role="tab" aria-controls="classified-ads" aria-selected="false">{{ "Classified Ads" | t }}</a>
+                </li>
           </ul>
           <div class="search-box tab-content" id="SearchTabContent">
-              {%if query_condition | downcase == "true" %}
               <div class="tab-pane fade show active" id="farm-machinery-new" role="tabpanel" aria-labelledby="farm-machinery-new-tab">
-              {% else %}
-              <div class="tab-pane fade" id="farm-machinery-new" role="tabpanel" aria-labelledby="farm-machinery-new-tab">
-              {% endif %}
-                  <form accept-charset="UTF-8" action="equipements" method="get" >
-                      <input type="hidden" id="condition" name="condition" value="true" />
-                      <div class="form-row align-items-center">
-                          <div class="col-sm-3">
-                              {% assign machineryCategories = Queries.AllMachineryCategories | query %}
-                              <label for="category">{{ "Category" | t }}</label>
-                              <select id="category" class="form-control" name="category">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in machineryCategories %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign machineryBrands = Queries.AllMachineryBrands | query %}
-                              <label for="brand">{{ "Marque" | t }}</label>
-                              <select id="brand" class="form-control" name="brand">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in machineryBrands %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign regions = Queries.AllRegions | query %}
-                              <label for="region">{{ "Region" | t }}</label>
-                              <select id="region" class="form-control" name="region">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in regions %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign advertisers = Queries.Advertisers | query %}
-                              <label for="advertiser">{{ "Advertiser" | t }}</label>
-                              <select id="advertiser" class="form-control" name="advertiser">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in advertisers %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="year">{{ "Year" | t }} </label>
-                              <select id="year" class="form-control" name="year">
-                                  <option value="0" selected="">{{ "Choose..." | t }}</option>
-                                  {% assign year = "now" | local | date: "%Y" %}
-                                  {% for i in (1900..year) %}
-                                  <option value="{{ i }}">{{ i }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="price">{{ "Price" | t }}</label>
-                              <input type="text" class="js-range-slider" name="my_range" value="" />
-                              <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
-                              <input type="hidden" name="priceto" id="priceto" value="200000" />
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="description">{{ "Description" | t }}</label>
-                              <input type="text" id="description" class="form-control" name="description" />
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col mt-4">
-                              <button type="submit" class="btn btn-primary">{{ "Search" | t }}</button>
-                          </div>
-                      </div>
-                      {% antiforgerytoken %}
-                  </form>
+                    <form accept-charset="UTF-8" action="equipements" method="get" >
+                        <input type="hidden" id="condition" name="condition" value="true" />
+                        <div class="form-row align-items-center">
+                            <div class="col-sm-3">
+                                {% assign machineryCategories = Queries.AllMachineryCategories | query %}
+                                <label for="category">{{ "Category" | t }}</label>
+                                <select id="category" class="form-control" name="category">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in machineryCategories %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign machineryBrands = Queries.AllMachineryBrands | query %}
+                                <label for="brand">{{ "Marque" | t }}</label>
+                                <select id="brand" class="form-control" name="brand">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in machineryBrands %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign regions = Queries.AllRegions | query %}
+                                <label for="region">{{ "Region" | t }}</label>
+                                <select id="region" class="form-control" name="region">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in regions %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign advertisers = Queries.Advertisers | query %}
+                                <label for="advertiser">{{ "Advertiser" | t }}</label>
+                                <select id="advertiser" class="form-control" name="advertiser">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in advertisers %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="year">{{ "Year" | t }} </label>
+                                <select id="year" class="form-control" name="year">
+                                    <option value="0" selected="">{{ "Choose..." | t }}</option>
+                                    {% assign year = "now" | local | date: "%Y" %}
+                                    {% for i in (1900..year) %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="price">{{ "Price" | t }}</label>
+                                <input type="text" class="js-range-slider" name="my_range" value="" />
+                                <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
+                                <input type="hidden" name="priceto" id="priceto" value="200000" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="description">{{ "Description" | t }}</label>
+                                <input type="text" id="description" class="form-control" name="description" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mt-4">
+                                <button type="submit" class="btn btn-primary">{{ "Search" | t }}</button>
+                            </div>
+                        </div>
+                    </form>
               </div>
-              {%if query_condition | downcase == "false" %}
-              <div class="tab-pane fade show active" id="farm-machinery-used" role="tabpanel" aria-labelledby="farm-machinery-used-tab">
-              {% else %}
               <div class="tab-pane fade" id="farm-machinery-used" role="tabpanel" aria-labelledby="farm-machinery-used-tab">
-              {% endif %}
-                  <form accept-charset="UTF-8" action="equipements" method="get" >
-                      <input type="hidden" id="condition" name="condition" value="false" />
-                      <div class="form-row align-items-center">
-                          <div class="col-sm-3">
-                              {% assign machineryCategories = Queries.AllMachineryCategories | query %}
-                              <label for="category">{{ "Category" | t }}</label>
-                              <select id="category" class="form-control" name="category">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in machineryCategories %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign machineryBrands = Queries.AllMachineryBrands | query %}
-                              <label for="brand">{{ "Marque" | t }}</label>
-                              <select id="brand" class="form-control" name="brand">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in machineryBrands %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign regions = Queries.AllRegions | query %}
-                              <label for="region">{{ "Region" | t }}</label>
-                              <select id="region" class="form-control" name="region">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in regions %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign advertisers = Queries.Advertisers | query %}
-                              <label for="advertiser">{{ "Advertiser" | t }}</label>
-                              <select id="advertiser" class="form-control" name="advertiser">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in advertisers %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="year">{{ "Year" | t }} </label>
-                              <select id="year" class="form-control" name="year">
-                                  <option value="0" selected="">{{ "Choose..." | t }}</option>
-                                  {% assign year = "now" | local | date: "%Y" %}
-                                  {% for i in (1900..year) %}
-                                  <option value="{{ i }}">{{ i }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="price">{{ "Price" | t }}</label>
-                              <input type="text" class="js-range-slider" name="my_range" value="" />
-                              <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
-                              <input type="hidden" name="priceto" id="priceto" value="200000" />
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="description">{{ "Description" | t }}</label>
-                              <input type="text" id="description" class="form-control" name="description" />
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col mt-4">
-                              <button type="submit" class="btn btn-primary">{{ "Search" | t }}</button>
-                          </div>
-                      </div>
-                  </form>
+                    <form accept-charset="UTF-8" action="equipements" method="get" >
+                        <input type="hidden" id="condition" name="condition" value="false" />
+                        <div class="form-row align-items-center">
+                            <div class="col-sm-3">
+                                {% assign machineryCategories = Queries.AllMachineryCategories | query %}
+                                <label for="category">{{ "Category" | t }}</label>
+                                <select id="category" class="form-control" name="category">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in machineryCategories %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign machineryBrands = Queries.AllMachineryBrands | query %}
+                                <label for="brand">{{ "Marque" | t }}</label>
+                                <select id="brand" class="form-control" name="brand">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in machineryBrands %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign regions = Queries.AllRegions | query %}
+                                <label for="region">{{ "Region" | t }}</label>
+                                <select id="region" class="form-control" name="region">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in regions %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign advertisers = Queries.Advertisers | query %}
+                                <label for="advertiser">{{ "Advertiser" | t }}</label>
+                                <select id="advertiser" class="form-control" name="advertiser">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in advertisers %}
+                                    <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="year">{{ "Year" | t }} </label>
+                                <select id="year" class="form-control" name="year">
+                                    <option value="0" selected="">{{ "Choose..." | t }}</option>
+                                    {% assign year = "now" | local | date: "%Y" %}
+                                    {% for i in (1900..year) %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="price">{{ "Price" | t }}</label>
+                                <input type="text" class="js-range-slider" name="my_range" value="" />
+                                <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
+                                <input type="hidden" name="priceto" id="priceto" value="200000" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="description">{{ "Description" | t }}</label>
+                                <input type="text" id="description" class="form-control" name="description" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mt-4">
+                                <button type="submit" class="btn btn-primary">{{ "Search" | t }}</button>
+                            </div>
+                        </div>
+                    </form>
               </div>
               <div class="tab-pane fade" id="real-estate" role="tabpanel" aria-labelledby="real-estate-tab">
-                  <form action="immobilier" method="get" >
-                      <div class="form-row align-items-center">
-                          <div class="col-sm-3">
-                              {% assign machineryCategories = Queries.AllMachineryCategories | query %}
-                              <label for="category">{{ "Property type" | t }}</label>
-                              <select id="category" class="form-control" name="category">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in machineryCategories %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign machineryCategories = Queries.AllMachineryCategories | query %}
-                              <label for="category">{{ "Activity type" | t }}</label>
-                              <select id="category" class="form-control" name="category">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in machineryCategories %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign machineryCategories = Queries.AllMachineryCategories | query %}
-                              <label for="category">{{ "Property status" | t }}</label>
-                              <select id="category" class="form-control" name="category">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in machineryCategories %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign regions = Queries.AllRegions | query %}
-                              <label for="region">{{ "Region" | t }}</label>
-                              <select id="region" class="form-control" name="region">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in regions %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="price">{{ "Price" | t }}</label>
-                              <input type="text" class="js-range-slider" name="my_range" value="" />
-                              <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
-                              <input type="hidden" name="priceto" id="priceto" value="200000" />
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="price">{{ "Area" | t }}</label>
-                              <input type="text" id="price" class="form-control" name="price" />
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="price">{{ "# of rooms" | t }}</label>
-                              <input type="text" id="price" class="form-control" name="price" />
-                          </div>
-                          <div class="col-sm-3">
-                              {% assign advertisers = Queries.Advertisers | query %}
-                              <label for="advertiser">{{ "Advertiser" | t }}</label>
-                              <select id="advertiser" class="form-control" name="advertiser">
-                                  <option value="*" selected="">{{ "Choose..." | t }}</option>
-                                  {% for item in advertisers %}
-                                  <option value="{{ item.ContentItemId }}">{{ item | display_text }}</option>
-                                  {% endfor %}
-                              </select>
-                          </div>
-                          <div class="col-sm-3">
-                              <label for="description">{{ "Description" | t }}</label>
-                              <input type="text" id="description" class="form-control" name="description" />
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col mt-4">
-                              <button type="submit" class="btn btn-primary">{{ "Search" | t }}</button>
-                          </div>
-                      </div>
-                  </form>
+                    <form action="immobilier" method="get" >
+                        <div class="form-row align-items-center">
+                            <div class="col-sm-3">
+                                {% assign realEstateTypes = Queries.RealEstateTypes | query %}
+                                <label for="type">{{ "Property type" | t }}</label>
+                                <select id="type" class="form-control" name="type">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in realEstateTypes %}
+                                    <option value="{{ item.ContentItemId }}" {% if Request.Query.type | downcase == item.ContentItemId | downcase %}selected{% endif %}>{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign realEstateActivityTypes = Queries.RealEstateActivityTypes | query %}
+                                <label for="activitytype">{{ "Activity type" | t }}</label>
+                                <select id="activitytype" class="form-control" name="activitytype">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in realEstateActivityTypes %}
+                                    <option value="{{ item.ContentItemId }}" {% if Request.Query.activitytype | downcase == item.ContentItemId | downcase %}selected{% endif %}>{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign realEstateStatus = Queries.RealEstateStatus | query %}
+                                <label for="status">{{ "Property status" | t }}</label>
+                                <select id="status" class="form-control" name="status">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in realEstateStatus %}
+                                    <option value="{{ item.ContentItemId }}" {% if Request.Query.status | downcase == item.ContentItemId | downcase %}selected{% endif %}>{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign regions = Queries.AllRegions | query %}
+                                <label for="region">{{ "Region" | t }}</label>
+                                <select id="region" class="form-control" name="region">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in regions %}
+                                    <option value="{{ item.ContentItemId }}" {% if Request.Query.region | downcase == item.ContentItemId | downcase %}selected{% endif %}>{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="price">{{ "Price" | t }}</label>
+                                <input type="text" class="js-range-slider" name="my_range" value="" />
+                                <input type="hidden" name="pricefrom" id="pricefrom" value="0" />
+                                <input type="hidden" name="priceto" id="priceto" value="200000" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="area">{{ "Area" | t }}</label>
+                                <input type="number" id="area" class="form-control" name="area" min="0" />
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="nbofroom">{{ "# of rooms" | t }}</label>
+                                <input type="number" id="nbofroom" class="form-control" name="nbofroom" min="0" />
+                            </div>
+                            <div class="col-sm-3">
+                                {% assign advertisers = Queries.Advertisers | query %}
+                                <label for="advertiser">{{ "Advertiser" | t }}</label>
+                                <select id="advertiser" class="form-control" name="advertiser">
+                                    <option value="*" selected="">{{ "Choose..." | t }}</option>
+                                    {% for item in advertisers %}
+                                    <option value="{{ item.ContentItemId }}" {% if Request.Query.advertiser | downcase == item.ContentItemId | downcase %}selected{% endif %}>{{ item | display_text }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="description">{{ "Description" | t }}</label>
+                                <input type="text" id="description" class="form-control" name="description" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mt-4">
+                                <button type="submit" class="btn btn-primary">{{ "Search" | t }}</button>
+                            </div>
+                        </div>
+                    </form>
               </div>
               <div class="tab-pane fade" id="services" role="tabpanel" aria-labelledby="services-tab">
                   <form action="services" method="get" >
@@ -450,9 +433,9 @@
 <!-- ANNONCES -->
 {% assign query_from_next = query_from | int32 | plus: 1 | times: 9 %}
 {% assign query_from = query_from | int32 | times: 9 %}
-{% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from_next, condition: query_condition, region: query_region, category: query_category, model: query_model, advertiser: query_advertiser, brand: query_brand, pricefrom: query_price_from, priceto: query_price_to, year: query_year %}
+{% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from_next, condition: '*', region: '*', category: query_category, model: '*', advertiser: '*', brand: '*', pricefrom: 0, priceto: 1000000, year: 0 %}
 {% assign nextPageRecords = searchFarmMachineries.size %}
-{% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from, condition: query_condition, region: query_region, category: query_category, model: query_model, advertiser: query_advertiser, brand: query_brand, pricefrom: query_price_from, priceto: query_price_to, year: query_year %}
+{% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from, condition: '*', region: '*', category: query_category, model: '*', advertiser: '*', brand: '*', pricefrom: 0, priceto: 1000000, year: 0 %}
 
 {%if searchFarmMachineries.size > 0 %}
 

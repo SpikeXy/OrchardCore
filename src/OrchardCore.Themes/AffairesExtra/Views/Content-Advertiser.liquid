@@ -197,9 +197,10 @@
     
     <!-- ANNONCES -->
     {% assign query_from_next = query_from | int32 | plus: 1 | times: 9 %}
-    {% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from_next, condition: '*', region: '*', category: '*', model: '*', brand: '*', advertiser: Model.ContentItem.ContentItemId, pricefrom: 0, priceto: 0, year: 0 %}
+    {% assign query_from = query_from | int32 | times: 9 %}
+    {% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from_next, condition: '*', region: '*', category: '*', model: '*', brand: '*', advertiser: Model.ContentItem.ContentItemId, pricefrom: 0, priceto: 1000000, year: 0 %}
     {% assign nextPageRecords = searchFarmMachineries.size %}
-    {% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from, condition: '*', region: '*', category: '*', model: '*', brand: '*', advertiser: Model.ContentItem.ContentItemId, pricefrom: 0, priceto: 0, year: 0 %}
+    {% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from, condition: '*', region: '*', category: '*', model: '*', brand: '*', advertiser: Model.ContentItem.ContentItemId, pricefrom: 0, priceto: 1000000, year: 0 %}
 
     {%if searchFarmMachineries.size > 0 %}
 
