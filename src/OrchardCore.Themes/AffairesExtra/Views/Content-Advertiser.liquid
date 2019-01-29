@@ -78,7 +78,7 @@
   {% assign query_size = Request.Query.size %}
 {% endif %}
 
-{% assign query_from = 0 %}
+{% assign query_from = 1 %}
 {% if Request.Form.page != null %}
   {% assign query_from = Request.Form.page %}
 {% endif %}
@@ -196,14 +196,13 @@
     </div>
     
     <!-- ANNONCES -->
-    {% assign query_from_next = query_from | int32 | plus: 1 | times: 9 %}
-    {% assign query_from = query_from | int32 | times: 9 %}
+    {% assign query_from_next = query_from | int32 | times: 9 %}
+    {% assign query_from = query_from | int32 | minus: 1 | times: 9 %}
     {% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from_next, condition: '*', region: '*', category: '*', model: '*', brand: '*', advertiser: Model.ContentItem.ContentItemId, pricefrom: 0, priceto: 1000000, year: 0 %}
     {% assign nextPageRecords = searchFarmMachineries.size %}
     {% assign searchFarmMachineries = Queries.FarmMachinerySearchSQL | query: size: query_size, from: query_from, condition: '*', region: '*', category: '*', model: '*', brand: '*', advertiser: Model.ContentItem.ContentItemId, pricefrom: 0, priceto: 1000000, year: 0 %}
-
+    
     {%if searchFarmMachineries.size > 0 %}
-
 
     <div class="row">
         {% for item in searchFarmMachineries %}
