@@ -25,5 +25,9 @@ namespace OrchardCore.Environment.Shell
         public void SaveSettings(ShellSettings shellSettings)
         {
         }
+
+        public void DeleteSettings(ShellSettings shellSettings)
+        {
+        }
     }
 }

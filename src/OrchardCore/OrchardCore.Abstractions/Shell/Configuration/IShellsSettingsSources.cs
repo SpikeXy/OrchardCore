@@ -7,6 +7,7 @@ namespace OrchardCore.Environment.Shell.Configuration
     {
         void AddSources(IConfigurationBuilder builder);
         void Save(string tenant, IDictionary<string, string> data);
+        void Delete(string tenant);
     }
 
     public static class ShellsSettingsSourcesExtensions

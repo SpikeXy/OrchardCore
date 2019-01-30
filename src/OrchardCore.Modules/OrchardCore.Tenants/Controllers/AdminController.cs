@@ -517,6 +517,20 @@ namespace OrchardCore.Tenants.Controllers
             return Redirect(redirectUrl);
         }
 
+        [HttpPost]
+        public IActionResult Delete(string id)
+        {
+            var shellSettings = _shellHost.GetAllSettings()
+                .Where(x => string.Equals(x.Name, id, StringComparison.OrdinalIgnoreCase))
+                .FirstOrDefault();
+
+            _shellSettingsManager.DeleteSettings(shellSettings);
+
+            _notifier.Warning(H["Tenant {0} has been successfully deleted.", shellSettings.Name]);
+
+            return RedirectToAction(nameof(Index)); 
+        }
+
         private void ValidateViewModel(EditTenantViewModel model, bool newTenant)
         {
             var selectedProvider = _databaseProviders.FirstOrDefault(x => x.Value == model.DatabaseProvider);

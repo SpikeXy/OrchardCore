@@ -115,6 +115,7 @@ public string GetTenantUrl(ShellSettingsEntry shellSettingsEntry)
                             <a class="btn btn-success btn-sm" id="btn-setup-@entry.Name" href="@GetTenantUrl(entry)">@T["Setup"]</a>
                         }
                         <a asp-action="Reload" asp-route-id="@entry.Name" class="btn btn-secondary btn-sm" itemprop="UnsafeUrl">@T["Reload"]</a>
+                        <a asp-action="Delete" asp-route-id="@entry.Name" class="btn btn-danger btn-sm" itemprop="UnsafeUrl RemoveUrl" data-message="Are you sure you want to delete this tenant?">@T["Delete"]</a>
                     </div>
                     <h5>
                         <a href="@GetTenantUrl(entry)">@entry.Name</a>

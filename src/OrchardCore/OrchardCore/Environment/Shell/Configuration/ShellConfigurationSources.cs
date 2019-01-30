@@ -28,7 +28,7 @@ namespace OrchardCore.Environment.Shell.Configuration
         {
             lock (this)
             {
-                var tenantFolder = Path.Combine(_container, tenant);
+                var tenantFolder = BuildTenantFolderName(tenant);
                 var appsettings = Path.Combine(tenantFolder, "appsettings.json");
 
                 var config = !File.Exists(appsettings) ? new JObject()
@@ -50,5 +50,18 @@ namespace OrchardCore.Environment.Shell.Configuration
                 File.WriteAllText(appsettings, config.ToString());
             }
         }
+
+        public void Delete(string tenant)
+        {
+            lock (this)
+            {
+                var tenantFolder = BuildTenantFolderName(tenant);
+
+                Directory.Delete(BuildTenantFolderName(tenant), true);
+            }
+        }
+
+        private string BuildTenantFolderName(string tenant) =>
+            Path.Combine(_container, tenant);
     }
 }

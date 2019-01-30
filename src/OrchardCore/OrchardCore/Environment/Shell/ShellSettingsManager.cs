@@ -190,6 +190,18 @@ namespace OrchardCore.Environment.Shell
             _tenantConfigSources.Save(settings.Name, tenantConfig.ToObject<Dictionary<string, string>>());
         }
 
+        public void DeleteSettings(ShellSettings settings)
+        {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            _settingsSources.Delete(settings.Name);
+
+            _tenantConfigSources.Delete(settings.Name);
+        }
+
         // TODO: Can be removed when going to RC.
         private void UpgradeFromBeta2()
         {
