@@ -190,7 +190,7 @@ namespace OrchardCore.Environment.Shell
             _tenantConfigSources.Save(settings.Name, tenantConfig.ToObject<Dictionary<string, string>>());
         }
 
-        public void DeleteSettings(ShellSettings settings)
+        public void DeleteSettings(ShellSettings settings, bool deleteTenant = false)
         {
             if (settings == null)
             {
@@ -199,7 +199,10 @@ namespace OrchardCore.Environment.Shell
 
             _settingsSources.Delete(settings.Name);
 
-            _tenantConfigSources.Delete(settings.Name);
+            if (deleteTenant)
+            {
+                _tenantConfigSources.Delete(settings.Name);
+            }
         }
 
         // TODO: Can be removed when going to RC.

@@ -518,13 +518,13 @@ namespace OrchardCore.Tenants.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
             var shellSettings = _shellHost.GetAllSettings()
                 .Where(x => string.Equals(x.Name, id, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
 
-            _shellSettingsManager.DeleteSettings(shellSettings);
+            await _shellHost.DeleteShellSettingsAsync(shellSettings, true);
 
             _notifier.Warning(H["Tenant {0} has been successfully deleted.", shellSettings.Name]);
 

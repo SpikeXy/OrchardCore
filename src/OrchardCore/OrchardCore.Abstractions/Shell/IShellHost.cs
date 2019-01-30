@@ -77,5 +77,12 @@ namespace OrchardCore.Environment.Shell
         /// </summary>
         /// <returns>All shell settings.</returns>
         IEnumerable<ShellSettings> GetAllSettings();
+
+        /// <summary>
+        /// Deletes an existing shell and optionally deletes the tenant.
+        /// </summary>
+        /// <param name="settings">The <see cref="ShellSettings"/> object representing the shell to delete.</param>
+        /// <param name="deleteTenant">If true then all the related tenant files and database will be destroyed.</param>
+        Task DeleteShellSettingsAsync(ShellSettings settings, bool deleteTenant = false);
     }
 }

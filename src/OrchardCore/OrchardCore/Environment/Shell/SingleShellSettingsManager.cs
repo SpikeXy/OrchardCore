@@ -26,7 +26,7 @@ namespace OrchardCore.Environment.Shell
         {
         }
 
-        public void DeleteSettings(ShellSettings shellSettings)
+        public void DeleteSettings(ShellSettings shellSettings, bool deleteTenant = false)
         {
         }
     }

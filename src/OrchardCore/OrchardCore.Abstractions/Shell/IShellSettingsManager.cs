@@ -25,6 +25,7 @@ namespace OrchardCore.Environment.Shell
         /// Deletes shell settings from the storage.
         /// </summary>
         /// <param name="settings">The shell settings to delete.</param>
-        void DeleteSettings(ShellSettings settings);
+        /// <param name="deleteTenant">If true then all the related tenant files and database will be destroyed.</param>
+        void DeleteSettings(ShellSettings settings, bool deleteTenant = false);
     }
 }
