@@ -344,6 +344,30 @@ namespace OrchardCore.Media.Controllers
             return new ObjectResult(mediaFolder);
         }
 
+        [HttpPost]
+        public async Task<ActionResult<object>> RotateImage(string path, int angle)
+        {
+            if (!await _authorizationService.AuthorizeAsync(User, Permissions.ManageOwnMedia))
+            {
+                return Unauthorized();
+            }
+
+            if (path == null)
+            {
+                return NotFound();
+            }
+
+            var r = await _mediaFileStore.RotateImageAsync(path, angle);
+            var f = await _mediaFileStore.GetFileInfoAsync(path);
+
+            if (f == null || r == null)
+            {
+                return NotFound();
+            }
+
+            return CreateFileResult(f);
+        }
+
         public IActionResult MediaApplication()
         {
             return View();

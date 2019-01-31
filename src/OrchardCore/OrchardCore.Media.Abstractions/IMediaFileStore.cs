@@ -1,3 +1,4 @@
+using System.IO;
 using System.Threading.Tasks;
 using OrchardCore.FileStorage;
 
@@ -22,5 +23,13 @@ namespace OrchardCore.Media
         /// <returns>The mapped path of the given public URL within the file store.</returns>
         /// <exception cref="System.ArgumentOutOfRangeException">Thrown if the specified <paramref name="publicUrl"/> value is not within the publicly accessible URL space of the file store.</exception>
         string MapPublicUrlToPath(string publicUrl);
+
+        /// <summary>
+        /// Creates a stream to read the contents of a file in the file store.
+        /// </summary>
+        /// <param name="path">The path of the file to be read.</param>
+        /// <returns>An instance of <see cref="System.IO.Stream"/> that can be used to read the contents of the file. The caller must close the stream when finished.</returns>
+        /// <exception cref="FileStoreException">Thrown if the specified file does not exist.</exception>
+        Task<Stream> RotateImageAsync(string path, int angle);
     }
 }

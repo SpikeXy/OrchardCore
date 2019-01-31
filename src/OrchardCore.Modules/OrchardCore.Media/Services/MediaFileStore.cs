@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using OrchardCore.FileStorage;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.PixelFormats;
+using SixLabors.ImageSharp.Processing;
+using SixLabors.Primitives;
 
 namespace OrchardCore.Media.Services
 {
@@ -90,6 +94,16 @@ namespace OrchardCore.Media.Services
             }
 
             return publicUrl.Substring(_publicUrlBase.Length);
+        }
+
+        public Task<Stream> RotateImageAsync(string path, int angle) {
+
+            using (var image = Image.Load<Rgba32>(path))
+            {
+                Size original = image.Size();
+                image.Mutate(x => x.Rotate(angle));
+                return _fileStore.GetFileStreamAsync(path);
+            }
         }
     }
 }
