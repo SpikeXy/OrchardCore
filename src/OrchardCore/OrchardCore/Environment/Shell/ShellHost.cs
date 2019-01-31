@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using OrchardCore.Environment.Extensions;
 using OrchardCore.Environment.Shell.Builders;
 using OrchardCore.Environment.Shell.Descriptor.Models;
@@ -26,6 +28,7 @@ namespace OrchardCore.Environment.Shell
         private readonly IShellContextFactory _shellContextFactory;
         private readonly IRunningShellTable _runningShellTable;
         private readonly ILogger _logger;
+        private readonly IOptions<ShellOptions> _shellOptions;
 
         private bool _initialized;
         private ConcurrentDictionary<string, ShellContext> _shellContexts;
@@ -38,13 +41,15 @@ namespace OrchardCore.Environment.Shell
             IShellContextFactory shellContextFactory,
             IRunningShellTable runningShellTable,
             IExtensionManager extensionManager,
-            ILogger<ShellHost> logger)
+            ILogger<ShellHost> logger,
+            IOptions<ShellOptions> shellOptions)
         {
             _extensionManager = extensionManager;
             _shellSettingsManager = shellSettingsManager;
             _shellContextFactory = shellContextFactory;
             _runningShellTable = runningShellTable;
             _logger = logger;
+            _shellOptions = shellOptions;
         }
 
         public async Task InitializeAsync()
@@ -411,19 +416,24 @@ namespace OrchardCore.Environment.Shell
 
         public async Task RemoveShellAsync(ShellSettings settings)
         {
-            var shellEventHandlers = (await GetScopeAsync(settings)).ServiceProvider.GetServices<IShellEventHandler>();
+            if (_shellContexts.TryRemove(settings.Name, out var context))
+            {
+                _runningShellTable.Remove(settings);
+                context.Release();
+            }
+
+            var shellEventHandlers = (await CreateShellContextAsync(settings)).ServiceProvider.GetServices<IShellEventHandler>();
             await shellEventHandlers.InvokeAsync(x => x.Removing(settings), _logger);
 
-            //if (_shellContexts.TryRemove(settings.Name, out var context))
-            //{
-            //    _runningShellTable.Remove(settings);
-            //    context.Release();
-            //}
+            _shellSettingsManager.DeleteSettings(settings);
 
-            //_shellSettingsManager.DeleteSettings(settings);
+            // Delete tenant folder from App_Data.
+            var tenantFolder = Path.Combine(
+                _shellOptions.Value.ShellsApplicationDataPath,
+                _shellOptions.Value.ShellsContainerName,
+                settings.Name);
 
-
-            return;
+            Directory.Delete(tenantFolder, true);
         }
 
         public void Dispose()
