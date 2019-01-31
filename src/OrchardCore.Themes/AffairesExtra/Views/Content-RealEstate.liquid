@@ -76,9 +76,9 @@
 					<td class="text-right">{{ machinery_advertiser | display_text }}</td>
 				</tr>
                 {% endif %}
-				{%if Model.ContentItem.Content.RealEstate.AdditionalDescription.Text != null %}
+				{%if Model.ContentItem.Content.RealEstate.Description.Text != null %}
 				<tr>
-					<td colspan="2">{{ "Additional informations" | t }} :  <br/><br/>{{ Model.ContentItem.Content.RealEstate.AdditionalDescription.Text }}</td>
+					<td colspan="2">{{ "Additional informations" | t }} :  <br/><br/>{{ Model.ContentItem.Content.RealEstate.Description.Text }}</td>
 				</tr>
 				{% endif %}
 			</table>

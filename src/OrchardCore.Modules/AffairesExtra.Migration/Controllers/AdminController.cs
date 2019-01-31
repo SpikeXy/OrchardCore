@@ -287,8 +287,8 @@ namespace AffairesExtra.Migration.Controllers
             return View();
         }
 
-        [HttpPost, ActionName("ImportFarmMachinery")]
-        public async Task<IActionResult> ImportFarmMachinery()
+        [HttpPost, ActionName("ImportMotorEquipment")]
+        public async Task<IActionResult> ImportMotorEquipment()
         {
             if (!await _authorizationService.AuthorizeAsync(User, Permissions.ManageAffairesExtraMigration))
             {
@@ -302,7 +302,7 @@ namespace AffairesExtra.Migration.Controllers
 
             var images = await _migrationService.GetImportImagesData();
             var farmMachineryBrands = await GetAllContentItemsFromTypeAsync("FarmMachineryBrand");
-            var farmMachineryTypes = await GetAllContentItemsFromTypeAsync("FarmMachineryType");
+            var farmMachineryTypes = await GetAllContentItemsFromTypeAsync("MotorEquipmentType");
             var farmMachineryCategories = await GetAllContentItemsFromTypeAsync("FarmMachineryCategory");
             var advertisers = await GetAllContentItemsFromTypeAsync("Advertiser");
             var regions = await GetAllContentItemsFromTypeAsync("Region");
@@ -311,16 +311,16 @@ namespace AffairesExtra.Migration.Controllers
             {
                 if (product.IsMotorEquipment == "Oui")
                 {
-                    var contentItem = await _contentManager.NewAsync("FarmMachinery");
+                    var contentItem = await _contentManager.NewAsync("MotorEquipment");
 
                     await _contentItemDisplayManager.UpdateEditorAsync(contentItem, this, true);
 
-                    contentItem.Content.FarmMachinery.TypeOfFuel.Text = product.FuelType;
-                    contentItem.Content.FarmMachinery.Model.Text = product.Model;
-                    contentItem.Content.FarmMachinery.Year.Value = product.Year;
-                    contentItem.Content.FarmMachinery.Hours.Value = product.Hours;
-                    contentItem.Content.FarmMachinery.Condition.Value = product.Condition == "Neuf" ? true : false;
-                    contentItem.Content.FarmMachinery.Sold.Value = product.Sold == "VRAI" ? true : false;
+                    contentItem.Content.MotorEquipment.TypeOfFuel.Text = product.FuelType;
+                    contentItem.Content.MotorEquipment.Model.Text = product.Model;
+                    contentItem.Content.MotorEquipment.Year.Value = product.Year;
+                    contentItem.Content.MotorEquipment.Hours.Value = product.Hours;
+                    contentItem.Content.MotorEquipment.Condition.Value = product.Condition == "Neuf" ? true : false;
+                    contentItem.Content.MotorEquipment.Sold.Value = product.Sold == "VRAI" ? true : false;
 
                     //if (product.Concessionnaire.ToString().Trim() == "Équipements de ferme usagés Jutras")
                     //{
@@ -332,42 +332,42 @@ namespace AffairesExtra.Migration.Controllers
                     var advertiser = advertisers.Where(x => x.DisplayText.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
                     if (advertiser != null)
                     {
-                        contentItem.Content.FarmMachinery.Advertiser.ContentItemIds.Add(advertiser.ContentItemId);
+                        contentItem.Content.MotorEquipment.Advertiser.ContentItemIds.Add(advertiser.ContentItemId);
                         contentItem.Owner = advertiser.Content.Advertiser.Email.Text;
                     }
 
                     //if we find a brand we assign it
                     if (farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault().ContentItemId);
+                        contentItem.Content.MotorEquipment.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery type we assign it
                     if (farmMachineryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Type.ContentItemIds.Add(farmMachineryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
+                        contentItem.Content.MotorEquipment.Type.ContentItemIds.Add(farmMachineryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #1
                     if (farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault().ContentItemId);
+                        contentItem.Content.MotorEquipment.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #2
                     if (farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault().ContentItemId);
+                        contentItem.Content.MotorEquipment.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a region we assign it
                     if (regions.Where(x => x.DisplayText == product.Region).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachinery.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
+                        contentItem.Content.MotorEquipment.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
                     }
 
-                    contentItem.Content.FarmMachinery.MotorHP.Value = product.MotorHP;
-                    contentItem.Content.FarmMachinery.PTOForce.Value = product.ForcePTO;
+                    contentItem.Content.MotorEquipment.MotorHP.Value = product.MotorHP;
+                    contentItem.Content.MotorEquipment.PTOForce.Value = product.ForcePTO;
 
                     //main picture
                     string imagePrincipale = product.PrincipalImage.ToString();
@@ -376,7 +376,7 @@ namespace AffairesExtra.Migration.Controllers
                         if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
                         {
                             System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), FarmMachineryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
-                            contentItem.Content.FarmMachinery.MainPicture.Paths.Add("machinerie agricole/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                            contentItem.Content.MotorEquipment.MainPicture.Paths.Add("machinerie agricole/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                         }
                         else {
                             Console.WriteLine("Could not import principal image {" + product.PrincipalImage.ToString() + "}: " + product.ImageUrl.ToString());
@@ -393,7 +393,7 @@ namespace AffairesExtra.Migration.Controllers
                             if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb) && !System.IO.File.Exists(FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower()))
                             {
                                 System.IO.File.Copy(webImportPicturePath + imageSiteWeb, FarmMachineryWebPicturePath + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
-                                contentItem.Content.FarmMachinery.WebsitePictures.Paths.Add("machinerie agricole/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                                contentItem.Content.MotorEquipment.WebsitePictures.Paths.Add("machinerie agricole/site web/" + contentItem.ContentItemId + '-' + image.LibraryItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
                             else
                             {
@@ -402,16 +402,16 @@ namespace AffairesExtra.Migration.Controllers
                         }
                     }
 
-                    //contentItem.Content.FarmMachinery.YoutubeVideo.EmbeddedAddress = product.YoutubeLink;
-                    contentItem.Content.FarmMachinery.YoutubeVideo.RawAddress = product.YoutubeLink;
-                    contentItem.Content.FarmMachinery.AdditionalDescription.Text = product.Description;
-                    //contentItem.Content.FarmMachinery.AdministratorNote.Text = product.TypeOfFuel;
-                    //contentItem.Content.FarmMachinery.Price.Value = product.TypeOfFuel;
+                    //contentItem.Content.MotorEquipment.YoutubeVideo.EmbeddedAddress = product.YoutubeLink;
+                    contentItem.Content.MotorEquipment.YoutubeVideo.RawAddress = product.YoutubeLink;
+                    contentItem.Content.MotorEquipment.AdditionalDescription.Text = product.Description;
+                    //contentItem.Content.MotorEquipment.AdministratorNote.Text = product.TypeOfFuel;
+                    //contentItem.Content.MotorEquipment.Price.Value = product.TypeOfFuel;
 
-                    contentItem.Content.FarmMachinery.PromoTag.Text = product.PromoFlag;
-                    contentItem.Content.FarmMachinery.InventoryNo.Text = product.InventoryNo;
-                    contentItem.Content.FarmMachinery.WheelDrive.Text = product.WheelDrive;
-                    contentItem.Content.FarmMachinery.DistanceTraveled.Value = product.Mileage;
+                    contentItem.Content.MotorEquipment.PromoTag.Text = product.PromoFlag;
+                    contentItem.Content.MotorEquipment.InventoryNo.Text = product.InventoryNo;
+                    contentItem.Content.MotorEquipment.WheelDrive.Text = product.WheelDrive;
+                    contentItem.Content.MotorEquipment.DistanceTraveled.Value = product.Mileage;
                     contentItem.CreatedUtc = DateTime.Parse(product.CreationDate);
 
                     await _contentManager.CreateAsync(contentItem, VersionOptions.DraftRequired);
@@ -427,8 +427,8 @@ namespace AffairesExtra.Migration.Controllers
             return View();
         }
 
-        [HttpPost, ActionName("ImportFarmMachineryAccessory")]
-        public async Task<IActionResult> ImportFarmMachineryAccessory()
+        [HttpPost, ActionName("ImportAccessoryEquipment")]
+        public async Task<IActionResult> ImportAccessoryEquipment()
         {
             if (!await _authorizationService.AuthorizeAsync(User, Permissions.ManageAffairesExtraMigration))
             {
@@ -443,7 +443,7 @@ namespace AffairesExtra.Migration.Controllers
             var images = await _migrationService.GetImportImagesData();
             var farmMachineryBrands = await GetAllContentItemsFromTypeAsync("FarmMachineryBrand");
             var farmMachineryCategories = await GetAllContentItemsFromTypeAsync("FarmMachineryCategory");
-            var farmMachineryAccessoryTypes = await GetAllContentItemsFromTypeAsync("FarmMachineryAccessoryType");
+            var farmMachineryAccessoryTypes = await GetAllContentItemsFromTypeAsync("AccessoryEquipmentType");
             var advertisers = await GetAllContentItemsFromTypeAsync("Advertiser");
             var regions = await GetAllContentItemsFromTypeAsync("Region");
 
@@ -452,53 +452,53 @@ namespace AffairesExtra.Migration.Controllers
             {
                 if (product.IsAccessory == "Oui")
                 {
-                    var contentItem = await _contentManager.NewAsync("FarmMachineryAccessory");
+                    var contentItem = await _contentManager.NewAsync("AccessoryEquipment");
 
                     await _contentItemDisplayManager.UpdateEditorAsync(contentItem, this, true);
 
-                    contentItem.Content.FarmMachineryAccessory.Model.Text = product.Model;
-                    contentItem.Content.FarmMachineryAccessory.Year.Value = product.Year;
-                    contentItem.Content.FarmMachineryAccessory.Condition.Value = product.Condition == "Neuf" ? true : false;
-                    contentItem.Content.FarmMachineryAccessory.Sold.Value = product.Sold == "VRAI" ? true : false;
+                    contentItem.Content.AccessoryEquipment.Model.Text = product.Model;
+                    contentItem.Content.AccessoryEquipment.Year.Value = product.Year;
+                    contentItem.Content.AccessoryEquipment.Condition.Value = product.Condition == "Neuf" ? true : false;
+                    contentItem.Content.AccessoryEquipment.Sold.Value = product.Sold == "VRAI" ? true : false;
 
                     //if we find an advertiser we assign it
                     var advertiser = advertisers.Where(x => x.DisplayText.ToString().Trim() == product.Concessionnaire.ToString().Trim()).FirstOrDefault();
                     if (advertiser != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Advertiser.ContentItemIds.Add(advertiser.ContentItemId);
+                        contentItem.Content.AccessoryEquipment.Advertiser.ContentItemIds.Add(advertiser.ContentItemId);
                         contentItem.Owner = advertiser.Content.Advertiser.Email.Text;
                     }
 
                     //if we find a brand we assign it
                     if (farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault().ContentItemId);
+                        contentItem.Content.AccessoryEquipment.Brand.ContentItemIds.Add(farmMachineryBrands.Where(x => x.DisplayText == product.Brand).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery type we assign it
                     if (farmMachineryAccessoryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Type.ContentItemIds.Add(farmMachineryAccessoryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
+                        contentItem.Content.AccessoryEquipment.Type.ContentItemIds.Add(farmMachineryAccessoryTypes.Where(x => x.DisplayText.ToString().Trim() == product.Title1.ToString().Trim()).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #1
                     if (farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault().ContentItemId);
+                        contentItem.Content.AccessoryEquipment.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category).FirstOrDefault().ContentItemId);
                     }
 
                     //if we find a machinery category we assign it #2
                     if (farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault().ContentItemId);
+                        contentItem.Content.AccessoryEquipment.Category.ContentItemIds.Add(farmMachineryCategories.Where(x => x.DisplayText == product.Category2).FirstOrDefault().ContentItemId);
                     }
                     else
                     {
                         //TODO create machinery category if not found.
                     }
 
-                    //contentItem.Content.FarmMachineryAccessory.MotorHP.Value = product.MotorHP;
-                    contentItem.Content.FarmMachineryAccessory.PTOForce.Value = product.ForcePTO;
+                    //contentItem.Content.AccessoryEquipment.MotorHP.Value = product.MotorHP;
+                    contentItem.Content.AccessoryEquipment.PTOForce.Value = product.ForcePTO;
 
                     //main picture
                     string imagePrincipale = product.PrincipalImage.ToString();
@@ -507,7 +507,7 @@ namespace AffairesExtra.Migration.Controllers
                         if (System.IO.File.Exists(mainImportPicturePath + imagePrincipale.Split('/').Last()) && !System.IO.File.Exists(FarmMachineryAccessoryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower()))
                         {
                             System.IO.File.Copy(mainImportPicturePath + imagePrincipale.Split('/').Last(), FarmMachineryAccessoryMainPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
-                            contentItem.Content.FarmMachineryAccessory.MainPicture.Paths.Add("machinerie agricole (accessoire)/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
+                            contentItem.Content.AccessoryEquipment.MainPicture.Paths.Add("machinerie agricole (accessoire)/principale/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imagePrincipale.Split('/').Last()).ToLower());
                         }
                         else
                         {
@@ -525,7 +525,7 @@ namespace AffairesExtra.Migration.Controllers
                             if (System.IO.File.Exists(webImportPicturePath + imageSiteWeb) && !System.IO.File.Exists(FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower()))
                             {
                                 System.IO.File.Copy(webImportPicturePath + imageSiteWeb, FarmMachineryAccessoryWebPicturePath + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
-                                contentItem.Content.FarmMachineryAccessory.WebsitePictures.Paths.Add("machinerie agricole (accessoire)/site web/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
+                                contentItem.Content.AccessoryEquipment.WebsitePictures.Paths.Add("machinerie agricole (accessoire)/site web/" + contentItem.ContentItemId + System.IO.Path.GetExtension(mainImportPicturePath + imageSiteWeb).ToLower());
                             }
                         }
                         else
@@ -534,18 +534,18 @@ namespace AffairesExtra.Migration.Controllers
                         }
                     }
 
-                    contentItem.Content.FarmMachineryAccessory.YoutubeVideo.RawAddress = product.YoutubeLink;
-                    contentItem.Content.FarmMachineryAccessory.AdditionalDescription.Text = product.Description;
+                    contentItem.Content.AccessoryEquipment.YoutubeVideo.RawAddress = product.YoutubeLink;
+                    contentItem.Content.AccessoryEquipment.AdditionalDescription.Text = product.Description;
 
                     //if we find a region we assign it
                     if (regions.Where(x => x.DisplayText == product.Region).FirstOrDefault() != null)
                     {
-                        contentItem.Content.FarmMachineryAccessory.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
+                        contentItem.Content.AccessoryEquipment.Region.ContentItemIds.Add(regions.Where(x => x.DisplayText == product.Region).FirstOrDefault().ContentItemId);
                     }
 
-                    contentItem.Content.FarmMachineryAccessory.PromoTag.Text = product.PromoFlag;
-                    contentItem.Content.FarmMachineryAccessory.InventoryNo.Text = product.InventoryNo;
-                    contentItem.Content.FarmMachineryAccessory.WheelDrive.Text = product.WheelDrive;
+                    contentItem.Content.AccessoryEquipment.PromoTag.Text = product.PromoFlag;
+                    contentItem.Content.AccessoryEquipment.InventoryNo.Text = product.InventoryNo;
+                    contentItem.Content.AccessoryEquipment.WheelDrive.Text = product.WheelDrive;
                     contentItem.CreatedUtc = DateTime.Parse(product.CreationDate);
 
                     await _contentManager.CreateAsync(contentItem, VersionOptions.DraftRequired);
@@ -807,7 +807,8 @@ namespace AffairesExtra.Migration.Controllers
 
                     contentItem.Content.RealEstate.NumberOfRooms.Value = product.NumberOfRooms;
                     contentItem.Content.RealEstate.Area.Value = product.Area;
-                    contentItem.CreatedUtc = DateTime.Parse(product.CreationDate);
+                    contentItem.Content.RealEstate.Description.Text = product.Description;
+                    contentItem.CreatedUtc = DateTime.Parse(product.CreationDate);                    
 
                     await _contentManager.CreateAsync(contentItem, VersionOptions.DraftRequired);
 

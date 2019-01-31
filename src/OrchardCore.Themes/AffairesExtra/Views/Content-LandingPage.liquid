@@ -355,32 +355,32 @@
         {% for item in recentFarmMachineries %}
         <div class="col-md-4 d-flex align-items-stretch">
 
-            {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
-            {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
-            {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
-            {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachinery.Region.ContentItemIds[0]] %}
-            {% assign img_alt =  machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
+            {% assign machinery_type = Content.ContentItemId[item.Content.MotorEquipment.Type.ContentItemIds[0]] %}
+            {% assign machinery_brand = Content.ContentItemId[item.Content.MotorEquipment.Brand.ContentItemIds[0]] %}
+            {% assign machinery_advertiser = Content.ContentItemId[item.Content.MotorEquipment.Advertiser.ContentItemIds[0]] %}
+            {% assign machinery_region = Content.ContentItemId[item.Content.MotorEquipment.Region.ContentItemIds[0]] %}
+            {% assign img_alt =  machinery_brand | append: ' ' | append: item.Content.MotorEquipment.Model.Text %}
             <div class="card mb-3">
                 <a href="{{ item | display_url }}" class="image d-flex justify-content-center align-items-center">
-                    {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
-                        {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | resize_url: 480 | img_tag: alt: img_alt, class:'card-img-top' }}
+                    {% if item.Content.MotorEquipment.WebsitePictures.Paths.size > 0 %}
+                        {{ item.Content.MotorEquipment.WebsitePictures.Paths[0] | asset_url | resize_url: 480 | img_tag: alt: img_alt, class:'card-img-top' }}
                     {% else %}
                         <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png" />
                     {% endif %}
                 </a>
                 <div class="card-body">
-                    {% if item.Content.FarmMachinery.Price.Value > 0 %}
-                    <h5 class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</h5>
+                    {% if item.Content.MotorEquipment.Price.Value > 0 %}
+                    <h5 class="card-text">{{ item.Content.MotorEquipment.Price.Value }} $ CAD</h5>
                     {% else %}
                     <h5 class="card-text">{{ "Price upon request" | t }}</h5>
                     {% endif %}
                     <h5 class="card-title">
                         <a href="{{ item | display_url }}">
-                            {{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}
+                            {{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.MotorEquipment.Model.Text }}
                         </a>
                     </h5>
-                    {% if item.Content.FarmMachinery.Year.Value != null and item.Content.FarmMachinery.Year.Value > 0 %}
-                    <p class="card-text">Année: {{ item.Content.FarmMachinery.Year.Value }}</p>
+                    {% if item.Content.MotorEquipment.Year.Value != null and item.Content.MotorEquipment.Year.Value > 0 %}
+                    <p class="card-text">Année: {{ item.Content.MotorEquipment.Year.Value }}</p>
                     {% endif %}
                     {% if machinery_advertiser %}
                     <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
@@ -397,7 +397,7 @@
         </div>
         {% endfor %}
     </div>
-    <h2 class="text-center mb-5 mt-5">Rubriques</h2>
+    <h2 class="text-center mb-5 mt-5">Catégories</h2>
     {% assign farmMachineryCategories = Queries.FarmMachineryCategories | query %}
     <div class="owl-carousel owl-theme">
         {% for item in farmMachineryCategories %}

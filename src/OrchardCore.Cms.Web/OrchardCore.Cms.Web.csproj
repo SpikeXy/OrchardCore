@@ -10,6 +10,15 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
+    <Folder Remove="App_Data\Sites\Default\Media" />
+    <Content Update="App_Data\Sites\Default\Media\**\*.*" CopyToPublishDirectory="Never" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>App_Data\\Sites\\Default\\Media</AbsolutePath>
+    </MsDeploySkipRules>
   </ItemGroup>
 
   <ItemGroup>
@@ -19,7 +28,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
   </ItemGroup>
 
   <ItemGroup>

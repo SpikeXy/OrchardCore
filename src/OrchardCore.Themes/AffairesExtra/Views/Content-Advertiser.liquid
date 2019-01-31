@@ -207,59 +207,59 @@
     <div class="row">
         {% for item in searchFarmMachineries %}
             <div class="col-md-4 d-flex align-items-stretch">
-                {% if item.Content.FarmMachinery != null %}
-                    {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachinery.Type.ContentItemIds[0]] %}
-                    {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachinery.Brand.ContentItemIds[0]] %}
-                    {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachinery.Advertiser.ContentItemIds[0]] %}
-                    {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachinery.Region.ContentItemIds[0]] %}
-                    {% assign img_alt =  machinery_type | append: ' ' | machinery_brand | append: ' ' | append: item.Content.FarmMachinery.Model.Text %}
+                {% if item.Content.MotorEquipment != null %}
+                    {% assign machinery_type = Content.ContentItemId[item.Content.MotorEquipment.Type.ContentItemIds[0]] %}
+                    {% assign machinery_brand = Content.ContentItemId[item.Content.MotorEquipment.Brand.ContentItemIds[0]] %}
+                    {% assign machinery_advertiser = Content.ContentItemId[item.Content.MotorEquipment.Advertiser.ContentItemIds[0]] %}
+                    {% assign machinery_region = Content.ContentItemId[item.Content.MotorEquipment.Region.ContentItemIds[0]] %}
+                    {% assign img_alt =  machinery_type | append: ' ' | machinery_brand | append: ' ' | append: item.Content.MotorEquipment.Model.Text %}
                     <div class="card mb-3 w-100">
                         <a href="{{ item | display_url }}" class="image d-flex justify-content-center align-items-center">
-                            {% if item.Content.FarmMachinery.WebsitePictures.Paths.size > 0 %}
-                                {{ item.Content.FarmMachinery.WebsitePictures.Paths[0] | asset_url | resize_url: 480, 240 | img_tag: alt: img_alt, class:'card-img-top' }}
+                            {% if item.Content.MotorEquipment.WebsitePictures.Paths.size > 0 %}
+                                {{ item.Content.MotorEquipment.WebsitePictures.Paths[0] | asset_url | resize_url: 480, 240 | img_tag: alt: img_alt, class:'card-img-top' }}
                             {% else %}
                                 <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png">
                             {% endif %}
                         </a>
                         <div class="card-body">
-                          	{% if item.Content.FarmMachinery.PromoTag.Text != '' %}
-                          	<p><span class="tag">{{ item.Content.FarmMachinery.PromoTag.Text }}</span></p>
+                          	{% if item.Content.MotorEquipment.PromoTag.Text != '' %}
+                          	<p><span class="tag">{{ item.Content.MotorEquipment.PromoTag.Text }}</span></p>
                             {% endif %}
-                            {% if item.Content.FarmMachinery.Price.Value > 0 %}
-                            <h5 class="card-text">{{ item.Content.FarmMachinery.Price.Value }} $ CAD</h5>
+                            {% if item.Content.MotorEquipment.Price.Value > 0 %}
+                            <h5 class="card-text">{{ item.Content.MotorEquipment.Price.Value }} $ CAD</h5>
                             {% else %}
                             <h5 class="card-text">{{ "Price upon request" | t }}</h5>
                             {% endif %}    
-                            <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}</a></h5> 
+                            <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.MotorEquipment.Model.Text }}</a></h5> 
                             <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
                             <p class="card-text">Région: {{ machinery_region | display_text }}</p>
                         </div>
                         <div class="card-footer text-center"><a href="{{ item | display_url }}" class="btn btn-primary align-self-center">Voir la fiche</a></div>
                     </div>
-                {% elsif item.Content.FarmMachineryAccessory != null  %}
-                    {% assign machinery_type = Content.ContentItemId[item.Content.FarmMachineryAccessory.Type.ContentItemIds[0]] %}
-                    {% assign machinery_brand = Content.ContentItemId[item.Content.FarmMachineryAccessory.Brand.ContentItemIds[0]] %}
-                    {% assign machinery_advertiser = Content.ContentItemId[item.Content.FarmMachineryAccessory.Advertiser.ContentItemIds[0]] %}
-                    {% assign machinery_region = Content.ContentItemId[item.Content.FarmMachineryAccessory.Region.ContentItemIds[0]] %}
-                    {% assign img_alt =  machinery_type | append: ' ' | machinery_brand | append: ' ' | append: item.Content.FarmMachineryAccessory.Model.Text %}
+                {% elsif item.Content.AccessoryEquipment != null  %}
+                    {% assign machinery_type = Content.ContentItemId[item.Content.AccessoryEquipment.Type.ContentItemIds[0]] %}
+                    {% assign machinery_brand = Content.ContentItemId[item.Content.AccessoryEquipment.Brand.ContentItemIds[0]] %}
+                    {% assign machinery_advertiser = Content.ContentItemId[item.Content.AccessoryEquipment.Advertiser.ContentItemIds[0]] %}
+                    {% assign machinery_region = Content.ContentItemId[item.Content.AccessoryEquipment.Region.ContentItemIds[0]] %}
+                    {% assign img_alt =  machinery_type | append: ' ' | machinery_brand | append: ' ' | append: item.Content.AccessoryEquipment.Model.Text %}
                     <div class="card mb-3 w-100">
                         <a href="{{ item | display_url }}" class="image d-flex justify-content-center align-items-center">
-                            {% if item.Content.FarmMachineryAccessory.WebsitePictures.Paths.size > 0 %}
-                                {{ item.Content.FarmMachineryAccessory.WebsitePictures.Paths[0] | asset_url | resize_url: 480, 240 | img_tag: alt: img_alt, class:'card-img-top' }}
+                            {% if item.Content.AccessoryEquipment.WebsitePictures.Paths.size > 0 %}
+                                {{ item.Content.AccessoryEquipment.WebsitePictures.Paths[0] | asset_url | resize_url: 480, 240 | img_tag: alt: img_alt, class:'card-img-top' }}
                             {% else %}
                                 <img class="card-img-top" alt="no image" src="/AffairesExtra/img/noimage.png">
                             {% endif %}
                         </a>
                         <div class="card-body">
-                          	{% if item.Content.FarmMachineryAccessory.PromoTag.Text != '' %}
-                          	<p><span class="tag">{{ item.Content.FarmMachineryAccessory.PromoTag.Text }}</span></p>
+                          	{% if item.Content.AccessoryEquipment.PromoTag.Text != '' %}
+                          	<p><span class="tag">{{ item.Content.AccessoryEquipment.PromoTag.Text }}</span></p>
                             {% endif %}
-                            {% if item.Content.FarmMachineryAccessory.Price.Value > 0 %}
-                            <h5 class="card-text">{{ item.Content.FarmMachineryAccessory.Price.Value }} $ CAD</h5>
+                            {% if item.Content.AccessoryEquipment.Price.Value > 0 %}
+                            <h5 class="card-text">{{ item.Content.AccessoryEquipment.Price.Value }} $ CAD</h5>
                             {% else %}
                             <h5 class="card-text">{{ "Price upon request" | t }}</h5>
                             {% endif %}    
-                            <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.FarmMachinery.Model.Text }}</a></h5> 
+                            <h5 class="card-title"><a href="{{ item | display_url }}">{{ machinery_type | display_text }} <br/> {{ machinery_brand | display_text }} {{ item.Content.AccessoryEquipment.Model.Text }}</a></h5> 
                             <p class="card-text">Concessionnaire: {{ machinery_advertiser | display_text }}</p>
                             <p class="card-text">Région: {{ machinery_region | display_text }}</p>
                         </div>
