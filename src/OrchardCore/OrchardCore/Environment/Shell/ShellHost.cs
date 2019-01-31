@@ -409,17 +409,21 @@ namespace OrchardCore.Environment.Shell
                 shellSettings.State == TenantState.Initializing;
         }
 
-        public Task DeleteShellSettingsAsync(ShellSettings settings, bool deleteTenant = false)
+        public async Task RemoveShellAsync(ShellSettings settings)
         {
-            if (_shellContexts.TryRemove(settings.Name, out var context))
-            {
-                _runningShellTable.Remove(settings);
-                context.Release();
-            }
+            var shellEventHandlers = (await GetScopeAsync(settings)).ServiceProvider.GetServices<IShellEventHandler>();
+            await shellEventHandlers.InvokeAsync(x => x.Removing(settings), _logger);
 
-            _shellSettingsManager.DeleteSettings(settings, deleteTenant);
+            //if (_shellContexts.TryRemove(settings.Name, out var context))
+            //{
+            //    _runningShellTable.Remove(settings);
+            //    context.Release();
+            //}
 
-            return Task.CompletedTask;
+            //_shellSettingsManager.DeleteSettings(settings);
+
+
+            return;
         }
 
         public void Dispose()

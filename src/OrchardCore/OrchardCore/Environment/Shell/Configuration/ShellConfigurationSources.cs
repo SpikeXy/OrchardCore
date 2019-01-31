@@ -55,9 +55,9 @@ namespace OrchardCore.Environment.Shell.Configuration
         {
             lock (this)
             {
-                var tenantFolder = BuildTenantFolderName(tenant);
+                var appsettings = Path.Combine(BuildTenantFolderName(tenant), "appsettings.json");
 
-                Directory.Delete(BuildTenantFolderName(tenant), true);
+                File.Delete(appsettings);
             }
         }
 

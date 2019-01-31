@@ -524,7 +524,7 @@ namespace OrchardCore.Tenants.Controllers
                 .Where(x => string.Equals(x.Name, id, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault();
 
-            await _shellHost.DeleteShellSettingsAsync(shellSettings, true);
+            await _shellHost.RemoveShellAsync(shellSettings);
 
             _notifier.Warning(H["Tenant {0} has been successfully deleted.", shellSettings.Name]);
 

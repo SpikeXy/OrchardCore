@@ -47,6 +47,8 @@ namespace OrchardCore.Media.Azure
 
                     return new MediaFileStore(fileStore, mediaBaseUri.ToString());
                 }));
+
+                services.AddMediaEventHandlers();
             }
 
             services.Configure<MvcOptions>((options) =>

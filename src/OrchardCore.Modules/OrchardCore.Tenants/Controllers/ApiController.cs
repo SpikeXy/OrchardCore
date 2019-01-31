@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Logging;
 using OrchardCore.Data;
 using OrchardCore.DisplayManagement.Notify;
 using OrchardCore.Environment.Shell;
@@ -21,7 +20,6 @@ using OrchardCore.Modules;
 using OrchardCore.Recipes.Models;
 using OrchardCore.Recipes.Services;
 using OrchardCore.Setup.Services;
-using OrchardCore.Tenants.Events;
 using OrchardCore.Tenants.ViewModels;
 
 namespace OrchardCore.Tenants.Controllers
@@ -41,8 +39,6 @@ namespace OrchardCore.Tenants.Controllers
         private readonly ShellSettings _currentShellSettings;
         private readonly IClock _clock;
         private readonly INotifier _notifier;
-        private readonly IEnumerable<ITenantEventHandler> _tenantEventHandlers;
-        private readonly ILogger<ApiController> _logger;
 
         public ApiController(
             IShellHost shellHost,
@@ -56,9 +52,7 @@ namespace OrchardCore.Tenants.Controllers
             INotifier notifier,
             IEnumerable<IRecipeHarvester> recipeHarvesters,
             IStringLocalizer<AdminController> stringLocalizer,
-            IHtmlLocalizer<AdminController> htmlLocalizer,
-            IEnumerable<ITenantEventHandler> tenantEventHandlers,
-            ILogger<ApiController> logger)
+            IHtmlLocalizer<AdminController> htmlLocalizer)
         {
             _dataProtectorProvider = dataProtectorProvider;
             _setupService = setupService;
@@ -70,8 +64,6 @@ namespace OrchardCore.Tenants.Controllers
             _databaseProviders = databaseProviders;
             _currentShellSettings = currentShellSettings;
             _notifier = notifier;
-            _tenantEventHandlers = tenantEventHandlers;
-            _logger = logger;
 
             S = stringLocalizer;
             H = htmlLocalizer;
@@ -138,8 +130,6 @@ namespace OrchardCore.Tenants.Controllers
                 }
                 else
                 {
-                    await _tenantEventHandlers.InvokeAsync(x => x.CreatingAsync(shellSettings), _logger);
-
                     _shellSettingsManager.SaveSettings(shellSettings);
                     var shellContext = await _shellHost.GetOrCreateShellContextAsync(shellSettings);
 
