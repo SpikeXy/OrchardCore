@@ -422,16 +422,18 @@ namespace OrchardCore.Environment.Shell
                 context.Release();
             }
 
-            var shellEventHandlers = (await CreateShellContextAsync(settings)).ServiceProvider.GetServices<IShellEventHandler>();
-            await shellEventHandlers.InvokeAsync(x => x.Removing(settings), _logger);
+            using (var serviceScope = (await CreateShellContextAsync(settings)).ServiceProvider.CreateScope())
+            {
+                var shellEventHandlers = serviceScope.ServiceProvider.GetServices<IShellEventHandler>();
+                await shellEventHandlers.InvokeAsync(x => x.Removing(settings), _logger);
+            }
 
             _shellSettingsManager.DeleteSettings(settings);
-
-            // Delete tenant folder from App_Data.
+            
             var tenantFolder = Path.Combine(
-                _shellOptions.Value.ShellsApplicationDataPath,
-                _shellOptions.Value.ShellsContainerName,
-                settings.Name);
+               _shellOptions.Value.ShellsApplicationDataPath,
+               _shellOptions.Value.ShellsContainerName,
+               settings.Name);
 
             Directory.Delete(tenantFolder, true);
         }

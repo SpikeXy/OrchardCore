@@ -7,6 +7,7 @@ using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.ContentManagement.Records;
 using OrchardCore.Data.Migration;
 using OrchardCore.Environment.Cache;
+using OrchardCore.Environment.Shell;
 using YesSql.Indexes;
 
 namespace OrchardCore.ContentManagement
@@ -26,6 +27,7 @@ namespace OrchardCore.ContentManagement
             services.AddScoped<IContentHandler, ContentPartHandlerCoordinator>();
             services.AddSingleton<ITypeActivatorFactory<ContentPart>, ContentPartFactory>();
             services.AddSingleton<ITypeActivatorFactory<ContentField>, ContentFieldFactory>();
+            services.AddScoped<IShellEventHandler, MigrationsUninstallShellEventHandler>();
 
             services.AddSingleton<IContentItemIdGenerator, DefaultContentItemIdGenerator>();
             services.AddScoped<IContentAliasManager, ContentAliasManager>();

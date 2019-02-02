@@ -16,7 +16,7 @@ namespace OrchardCore.Media
 
         public static IServiceCollection AddMediaEventHandlers(this IServiceCollection services)
         {
-            services.AddSingleton<IShellEventHandler, DeleteMediaShellEventHandler>();
+            services.AddScoped<IShellEventHandler, DeleteMediaShellEventHandler>();
 
             return services;
         }
