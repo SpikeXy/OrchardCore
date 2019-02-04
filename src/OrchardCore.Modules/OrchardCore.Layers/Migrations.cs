@@ -1,4 +1,4 @@
-﻿using OrchardCore.Data.Migration;
+using OrchardCore.Data.Migration;
 using OrchardCore.Layers.Indexes;
 
 namespace OrchardCore.Layers
@@ -12,6 +12,11 @@ namespace OrchardCore.Layers
 			);
 
 			return 1;
-		}
-	}
+        }
+
+        public void Uninstall()
+        {
+            SchemaBuilder.DropMapIndexTable(nameof(LayerMetadataIndex));
+        }
+    }
 }

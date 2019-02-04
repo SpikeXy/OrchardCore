@@ -27,5 +27,12 @@ namespace OrchardCore.Users
                 .Column<string>("ProviderKey"));
             return 2;
         }
+
+        public void Uninstall()
+        {
+            SchemaBuilder.DropMapIndexTable(nameof(UserIndex));
+            SchemaBuilder.DropReduceIndexTable(nameof(UserByRoleNameIndex));
+            SchemaBuilder.DropMapIndexTable(nameof(UserByLoginInfoIndex));
+        }
     }
 }

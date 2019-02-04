@@ -45,6 +45,11 @@ namespace OrchardCore.Taxonomies
 
             return 1;
         }
+
+        public void Uninstall()
+        {
+            SchemaBuilder.DropMapIndexTable(nameof(TaxonomyIndex));
+        }
     }
 
     class AliasPartSettings

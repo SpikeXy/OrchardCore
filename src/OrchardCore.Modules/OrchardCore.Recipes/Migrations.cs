@@ -1,4 +1,4 @@
-﻿using OrchardCore.Data.Migration;
+using OrchardCore.Data.Migration;
 using OrchardCore.Recipes.Models;
 
 namespace OrchardCore.Recipes
@@ -15,6 +15,11 @@ namespace OrchardCore.Recipes
             );
 
             return 1;
+        }
+
+        public void Uninstall()
+        {
+            SchemaBuilder.DropMapIndexTable(nameof(RecipeResultIndex));
         }
     }
 }

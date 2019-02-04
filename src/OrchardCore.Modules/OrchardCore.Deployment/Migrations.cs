@@ -1,4 +1,4 @@
-﻿using OrchardCore.Data.Migration;
+using OrchardCore.Data.Migration;
 using OrchardCore.Deployment.Indexes;
 
 namespace OrchardCore.Deployment
@@ -12,6 +12,11 @@ namespace OrchardCore.Deployment
             );
 
             return 1;
+        }
+
+        public void Uninstall()
+        {
+            SchemaBuilder.DropMapIndexTable(nameof(DeploymentPlanIndex));
         }
     }
 }

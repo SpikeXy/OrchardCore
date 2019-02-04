@@ -59,5 +59,17 @@ namespace OrchardCore.OpenId.YesSql.Migrations
 
             return 2;
         }
+
+        public void Uninstall()
+        {
+            SchemaBuilder.DropMapIndexTable(nameof(OpenIdApplicationIndex));
+            SchemaBuilder.DropReduceIndexTable(nameof(OpenIdApplicationByPostLogoutRedirectUriIndex));
+            SchemaBuilder.DropReduceIndexTable(nameof(OpenIdApplicationByRedirectUriIndex));
+            SchemaBuilder.DropReduceIndexTable(nameof(OpenIdApplicationByRoleNameIndex));
+            SchemaBuilder.DropMapIndexTable(nameof(OpenIdAuthorizationIndex));
+            SchemaBuilder.DropMapIndexTable(nameof(OpenIdScopeIndex));
+            SchemaBuilder.DropReduceIndexTable(nameof(OpenIdScopeByResourceIndex));
+            SchemaBuilder.DropMapIndexTable(nameof(OpenIdTokenIndex));
+        }
     }
 }

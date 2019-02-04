@@ -1,4 +1,4 @@
-﻿using OrchardCore.Autoroute.Drivers;
+using OrchardCore.Autoroute.Drivers;
 using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.ContentManagement.Records;
@@ -32,6 +32,11 @@ namespace OrchardCore.Autoroute
             );
 
             return 1;
+        }
+
+        public void Uninstall()
+        {
+            SchemaBuilder.DropMapIndexTable(nameof(AutoroutePartIndex));
         }
     }
 }

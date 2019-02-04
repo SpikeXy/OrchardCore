@@ -20,5 +20,10 @@ namespace OrchardCore.Indexing
 
             return 1;
         }
+
+        public void Uninstall()
+        {
+            SchemaBuilder.DropTable(nameof(IndexingTask));
+        }
     }
 }
