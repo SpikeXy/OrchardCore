@@ -1,4 +1,4 @@
-﻿using OrchardCore.ContentManagement.Metadata.Settings;
+using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.Data.Migration;
 using OrchardCore.Alias.Indexes;
@@ -31,6 +31,11 @@ namespace OrchardCore.Alias
             );
 
             return 1;
+        }
+
+        public void Uninstall()
+        {
+            SchemaBuilder.DropMapIndexTable(nameof(AliasPartIndex));
         }
     }
 }
