@@ -18,23 +18,23 @@ jobs:
             DOTNET_CLI_TELEMETRY_OPTOUT: 1
         steps:
             - name: Initialize
-                run: |
-                    dotnet --version
-                    node --version
-                    npm --Version
-                    git config --global core.autocrlf true
+              run: |
+                dotnet --version
+                node --version
+                npm --Version
+                git config --global core.autocrlf true
             - name: Restore NuGet packages
-                run: dotnet restore
-                shell: cmd
+              run: dotnet restore
+              shell: cmd
             - name: Build solution
-                run: dotnet build -c Release --no-restore
-                shell: cmd
+              run: dotnet build -c Release --no-restore
+              shell: cmd
             - name: Pack solution
-                run: dotnet pack -c Release --no-build
-                shell: cmd
+              run: dotnet pack -c Release --no-build
+              shell: cmd
             - name: Run tests
-                run: |
-                    dotnet test -c Release --no-build .\test\OrchardCore.Tests\OrchardCore.Tests.csproj
-                    cd .\test\Functional
-                    test-setup.cmd
-                    test-run.cmd
+              run: |
+                dotnet test -c Release --no-build .\test\OrchardCore.Tests\OrchardCore.Tests.csproj
+                cd .\test\Functional
+                test-setup.cmd
+                test-run.cmd
