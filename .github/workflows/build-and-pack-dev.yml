@@ -22,17 +22,14 @@ jobs:
                 echo .NET Core & dotnet --version & echo.
                 echo NodeJS & node --version & echo.
                 echo NPM & npm version & echo.
+                cd & echo.
                 git config --global core.autocrlf true
-              shell: cmd
-#            - name: Restore NuGet packages
-#              run: dotnet restore OrchardCore.sln
-#              shell: cmd
+            - name: Restore NuGet packages
+              run: dotnet restore OrchardCore.sln
             - name: Build solution
-              run: dotnet build OrchardCore.sln -c Release
-              shell: cmd
+              run: dotnet build OrchardCore.sln -c Release --no-restore
             - name: Pack solution
               run: dotnet pack OrchardCore.sln -c Release --no-build
-              shell: cmd
             - name: Run tests
               run: |
                 dotnet test .\test\OrchardCore.Tests\OrchardCore.Tests.csproj -c Release --no-build
