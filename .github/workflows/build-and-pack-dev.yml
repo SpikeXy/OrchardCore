@@ -25,17 +25,17 @@ jobs:
                 git config --global core.autocrlf true
               shell: cmd
             - name: Restore NuGet packages
-              run: dotnet restore
+              run: dotnet restore OrchardCore.sln
               shell: cmd
             - name: Build solution
-              run: dotnet build -c Release --no-restore
+              run: dotnet build OrchardCore.sln -c Release --no-restore
               shell: cmd
             - name: Pack solution
-              run: dotnet pack -c Release --no-build
+              run: dotnet pack OrchardCore.sln -c Release --no-build
               shell: cmd
             - name: Run tests
               run: |
-                dotnet test -c Release --no-build .\test\OrchardCore.Tests\OrchardCore.Tests.csproj
+                dotnet test .\test\OrchardCore.Tests\OrchardCore.Tests.csproj -c Release --no-build
                 cd .\test\Functional
                 test-setup.cmd
                 test-run.cmd
