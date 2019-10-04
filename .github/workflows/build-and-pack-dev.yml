@@ -19,10 +19,11 @@ jobs:
         steps:
             - name: Initialize
               run: |
-                dotnet --version
-                node --version
-                npm --Version
+                echo .NET Core & dotnet --version & echo.
+                echo NodeJS & node --version & echo.
+                echo NPM & npm version & echo.
                 git config --global core.autocrlf true
+              shell: cmd
             - name: Restore NuGet packages
               run: dotnet restore
               shell: cmd
