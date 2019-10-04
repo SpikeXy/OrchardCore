@@ -1,4 +1,5 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28822.285
 MinimumVisualStudioVersion = 10.0.40219.1
@@ -359,9 +360,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrchardCore.Contents.Core",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrchardCore.Application.Cms.Core.Targets", "src\OrchardCore\OrchardCore.Application.Cms.Core.Targets\OrchardCore.Application.Cms.Core.Targets.csproj", "{AEDB2C9D-938E-484A-8DD8-7429E2BBB2A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchardCore.Media.Core", "src\OrchardCore\OrchardCore.Media.Core\OrchardCore.Media.Core\OrchardCore.Media.Core.csproj", "{8BC282D3-B7AF-495A-A5B1-D175875EB90E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrchardCore.Media.Core", "src\OrchardCore\OrchardCore.Media.Core\OrchardCore.Media.Core\OrchardCore.Media.Core.csproj", "{8BC282D3-B7AF-495A-A5B1-D175875EB90E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrchardCore.Benchmarks", "test\OrchardCore.Benchmarks\OrchardCore.Benchmarks.csproj", "{85610AB6-07E8-45E3-9C48-34D952CC5DD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrchardCore.Benchmarks", "test\OrchardCore.Benchmarks\OrchardCore.Benchmarks.csproj", "{85610AB6-07E8-45E3-9C48-34D952CC5DD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GitHub", "GitHub", "{95BBFE24-93B8-4809-BD6B-BCAB43180065}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{BA6DC940-3EB4-42B7-9EF8-FC5243B2CEE6}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-and-pack-dev.yml = .github\workflows\build-and-pack-dev.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1144,6 +1152,8 @@ Global
 		{AEDB2C9D-938E-484A-8DD8-7429E2BBB2A2} = {3398AB60-2DB7-464C-B211-C4120BE75582}
 		{8BC282D3-B7AF-495A-A5B1-D175875EB90E} = {F23AC6C2-DE44-4699-999D-3C478EF3D691}
 		{85610AB6-07E8-45E3-9C48-34D952CC5DD2} = {B8D16C60-99B4-43D5-A3AD-4CD89AF39B25}
+		{95BBFE24-93B8-4809-BD6B-BCAB43180065} = {184139CF-C4AB-4FBE-AE19-54C8B3FE5C5E}
+		{BA6DC940-3EB4-42B7-9EF8-FC5243B2CEE6} = {95BBFE24-93B8-4809-BD6B-BCAB43180065}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46A1D25A-78D1-4476-9CBF-25B75E296341}

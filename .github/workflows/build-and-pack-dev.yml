@@ -1,0 +1,40 @@
+name: Build and Pack 'dev'
+
+on:
+    push:
+        branches:
+            - 'feature/GitHubActions'
+        paths-ignore:
+            - '**/*.md'
+            - 'mkdocs.yml'
+            - 'src/docs/**/*'
+
+jobs:
+    ci-pipeline:
+        name: 'Continuous Integration pipeline'
+        runs-on: 'windows-latest'
+        env:
+            DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+            DOTNET_CLI_TELEMETRY_OPTOUT: 1
+        steps:
+            - name: Initialize
+                run: |
+                    dotnet --version
+                    node --version
+                    npm --Version
+                    git config --global core.autocrlf true
+            - name: Restore NuGet packages
+                run: dotnet restore
+                shell: cmd
+            - name: Build solution
+                run: dotnet build -c Release --no-restore
+                shell: cmd
+            - name: Pack solution
+                run: dotnet pack -c Release --no-build
+                shell: cmd
+            - name: Run tests
+                run: |
+                    dotnet test -c Release --no-build .\test\OrchardCore.Tests\OrchardCore.Tests.csproj
+                    cd .\test\Functional
+                    test-setup.cmd
+                    test-run.cmd
