@@ -27,12 +27,16 @@ jobs:
             - name: Restore NuGet packages
               run: dotnet restore
             - name: Build solution
-              run: dotnet build -c Release --no-restore
-            - name: Pack solution
-              run: dotnet pack -c Release --no-build
+              run: dotnet build --configuration Release --no-restore
             - name: Run tests
               run: |
-                dotnet test .\test\OrchardCore.Tests\OrchardCore.Tests.csproj -c Release --no-build
+                dotnet test .\test\OrchardCore.Tests\OrchardCore.Tests.csproj --configuration Release --no-build
                 cd .\test\Functional
                 test-setup.cmd
                 test-run.cmd
+            - name: Package solution
+              run: dotnet pack --configuration Release --output build --no-build
+            - name: Publish packages
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: dotnet nuget push "build\OrchardCore.1.0.0-rc1.nupkg" --source "https://nuget.pkg.github.com/$GITHUB_REPOSITORY/index.json" --api-key $GITHUB_TOKEN --no-service-endpoint
