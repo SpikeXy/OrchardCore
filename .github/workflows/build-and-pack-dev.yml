@@ -28,13 +28,15 @@ jobs:
               run: dotnet restore
             - name: Build solution
               run: dotnet build --configuration Release --no-restore
-            - name: Run tests
-              run: |
-                dotnet test .\test\OrchardCore.Tests\OrchardCore.Tests.csproj --configuration Release --no-build
-                cd .\test\Functional
-                test-setup.cmd
-                test-run.cmd
+#            - name: Run tests
+#              run: |
+#                dotnet test .\test\OrchardCore.Tests\OrchardCore.Tests.csproj --configuration Release --no-build
+#                cd .\test\Functional
+#                test-setup.cmd
+#                test-run.cmd
             - name: Package solution
               run: dotnet pack --configuration Release --output build --no-build
             - name: Publish packages
-              run: dotnet nuget push "build\OrchardCore.1.0.0-rc1.nupkg" --source "https://nuget.pkg.github.com/${{ github.repository }}/index.json" --api-key ${{ secrets.GITHUB_TOKEN }} --no-service-endpoint
+              run: dotnet nuget push "build\OrchardCore.1.0.0-rc1.nupkg" /
+                --source "https://nuget.pkg.github.com/${{ github.repository }}/index.json" /
+                --api-key ${{ secrets.GITHUB_TOKEN }}
