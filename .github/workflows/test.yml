@@ -19,5 +19,6 @@ jobs:
             DOTNET_CLI_TELEMETRY_OPTOUT: 1
         steps:
             - name: Test
-              run: return "$GITHUB_REPOSITORY"
-              shell: pwsh
+              run: |
+                echo REPOSITORY: & echo "$GITHUB_REPOSITORY" & echo.
+              shell: cmd
