@@ -20,5 +20,5 @@ jobs:
         steps:
             - name: Test
               run: |
-                echo REPOSITORY: & echo "$GITHUB_REPOSITORY" & echo.
+                echo REPOSITORY: & echo GITHUB_REPOSITORY & echo.
               shell: cmd
