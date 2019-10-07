@@ -37,6 +37,4 @@ jobs:
             - name: Package solution
               run: dotnet pack --configuration Release --output build --no-build
             - name: Publish packages
-              run: dotnet nuget push "build\OrchardCore.1.0.0-rc1.nupkg" /
-                --source "https://nuget.pkg.github.com/${{ github.repository }}/index.json" /
-                --api-key ${{ secrets.GITHUB_TOKEN }}
+              run: dotnet nuget push "build\OrchardCore.1.0.0-rc1.nupkg" --source "https://nuget.pkg.github.com/${{ github.repository }}/index.json" --api-key ${{ secrets.GITHUB_TOKEN }}
