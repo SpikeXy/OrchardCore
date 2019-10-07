@@ -1,0 +1,23 @@
+name: Test
+
+on:
+    push:
+        branches:
+            - 'feature/GitHubActions'
+        paths-ignore:
+            - '**/*.md'
+            - 'mkdocs.yml'
+            - 'src/docs/**/*'
+            - '.github/**/build-and-pack-dev.yml'
+
+jobs:
+    test-job:
+        name: 'Test job'
+        runs-on: 'windows-latest'
+        env:
+            DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+            DOTNET_CLI_TELEMETRY_OPTOUT: 1
+        steps:
+            - name: Test
+              run: return "$GITHUB_REPOSITORY"
+              shell: pwsh
